@@ -11,6 +11,6 @@ import java.util.ArrayList;
  */
 public class Row extends ArrayList<String> {
 
-	private static final long serialVersionUID = 631440407248133569L;
+    private static final long serialVersionUID = 631440407248133569L;
 
 }

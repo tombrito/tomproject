@@ -43,158 +43,155 @@ import javax.swing.JScrollPane;
  */
 public class SimpleDialog extends JDialog {
 
-	protected class OKAct extends AbstractAction {
-		private static final long serialVersionUID = -1509070577508136349L;
+    protected class OKAct extends AbstractAction {
+	private static final long serialVersionUID = -1509070577508136349L;
 
-		public OKAct(String name) {
-			super(name);
-		}
-
-		public void actionPerformed(ActionEvent e) {
-			ok();
-		}
+	public OKAct(String name) {
+	    super(name);
 	}
 
-	protected class CancelAct extends AbstractAction {
-		private static final long serialVersionUID = -9160278828912035221L;
+	public void actionPerformed(ActionEvent e) {
+	    ok();
+	}
+    }
 
-		public CancelAct(String name) {
-			super(name);
-		}
+    protected class CancelAct extends AbstractAction {
+	private static final long serialVersionUID = -9160278828912035221L;
 
-		public void actionPerformed(ActionEvent e) {
-			cancel();
-		}
+	public CancelAct(String name) {
+	    super(name);
 	}
 
-	/**
-	 * Defines a KeyAdapater for {@link SimpleDialog}.
-	 * 
-	 * @version 2009/08/04
-	 * @author Tom Brito
-	 */
-	class DialogKeyAdapter extends KeyAdapter {
-		@Override
-		public void keyPressed(KeyEvent e) {
-
-			/*
-			 * TODO TomComboBox (off-topic with this class) A JComboBox make its
-			 * "stop editing" by the escape key.
-			 * 
-			 * This, for while, don't justify remove the escape handle of
-			 * TomDialog.
-			 */
-			int code = e.getKeyCode();
-			if (code == KeyEvent.VK_ESCAPE)
-				cancel();
-		}
+	public void actionPerformed(ActionEvent e) {
+	    cancel();
 	}
+    }
 
-	// ****************************************************
-	// * Attributes
-	// ****************************************************
-
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Result of the dialog. True if OK, false if user cancel or close.
-	 */
-	private boolean result = false;
-
-	// ****************************************************
-	// * Constructors
-	// ****************************************************
-
-	public SimpleDialog(String title) {
-		super((JFrame) null, title, true);
-		FullKeyListener listener = new FullKeyListener(new DialogKeyAdapter());
-		listener.addFullKeyListenerTo(this);
-	}
-
-	public SimpleDialog(String title, JPanel centerPanel,
-			JButton... optionsButtons) {
-		this(title);
-		List<JButton> optionButtonList = new ArrayList<JButton>();
-		for (JButton btn : optionsButtons) {
-			optionButtonList.add(btn);
-		}
-		initView(centerPanel, optionButtonList);
-	}
-
-	public SimpleDialog(String title, JPanel centerPanel,
-			List<JButton> optionsButtons) {
-		this(title);
-		initView(centerPanel, optionsButtons);
-	}
-
-	private void initView(JPanel centerPanel,
-			List<JButton> optionsButtons) {
-		// Table
-		JScrollPane tableScrollPane = new JScrollPane();
-		tableScrollPane.setViewportView(centerPanel);
-		tableScrollPane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		tableScrollPane.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
-
-		// Options
-		JPanel optionsPane = new JPanel();
-		for (Component op : optionsButtons) {
-			optionsPane.add(op);
-		}
-
-		setLayout(new BorderLayout());
-		add(tableScrollPane);
-		add(optionsPane, BorderLayout.SOUTH);
-
-		// with less width the last button hides
-		setPreferredSize(new Dimension(700, 300));
-		pack();
-		setLocationRelativeTo(null);
-	}
-
-	// ****************************************************
-	// * Other methods
-	// ****************************************************
-
+    /**
+     * Defines a KeyAdapater for {@link SimpleDialog}.
+     * 
+     * @version 2009/08/04
+     * @author Tom Brito
+     */
+    class DialogKeyAdapter extends KeyAdapter {
 	@Override
-	public void setVisible(boolean visible) {
-		if (visible) {
-			result = false; // reset
-		}
-		super.setVisible(visible);
+	public void keyPressed(KeyEvent e) {
+
+	    /*
+	     * TODO TomComboBox (off-topic with this class) A JComboBox make its
+	     * "stop editing" by the escape key.
+	     * 
+	     * This, for while, don't justify remove the escape handle of
+	     * TomDialog.
+	     */
+	    int code = e.getKeyCode();
+	    if (code == KeyEvent.VK_ESCAPE)
+		cancel();
+	}
+    }
+
+    // ****************************************************
+    // * Attributes
+    // ****************************************************
+
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * Result of the dialog. True if OK, false if user cancel or close.
+     */
+    private boolean result = false;
+
+    // ****************************************************
+    // * Constructors
+    // ****************************************************
+
+    public SimpleDialog(String title) {
+	super((JFrame) null, title, true);
+	FullKeyListener listener = new FullKeyListener(new DialogKeyAdapter());
+	listener.addFullKeyListenerTo(this);
+    }
+
+    public SimpleDialog(String title, JPanel centerPanel, JButton... optionsButtons) {
+	this(title);
+	List<JButton> optionButtonList = new ArrayList<JButton>();
+	for (JButton btn : optionsButtons) {
+	    optionButtonList.add(btn);
+	}
+	initView(centerPanel, optionButtonList);
+    }
+
+    public SimpleDialog(String title, JPanel centerPanel, List<JButton> optionsButtons) {
+	this(title);
+	initView(centerPanel, optionsButtons);
+    }
+
+    private void initView(JPanel centerPanel, List<JButton> optionsButtons) {
+	// Table
+	JScrollPane tableScrollPane = new JScrollPane();
+	tableScrollPane.setViewportView(centerPanel);
+	tableScrollPane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	tableScrollPane.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
+
+	// Options
+	JPanel optionsPane = new JPanel();
+	for (Component op : optionsButtons) {
+	    optionsPane.add(op);
 	}
 
-	/**
-	 * Returns the result of the dialog box. <br>
-	 * <code>true</code> if user press the OK button, <code>false</code> if user
-	 * cancel or close.
-	 */
-	public boolean getResult() {
-		return result;
-	}
+	setLayout(new BorderLayout());
+	add(tableScrollPane);
+	add(optionsPane, BorderLayout.SOUTH);
 
-	/** Set the result of the dialog. */
-	protected void setResult(boolean result) {
-		this.result = result;
-	}
+	// with less width the last button hides
+	setPreferredSize(new Dimension(700, 300));
+	pack();
+	setLocationRelativeTo(null);
+    }
 
-	/** Confirm the dialog. */
-	protected void ok() {
-		yes();
-	}
+    // ****************************************************
+    // * Other methods
+    // ****************************************************
 
-	/** Cancel the dialog. */
-	protected void cancel() {
-		no();
+    @Override
+    public void setVisible(boolean visible) {
+	if (visible) {
+	    result = false; // reset
 	}
+	super.setVisible(visible);
+    }
 
-	protected void yes() {
-		result = true;
-		setVisible(false);
-	}
+    /**
+     * Returns the result of the dialog box. <br>
+     * <code>true</code> if user press the OK button, <code>false</code> if user
+     * cancel or close.
+     */
+    public boolean getResult() {
+	return result;
+    }
 
-	protected void no() {
-		result = false;
-		setVisible(false);
-	}
+    /** Set the result of the dialog. */
+    protected void setResult(boolean result) {
+	this.result = result;
+    }
+
+    /** Confirm the dialog. */
+    protected void ok() {
+	yes();
+    }
+
+    /** Cancel the dialog. */
+    protected void cancel() {
+	no();
+    }
+
+    protected void yes() {
+	result = true;
+	setVisible(false);
+    }
+
+    protected void no() {
+	result = false;
+	setVisible(false);
+    }
 
 }
