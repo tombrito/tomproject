@@ -15,118 +15,117 @@ import javax.swing.text.PlainDocument;
  */
 public class SimpleDocument extends PlainDocument {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * @return a default {@link SimpleTextField}.
-	 */
-	public static SimpleDocument createTomDocument() {
-		return new SimpleDocument();
+    /**
+     * @return a default {@link SimpleTextField}.
+     */
+    public static SimpleDocument createTomDocument() {
+	return new SimpleDocument();
+    }
+
+    /**
+     * @return a CAPITAL LETTER text field.
+     */
+    public static SimpleDocument createCapitalDocument() {
+	SimpleDocument doc = new SimpleDocument();
+	doc.setCaps(true);
+	return doc;
+    }
+
+    /**
+     * @return a numbers-only text field.
+     */
+    public static SimpleDocument createNumericalDocument() {
+	SimpleDocument doc = new SimpleDocument();
+	doc.setNumbersOnly(true);
+	return doc;
+    }
+
+    //
+    //
+    //
+
+    private boolean caps = false;
+
+    private int maxLength;
+
+    private boolean numbersOnly = false;
+
+    //
+    //
+    //
+
+    private SimpleDocument() {
+	// use static methods to create
+    }
+
+    //
+    //
+    //
+
+    /**
+     * Check if the CAPITAL LETTER is on/off.
+     */
+    public boolean isCaps() {
+	return caps;
+    }
+
+    /**
+     * Turn the CAPITAL LETTER on/off.
+     */
+    public void setCaps(boolean caps) {
+	this.caps = caps;
+    }
+
+    /**
+     * Returns the maximum of digits this text field allows.
+     */
+    public int getMaxLenth() {
+	return maxLength;
+    }
+
+    /**
+     * Sets the maximum of digits this text field allows. If zero, do not apply
+     * a limit of digits.
+     * 
+     * @param maxLenth
+     */
+    public void setMaxLength(int maxLenth) {
+	this.maxLength = maxLenth;
+    }
+
+    public boolean isNumbersOnly() {
+	return numbersOnly;
+    }
+
+    public void setNumbersOnly(boolean numbersOnly) {
+	this.numbersOnly = numbersOnly;
+    }
+
+    // TODO shouldn't be using a filter?
+    @Override
+    public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
+
+	if ((maxLength > 0) && getLength() >= maxLength) {
+	    return;
 	}
 
-	/**
-	 * @return a CAPITAL LETTER text field.
-	 */
-	public static SimpleDocument createCapitalDocument() {
-		SimpleDocument doc = new SimpleDocument();
-		doc.setCaps(true);
-		return doc;
+	if (caps) {
+	    str = str.toUpperCase();
 	}
 
-	/**
-	 * @return a numbers-only text field.
-	 */
-	public static SimpleDocument createNumericalDocument() {
-		SimpleDocument doc = new SimpleDocument();
-		doc.setNumbersOnly(true);
-		return doc;
+	if (numbersOnly) {
+	    // anything not (^) between 0 e 9.
+	    Pattern p = Pattern.compile("[^0-9]"); //$NON-NLS-1$
+	    Matcher m = p.matcher(str);
+	    if (m.find()) {
+		return;
+	    }
+
 	}
 
-	//
-	//
-	//
-
-	private boolean caps = false;
-
-	private int maxLength;
-
-	private boolean numbersOnly = false;
-
-	//
-	//
-	//
-
-	private SimpleDocument() {
-		// use static methods to create
-	}
-
-	//
-	//
-	//
-
-	/**
-	 * Check if the CAPITAL LETTER is on/off.
-	 */
-	public boolean isCaps() {
-		return caps;
-	}
-
-	/**
-	 * Turn the CAPITAL LETTER on/off.
-	 */
-	public void setCaps(boolean caps) {
-		this.caps = caps;
-	}
-
-	/**
-	 * Returns the maximum of digits this text field allows.
-	 */
-	public int getMaxLenth() {
-		return maxLength;
-	}
-
-	/**
-	 * Sets the maximum of digits this text field allows. If zero, do not apply
-	 * a limit of digits.
-	 * 
-	 * @param maxLenth
-	 */
-	public void setMaxLength(int maxLenth) {
-		this.maxLength = maxLenth;
-	}
-
-	public boolean isNumbersOnly() {
-		return numbersOnly;
-	}
-
-	public void setNumbersOnly(boolean numbersOnly) {
-		this.numbersOnly = numbersOnly;
-	}
-
-	// TODO shouldn't be using a filter?
-	@Override
-	public void insertString(int offs, String str, AttributeSet a)
-			throws BadLocationException {
-
-		if ((maxLength > 0) && getLength() >= maxLength) {
-			return;
-		}
-
-		if (caps) {
-			str = str.toUpperCase();
-		}
-
-		if (numbersOnly) {
-			// anything not (^) between 0 e 9.
-			Pattern p = Pattern.compile("[^0-9]"); //$NON-NLS-1$
-			Matcher m = p.matcher(str);
-			if (m.find()) {
-				return;
-			}
-
-		}
-
-		super.insertString(offs, str, a);
-	}
+	super.insertString(offs, str, a);
+    }
 
 }

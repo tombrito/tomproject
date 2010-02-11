@@ -12,10 +12,10 @@ import java.awt.event.ActionEvent;
  */
 public class SimpleActionEvent extends ActionEvent {
 
-	private static final long serialVersionUID = -1094996820318320550L;
+    private static final long serialVersionUID = -1094996820318320550L;
 
-	public SimpleActionEvent(Object source) {
-		super(source, ActionEvent.ACTION_PERFORMED, null);
-	}
+    public SimpleActionEvent(Object source) {
+	super(source, ActionEvent.ACTION_PERFORMED, null);
+    }
 
 }

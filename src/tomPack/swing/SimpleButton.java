@@ -9,12 +9,12 @@ import javax.swing.JButton;
  */
 public class SimpleButton extends JButton {
 
-	private static final long serialVersionUID = -3656834033489623832L;
+    private static final long serialVersionUID = -3656834033489623832L;
 
-	/* All JButton constructors delegate to this. */
-	public SimpleButton(String text, Icon icon) {
-		super(text, icon);
-		// TODO set the min width to avoid the little "ok" button.
-	}
+    /* All JButton constructors delegate to this. */
+    public SimpleButton(String text, Icon icon) {
+	super(text, icon);
+	// TODO set the min width to avoid the little "ok" button.
+    }
 
 }
