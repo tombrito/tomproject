@@ -117,15 +117,11 @@ public class SimpleDialog extends JDialog {
 	for (JButton btn : optionsButtons) {
 	    optionButtonList.add(btn);
 	}
-	initView(centerPanel, optionButtonList);
-    }
-
-    public SimpleDialog(String title, JPanel centerPanel, List<JButton> optionsButtons) {
-	this(title);
 	initView(centerPanel, optionsButtons);
     }
 
-    private void initView(JPanel centerPanel, List<JButton> optionsButtons) {
+    public void initView(JPanel centerPanel, JButton... optionsButtons) {
+
 	// Table
 	JScrollPane tableScrollPane = new JScrollPane();
 	tableScrollPane.setViewportView(centerPanel);
@@ -152,12 +148,25 @@ public class SimpleDialog extends JDialog {
     // * Other methods
     // ****************************************************
 
+    public JButton getOkButton(String name) {
+	return new JButton(new OKAct(name));
+    }
+    
+    public JButton getCancelButton(String name) {
+	return new JButton(new CancelAct(name));
+    }
+
     @Override
     public void setVisible(boolean visible) {
 	if (visible) {
 	    result = false; // reset
 	}
 	super.setVisible(visible);
+    }
+
+    @Override
+    public void show() {
+        setVisible(true);
     }
 
     /**
@@ -193,5 +202,5 @@ public class SimpleDialog extends JDialog {
 	result = false;
 	setVisible(false);
     }
-
+    
 }

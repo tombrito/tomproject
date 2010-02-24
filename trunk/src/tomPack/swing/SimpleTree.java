@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
@@ -18,7 +19,12 @@ public class SimpleTree extends JTree {
     private static final long serialVersionUID = 6953476658174073941L;
 
     public SimpleTree() {
-	this(null);
+	this((TreeNode)null);
+    }
+
+    public SimpleTree(TreeModel model) {
+	this();
+	setModel(model);
     }
 
     public SimpleTree(TreeNode root) {
@@ -27,7 +33,7 @@ public class SimpleTree extends JTree {
 	setShowsRootHandles(true);
 	initListeners();
     }
-
+    
     private void initListeners() {
 	addMouseListener(new MouseAdapter() {
 	    @Override
