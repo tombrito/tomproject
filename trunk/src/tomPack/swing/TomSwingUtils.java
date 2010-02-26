@@ -2,6 +2,7 @@ package tomPack.swing;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -11,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.Calendar;
 
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LookAndFeel;
@@ -175,4 +177,14 @@ public class TomSwingUtils {
 	c.setCursor(Cursor.getDefaultCursor());
     }
 
+    public void alignComponents(Container container, float alignmentX, float alignmentY) {
+	for (Component component : container.getComponents()) {
+	    if (component instanceof JComponent) {
+		JComponent jc = (JComponent) component;
+		jc.setAlignmentX(alignmentX);
+		jc.setAlignmentY(alignmentY);
+	    }
+	}
+    }
+    
 }
