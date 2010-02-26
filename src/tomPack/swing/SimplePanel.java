@@ -1,5 +1,7 @@
 package tomPack.swing;
 
+import java.awt.Cursor;
+
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -28,6 +30,14 @@ public class SimplePanel extends JPanel {
 	    component.setAlignmentY(0.5f);
 	}
 	add(component);
+    }
+
+    public void setWaitCursor() {
+	setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+    }
+
+    public void setDefaultCursor() {
+	setCursor(Cursor.getDefaultCursor());
     }
 
 }
