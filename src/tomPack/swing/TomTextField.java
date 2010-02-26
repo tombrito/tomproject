@@ -54,7 +54,7 @@ public class TomTextField extends JTextField {
     // Attributes
     //
 
-    private SimpleDocument doc;
+    private final SimpleDocument doc;
 
     //
     // Constructors
