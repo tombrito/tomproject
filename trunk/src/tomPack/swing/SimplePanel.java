@@ -3,6 +3,7 @@ package tomPack.swing;
 import java.awt.Cursor;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
@@ -38,6 +39,10 @@ public class SimplePanel extends JPanel {
 
     public void setDefaultCursor() {
 	setCursor(Cursor.getDefaultCursor());
+    }
+    
+    public void setBoxLayoutY() {
+	setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
 }
