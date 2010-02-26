@@ -1,6 +1,8 @@
-package tomPack;
+package tomPack.swing;
 
 import javax.swing.JTextField;
+
+import tomPack.SimpleDocument;
 
 /**
  * Extension of {@link JTextField} with some utilities.
@@ -10,7 +12,7 @@ import javax.swing.JTextField;
  * @version 2009/11/05
  * @author Tom Brito
  */
-public class SimpleTextField extends JTextField {
+public class TomTextField extends JTextField {
 
     private static final long serialVersionUID = 4691528418447887461L;
 
@@ -19,28 +21,33 @@ public class SimpleTextField extends JTextField {
     //
 
     /**
-     * @return a default {@link SimpleTextField}.
+     * @return a default {@link TomTextField}.
      */
-    public static SimpleTextField createSimpleTextField() {
-	return new SimpleTextField();
+    @Deprecated
+    public static TomTextField createSimpleTextField() {
+	return new TomTextField();
     }
 
     /**
      * @return a CAPITAL LETTER text field.
+     * @deprecated use {@link #setCaps(boolean)}
      */
-    public static SimpleTextField createCapitalTextField() {
+    @Deprecated
+    public static TomTextField createCapitalTextField() {
 	SimpleDocument doc = SimpleDocument.createCapitalDocument();
-	return new SimpleTextField(doc);
+	return new TomTextField(doc);
     }
 
     /**
      * @return a numbers-only text field.
+     * @deprecated use {@link TomNumericalField}.
      */
-    public static SimpleTextField createNumericalTextField() {
+    @Deprecated
+    public static TomTextField createNumericalTextField() {
 	// TODO create a subclass NumericalTextField with getValue() method
 	// returning a int
 	SimpleDocument doc = SimpleDocument.createNumericalDocument();
-	return new SimpleTextField(doc);
+	return new TomTextField(doc);
     }
 
     //
@@ -53,11 +60,20 @@ public class SimpleTextField extends JTextField {
     // Constructors
     //
 
-    protected SimpleTextField() {
-	this(null);
+    public TomTextField() {
+	this(null, 0);
+    }
+    
+    public TomTextField(int columns) {
+	this(null, columns);
     }
 
-    protected SimpleTextField(SimpleDocument doc) {
+    protected TomTextField(SimpleDocument doc) {
+	this(doc, 0);
+    }
+	
+    protected TomTextField(SimpleDocument doc, int columns) {
+	super(columns);
 	if (doc == null) {
 	    doc = SimpleDocument.createTomDocument();
 	}
@@ -81,6 +97,10 @@ public class SimpleTextField extends JTextField {
 	doc.setCaps(caps);
     }
 
+    protected void setNumbersOnly(boolean numbersOnly) {
+	doc.setNumbersOnly(numbersOnly);
+    }
+    
     @Override
     public String toString() {
 	String str = getText();

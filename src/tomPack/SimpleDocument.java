@@ -7,6 +7,8 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
+import tomPack.swing.TomTextField;
+
 /**
  * Extension of {@link PlainDocument} with some utilities.
  * 
@@ -18,7 +20,7 @@ public class SimpleDocument extends PlainDocument {
     private static final long serialVersionUID = 1L;
 
     /**
-     * @return a default {@link SimpleTextField}.
+     * @return a default {@link TomTextField}.
      */
     public static SimpleDocument createTomDocument() {
 	return new SimpleDocument();
@@ -26,7 +28,9 @@ public class SimpleDocument extends PlainDocument {
 
     /**
      * @return a CAPITAL LETTER text field.
+     * @deprecated use {@link #setCaps(boolean)}
      */
+    @Deprecated
     public static SimpleDocument createCapitalDocument() {
 	SimpleDocument doc = new SimpleDocument();
 	doc.setCaps(true);
@@ -35,7 +39,9 @@ public class SimpleDocument extends PlainDocument {
 
     /**
      * @return a numbers-only text field.
+     * @deprecated use {@link #setNumbersOnly(boolean)}
      */
+    @Deprecated
     public static SimpleDocument createNumericalDocument() {
 	SimpleDocument doc = new SimpleDocument();
 	doc.setNumbersOnly(true);
