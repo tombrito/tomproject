@@ -164,11 +164,6 @@ public class SimpleDialog extends JDialog {
 	super.setVisible(visible);
     }
 
-    @Override
-    public void show() {
-        setVisible(true);
-    }
-
     /**
      * Returns the result of the dialog box. <br>
      * <code>true</code> if user press the OK button, <code>false</code> if user
