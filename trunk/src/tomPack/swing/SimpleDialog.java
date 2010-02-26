@@ -5,6 +5,7 @@ import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
@@ -198,4 +199,12 @@ public class SimpleDialog extends JDialog {
 	setVisible(false);
     }
     
+    public void setWaitCursor() {
+	setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+    }
+
+    public void setDefaultCursor() {
+	setCursor(Cursor.getDefaultCursor());
+    }
+
 }

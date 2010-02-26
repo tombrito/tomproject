@@ -1,6 +1,7 @@
 package tomPack.swing;
 
 import java.awt.Container;
+import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -77,6 +78,14 @@ public class SimpleFrame extends JFrame {
     public void setSize(int width, int height) {
 	super.setSize(width, height);
 	setLocationRelativeTo(null);
+    }
+
+    public void setWaitCursor() {
+	setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+    }
+
+    public void setDefaultCursor() {
+	setCursor(Cursor.getDefaultCursor());
     }
 
 }
