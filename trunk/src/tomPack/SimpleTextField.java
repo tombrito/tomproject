@@ -21,7 +21,7 @@ public class SimpleTextField extends JTextField {
     /**
      * @return a default {@link SimpleTextField}.
      */
-    public static SimpleTextField createTomTextField() {
+    public static SimpleTextField createSimpleTextField() {
 	return new SimpleTextField();
     }
 
