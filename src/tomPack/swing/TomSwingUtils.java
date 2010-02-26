@@ -169,15 +169,15 @@ public class TomSwingUtils {
 	return startX;
     }
 
-    public void setWaitCursor(Component c) {
+    public static void setWaitCursor(Component c) {
 	c.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     }
 
-    public void setDefaultMouseCursor(Component c) {
+    public static void setDefaultMouseCursor(Component c) {
 	c.setCursor(Cursor.getDefaultCursor());
     }
 
-    public void alignComponents(Container container, float alignmentX, float alignmentY) {
+    public static void alignComponents(Container container, float alignmentX, float alignmentY) {
 	for (Component component : container.getComponents()) {
 	    if (component instanceof JComponent) {
 		JComponent jc = (JComponent) component;
