@@ -1,4 +1,5 @@
-package tomPack.swing;
+package tomPack.swing.filechooser;
+
 
 public class SimpleDirChooser extends SimpleFileChooser {
 

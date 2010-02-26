@@ -1,4 +1,4 @@
-package tomPack.swing;
+package tomPack.swing.filechooser;
 
 import java.io.File;
 
