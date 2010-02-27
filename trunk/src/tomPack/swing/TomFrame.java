@@ -6,21 +6,18 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-/**
- * @author Tom Brito
- */
-public class SimpleFrame extends JFrame {
+public class TomFrame extends JFrame {
 
     private static final long serialVersionUID = 1L;
 
-    private static SimpleFrame wFrameInstance = null;
+    private static TomFrame wFrameInstance = null;
 
     /**
      * Retorna o objeto stático JFrame configurado
      */
-    public static SimpleFrame getInstance() {
+    public static TomFrame getInstance() {
 	if (wFrameInstance == null) {
-	    wFrameInstance = new SimpleFrame();
+	    wFrameInstance = new TomFrame();
 	}
 	return wFrameInstance;
     }
@@ -28,7 +25,7 @@ public class SimpleFrame extends JFrame {
     /**
      * Create and initialize a default WFrame.
      */
-    public SimpleFrame() {
+    public TomFrame() {
 	this("", null); //$NON-NLS-1$
     }
 
@@ -37,7 +34,7 @@ public class SimpleFrame extends JFrame {
      * 
      * @param contentPane
      */
-    public SimpleFrame(Container contentPane) {
+    public TomFrame(Container contentPane) {
 	this("", contentPane); //$NON-NLS-1$
     }
 
@@ -46,7 +43,7 @@ public class SimpleFrame extends JFrame {
      * 
      * @param name
      */
-    public SimpleFrame(String name) {
+    public TomFrame(String name) {
 	this(name, null);
     }
 
@@ -58,7 +55,7 @@ public class SimpleFrame extends JFrame {
      * @param contentPane
      *            - the content pane for the frame to show.
      */
-    public SimpleFrame(String name, Container contentPane) {
+    public TomFrame(String name, Container contentPane) {
 	super(name);
 	if (contentPane != null)
 	    setContentPane(contentPane);
