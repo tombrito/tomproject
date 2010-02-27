@@ -1,20 +1,26 @@
 package tomPack.swing;
 
 import java.awt.Cursor;
+import java.awt.LayoutManager;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-public class SimplePanel extends JPanel {
+public class TomPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
     
-    public SimplePanel() {
+    public TomPanel() {
 	setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
     }
     
+    public TomPanel(LayoutManager mgr) {
+	this();
+	setLayout(mgr);
+    }
+
     public void addCentered(JComponent component) {
 	addCentered(component, true, true);
     }

@@ -13,6 +13,7 @@ import java.io.PrintStream;
 import java.util.Calendar;
 
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LookAndFeel;
@@ -142,9 +143,9 @@ public class TomSwingUtils {
      * Yet, set {@link JLabel#setLabelFor(Component)}, to help assistive
      * technology (search in the java tutorial for more info).
      */
-    public static JPanel createLabeledComponent(JLabel label, Component comp) {
+    public static TomPanel createLabeledComponent(JLabel label, Component comp) {
 	GridLayout layout = new GridLayout(2, 1);
-	JPanel panel = new JPanel(layout);
+	TomPanel panel = new TomPanel(layout);
 	panel.add(label);
 	panel.add(comp);
 	label.setLabelFor(comp); // to help assistive technology
@@ -185,6 +186,34 @@ public class TomSwingUtils {
 		jc.setAlignmentY(alignmentY);
 	    }
 	}
+    }
+    
+    public static TomPanel createInputPanelH(String name, int inputSize) {
+	TomPanel panel = new TomPanel();
+
+	JLabel label = new JLabel(name);
+	
+	TomTextField textField = new TomTextField(inputSize);
+	textField.setColumns(inputSize);
+	
+	panel.add(label);
+	panel.add(textField);
+	label.setLabelFor(textField); // to help assistive technology
+	
+	return panel;
+    }
+    
+    public static TomPanel createInputPanelV(String name, int inputSize) {
+	return createLabeledComponent(new JLabel(name), new TomTextField(inputSize));
+    }
+    
+    public static void main(String[] args) {
+	TomPanel panel = new TomPanel();
+	panel.add(createInputPanelV("Name", 10));
+	panel.add(createInputPanelV("Addr", 30));
+	
+	TomMainFrame frame = new TomMainFrame(panel);
+	frame.setVisible(true);
     }
     
 }
