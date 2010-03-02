@@ -84,9 +84,9 @@ public class TomTextField extends JTextField {
     //
     // Other methods
     //
-
-    protected SimpleDocument getTomDocument() {
-	return doc;
+    
+    public boolean isEmpty() {
+	return getText().isEmpty();
     }
 
     public void setMaxLength(int maxLenth) {
@@ -101,6 +101,10 @@ public class TomTextField extends JTextField {
 	doc.setNumbersOnly(numbersOnly);
     }
     
+    protected SimpleDocument getTomDocument() {
+	return doc;
+    }
+
     @Override
     public String toString() {
 	String str = getText();
