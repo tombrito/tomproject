@@ -16,7 +16,6 @@ public class ExtensionFileFilter extends FileFilter {
 
     @Override
     public boolean accept(File f) {
-	// TODO f.isDirectory() needed?
 	return f.isDirectory() || f.getName().endsWith(extension);
     }
 
