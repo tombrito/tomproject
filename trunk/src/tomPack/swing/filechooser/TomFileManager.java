@@ -5,7 +5,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 
 import lombok.Data;
-import tomPack.swing.filechooser.ExtensionFileFilter;
+import tomPack.swing.filechooser.TomFileFilter;
 import tomPack.swing.filechooser.TomFileChooser;
 
 @Data
@@ -18,7 +18,7 @@ public class TomFileManager {
 
     public TomFileManager(String ext, String description) {
 	fc = new TomFileChooser();
-	fc.setFileFilter(new ExtensionFileFilter(ext, description));
+	fc.setFileFilter(new TomFileFilter(ext, description));
     }
 
     /** @return the selected File to open. */

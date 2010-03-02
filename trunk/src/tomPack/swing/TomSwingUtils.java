@@ -41,7 +41,7 @@ public class TomSwingUtils {
      * method.
      */
     public static void cut(Object obj) {
-	TransferHandler.getCutAction().actionPerformed(new SimpleActionEvent(obj));
+	TransferHandler.getCutAction().actionPerformed(new TomActionEvent(obj));
     }
 
     /**
@@ -49,7 +49,7 @@ public class TomSwingUtils {
      * method.
      */
     public static void copy(Object obj) {
-	TransferHandler.getCopyAction().actionPerformed(new SimpleActionEvent(obj));
+	TransferHandler.getCopyAction().actionPerformed(new TomActionEvent(obj));
     }
 
     /**
@@ -57,7 +57,7 @@ public class TomSwingUtils {
      * method.
      */
     public static void paste(Object obj) {
-	TransferHandler.getPasteAction().actionPerformed(new SimpleActionEvent(obj));
+	TransferHandler.getPasteAction().actionPerformed(new TomActionEvent(obj));
     }
 
     // ****************************************************

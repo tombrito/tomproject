@@ -16,7 +16,7 @@ import tomPack.externalization.Messages;
 import tomPack.swing.images.Images;
 
 /**
- * A extended version of {@link SimpleDialog}.<br>
+ * A extended version of {@link TomDialog}.<br>
  * 
  * <p>
  * <strong>Warning:</strong> This class is not thread safe.
@@ -27,16 +27,16 @@ import tomPack.swing.images.Images;
  * appropriate for short term storage or RMI between applications running the
  * same version of this class.
  * 
- * @see SimpleDialog
- * @see SimpleOptionPane
+ * @see TomDialog
+ * @see TomOptionPane
  * 
  * @version 2009/11/18
  * @author Tom Brito
  */
-public class SimpleDialogYesNo extends SimpleDialog {
+public class TomDialogYesNo extends TomDialog {
 
     /**
-     * Defines a KeyAdapater for {@link SimpleDialog}.
+     * Defines a KeyAdapater for {@link TomDialog}.
      * 
      * @version 2009/11/02
      * @author Tom Brito
@@ -91,7 +91,7 @@ public class SimpleDialogYesNo extends SimpleDialog {
      *         the dialog.
      */
     public static boolean show(String title, String question, boolean noAsDefault) {
-	SimpleDialogYesNo dialog = new SimpleDialogYesNo(title, question, noAsDefault);
+	TomDialogYesNo dialog = new TomDialogYesNo(title, question, noAsDefault);
 	dialog.setVisible(true);
 	return dialog.getResult();
     }
@@ -102,11 +102,11 @@ public class SimpleDialogYesNo extends SimpleDialog {
 
     final boolean noAsDefault;
 
-    public SimpleDialogYesNo(String title, String question) {
+    public TomDialogYesNo(String title, String question) {
 	this(title, question, false);
     }
 
-    public SimpleDialogYesNo(String title, String question, final boolean noAsDefault) {
+    public TomDialogYesNo(String title, String question, final boolean noAsDefault) {
 
 	super(title);
 	this.noAsDefault = noAsDefault;

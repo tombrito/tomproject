@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @version 2009/11/05
  * @author Tom Brito
  */
-public class SimpleUnitTestUtils {
+public class TomUnitTestUtils {
 
     // TODO separete tests from WUtil methods
     private static String testFileName = "Test.jl"; //$NON-NLS-1$

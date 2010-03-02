@@ -12,19 +12,19 @@ import javax.swing.JOptionPane;
  * 
  * @author Tom Brito
  */
-public class SimpleOptionPane {
+public class TomOptionPane {
 
     /**
-     * Delegato to {@link SimpleDialogYesNo}.
+     * Delegato to {@link TomDialogYesNo}.
      */
-    public static SimpleDialogYesNo createNoYesDialog(String title, String question, boolean noAsDefault) {
+    public static TomDialogYesNo createNoYesDialog(String title, String question, boolean noAsDefault) {
 
 	/*
 	 * TODO what's the advantage of this instead of
 	 * SimpleDialogYesNo.show()?
 	 */
 
-	return new SimpleDialogYesNo(title, question, noAsDefault);
+	return new TomDialogYesNo(title, question, noAsDefault);
     }
 
     public static boolean showOkCancelDialog(String title, Object[] fields, final Component initialFocused) {
@@ -71,7 +71,7 @@ public class SimpleOptionPane {
 
     int result;
 
-    private SimpleOptionPane(int result) {
+    private TomOptionPane(int result) {
 	this.result = result;
     }
 

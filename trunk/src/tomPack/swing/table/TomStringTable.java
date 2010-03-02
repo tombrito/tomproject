@@ -14,14 +14,14 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
- * {@link SimpleTable} that works only with {@link DefaultTableModel}, and have
+ * {@link TomTable} that works only with {@link DefaultTableModel}, and have
  * the delegations to {@link DefaultTableModel}, {@link TableColumnModel} and
  * {@link ListSelectionModel}.
  * 
  * @version 2009/11/13
  * @author Tom Brito
  */
-public class SimpleStringTable extends SimpleTable {
+public class TomStringTable extends TomTable {
 
     private static final long serialVersionUID = 1793819982167790132L;
 
