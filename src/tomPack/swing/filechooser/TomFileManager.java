@@ -13,11 +13,11 @@ public class TomFileManager {
 
     private final String ext;
     private final String description;
-    
+
     private File currDir; // current selected directory
     private File currFile; // current selected file
 
-    public File openOpf() {
+    public File showOpenDialog() {
 	SimpleFileChooser fc = new SimpleFileChooser();
 	fc.setFileFilter(new ExtensionFileFilter(ext, description));
 
@@ -31,5 +31,8 @@ public class TomFileManager {
 	}
 	return null;
     }
+
+    // TODO showSaveAsDialog, ask if override file, return boolean to save or
+    // not
 
 }
