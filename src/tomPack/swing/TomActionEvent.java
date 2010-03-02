@@ -10,11 +10,11 @@ import java.awt.event.ActionEvent;
  * @version 2009/11/05
  * @author Tom Brito
  */
-public class SimpleActionEvent extends ActionEvent {
+public class TomActionEvent extends ActionEvent {
 
     private static final long serialVersionUID = -1094996820318320550L;
 
-    public SimpleActionEvent(Object source) {
+    public TomActionEvent(Object source) {
 	super(source, ActionEvent.ACTION_PERFORMED, null);
     }
 

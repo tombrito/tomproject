@@ -15,15 +15,15 @@ import tomPack.swing.TomTextField;
  * @version 2009/11/02
  * @author Tom Brito
  */
-public class SimpleDocument extends PlainDocument {
+public class TomDocument extends PlainDocument {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * @return a default {@link TomTextField}.
      */
-    public static SimpleDocument createTomDocument() {
-	return new SimpleDocument();
+    public static TomDocument createTomDocument() {
+	return new TomDocument();
     }
 
     /**
@@ -31,8 +31,8 @@ public class SimpleDocument extends PlainDocument {
      * @deprecated use {@link #setCaps(boolean)}
      */
     @Deprecated
-    public static SimpleDocument createCapitalDocument() {
-	SimpleDocument doc = new SimpleDocument();
+    public static TomDocument createCapitalDocument() {
+	TomDocument doc = new TomDocument();
 	doc.setCaps(true);
 	return doc;
     }
@@ -42,8 +42,8 @@ public class SimpleDocument extends PlainDocument {
      * @deprecated use {@link #setNumbersOnly(boolean)}
      */
     @Deprecated
-    public static SimpleDocument createNumericalDocument() {
-	SimpleDocument doc = new SimpleDocument();
+    public static TomDocument createNumericalDocument() {
+	TomDocument doc = new TomDocument();
 	doc.setNumbersOnly(true);
 	return doc;
     }
@@ -62,7 +62,7 @@ public class SimpleDocument extends PlainDocument {
     //
     //
 
-    private SimpleDocument() {
+    private TomDocument() {
 	// use static methods to create
     }
 

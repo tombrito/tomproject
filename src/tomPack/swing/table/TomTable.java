@@ -11,17 +11,17 @@ import tomPack.externalization.Messages;
 /**
  * An extension of JTable with some more resources.
  * 
- * @see SimpleTableModel
+ * @see TomTableModel
  * 
  * @version 2009/11/05
  * @author Tom Brito
  */
-public class SimpleTable extends JTable implements Cloneable {
+public class TomTable extends JTable implements Cloneable {
 
     private static final long serialVersionUID = 76564082602133170L;
 
     /** Default constructor. */
-    public SimpleTable() {
+    public TomTable() {
 	this(null);
     }
 
@@ -33,7 +33,7 @@ public class SimpleTable extends JTable implements Cloneable {
      * @param columns
      *            - Default number of columns.
      */
-    public SimpleTable(int rows, int columns) {
+    public TomTable(int rows, int columns) {
 	this(new DefaultTableModel(rows, columns));
     }
 
@@ -43,15 +43,15 @@ public class SimpleTable extends JTable implements Cloneable {
      * @param model
      *            - DefaultTableModel for JTable.
      */
-    public SimpleTable(TableModel model) {
+    public TomTable(TableModel model) {
 	super(model);
 	setRowSelectionAllowed(false);
 	setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
 
     @Override
-    public SimpleTable clone() throws CloneNotSupportedException {
-	return (SimpleTable) super.clone();
+    public TomTable clone() throws CloneNotSupportedException {
+	return (TomTable) super.clone();
     }
 
     public void focus(int row, int col) {
@@ -89,7 +89,7 @@ public class SimpleTable extends JTable implements Cloneable {
     /**
      * <b>HINT!<br>
      * In most cases, like cells iteration, prefer to use
-     * {@link JTable#getColumnCount()} for less {@link SimpleTable} tighten.</b>
+     * {@link JTable#getColumnCount()} for less {@link TomTable} tighten.</b>
      * <p>
      * Returns the index of the last column.
      */
@@ -100,7 +100,7 @@ public class SimpleTable extends JTable implements Cloneable {
     /**
      * <b>HINT!<br>
      * In most cases, like cells iteration, prefer to use
-     * {@link JTable#getRowCount()} for less {@link SimpleTable} tighten.</b>
+     * {@link JTable#getRowCount()} for less {@link TomTable} tighten.</b>
      * <p>
      * Returns the index of the last row.
      */

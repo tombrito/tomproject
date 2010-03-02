@@ -14,20 +14,20 @@ import javax.swing.tree.TreePath;
  * @version 2009/11/05
  * @author Tom Brito
  */
-public class SimpleTree extends JTree {
+public class TomTree extends JTree {
 
     private static final long serialVersionUID = 6953476658174073941L;
 
-    public SimpleTree() {
+    public TomTree() {
 	this((TreeNode)null);
     }
 
-    public SimpleTree(TreeModel model) {
+    public TomTree(TreeModel model) {
 	this();
 	setModel(model);
     }
 
-    public SimpleTree(TreeNode root) {
+    public TomTree(TreeNode root) {
 	super(root);
 	setRootVisible(false);
 	setShowsRootHandles(true);

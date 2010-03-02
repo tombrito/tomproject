@@ -37,12 +37,12 @@ import javax.swing.JScrollPane;
  * appropriate for short term storage or RMI between applications running the
  * same version of this class.
  * 
- * @see SimpleOptionPane
+ * @see TomOptionPane
  * 
  * @version 2009/11/18
  * @author Tom Brito
  */
-public class SimpleDialog extends JDialog {
+public class TomDialog extends JDialog {
 
     protected class OKAct extends AbstractAction {
 	private static final long serialVersionUID = -1509070577508136349L;
@@ -69,7 +69,7 @@ public class SimpleDialog extends JDialog {
     }
 
     /**
-     * Defines a KeyAdapater for {@link SimpleDialog}.
+     * Defines a KeyAdapater for {@link TomDialog}.
      * 
      * @version 2009/08/04
      * @author Tom Brito
@@ -106,13 +106,13 @@ public class SimpleDialog extends JDialog {
     // * Constructors
     // ****************************************************
 
-    public SimpleDialog(String title) {
+    public TomDialog(String title) {
 	super((JFrame) null, title, true);
 	FullKeyListener listener = new FullKeyListener(new DialogKeyAdapter());
 	listener.addFullKeyListenerTo(this);
     }
 
-    public SimpleDialog(String title, JPanel centerPanel, JButton... optionsButtons) {
+    public TomDialog(String title, JPanel centerPanel, JButton... optionsButtons) {
 	this(title);
 	List<JButton> optionButtonList = new ArrayList<JButton>();
 	for (JButton btn : optionsButtons) {

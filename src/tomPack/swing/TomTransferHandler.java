@@ -15,13 +15,13 @@ import javax.swing.TransferHandler;
  * @version 2009/11/26
  * @author Tom Brito
  */
-public abstract class SimpleTransferHandler extends TransferHandler {
+public abstract class TomTransferHandler extends TransferHandler {
 
     private static final long serialVersionUID = 8447770143212171658L;
 
     protected final DataFlavor flavor;
 
-    public SimpleTransferHandler(DataFlavor flavor) {
+    public TomTransferHandler(DataFlavor flavor) {
 	this.flavor = flavor;
     }
 

@@ -2,12 +2,12 @@ package tomPack.swing;
 
 import javax.swing.JTextField;
 
-import tomPack.SimpleDocument;
+import tomPack.TomDocument;
 
 /**
  * Extension of {@link JTextField} with some utilities.
  * 
- * @see SimpleDocument
+ * @see TomDocument
  * 
  * @version 2009/11/05
  * @author Tom Brito
@@ -34,7 +34,7 @@ public class TomTextField extends JTextField {
      */
     @Deprecated
     public static TomTextField createCapitalTextField() {
-	SimpleDocument doc = SimpleDocument.createCapitalDocument();
+	TomDocument doc = TomDocument.createCapitalDocument();
 	return new TomTextField(doc);
     }
 
@@ -46,7 +46,7 @@ public class TomTextField extends JTextField {
     public static TomTextField createNumericalTextField() {
 	// TODO create a subclass NumericalTextField with getValue() method
 	// returning a int
-	SimpleDocument doc = SimpleDocument.createNumericalDocument();
+	TomDocument doc = TomDocument.createNumericalDocument();
 	return new TomTextField(doc);
     }
 
@@ -54,7 +54,7 @@ public class TomTextField extends JTextField {
     // Attributes
     //
 
-    private final SimpleDocument doc;
+    private final TomDocument doc;
 
     //
     // Constructors
@@ -68,14 +68,14 @@ public class TomTextField extends JTextField {
 	this(null, columns);
     }
 
-    protected TomTextField(SimpleDocument doc) {
+    protected TomTextField(TomDocument doc) {
 	this(doc, 0);
     }
 	
-    protected TomTextField(SimpleDocument doc, int columns) {
+    protected TomTextField(TomDocument doc, int columns) {
 	super(columns);
 	if (doc == null) {
-	    doc = SimpleDocument.createTomDocument();
+	    doc = TomDocument.createTomDocument();
 	}
 	this.doc = doc;
 	setDocument(doc);
@@ -101,7 +101,7 @@ public class TomTextField extends JTextField {
 	doc.setNumbersOnly(numbersOnly);
     }
     
-    protected SimpleDocument getTomDocument() {
+    protected TomDocument getTomDocument() {
 	return doc;
     }
 

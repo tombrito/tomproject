@@ -17,15 +17,15 @@ import tomPack.TomUtils;
  * Table Model to handle Strings.
  * <p>
  * The advantages of using this class instead of {@link DefaultTableModel} are:
- * <li>This class extends {@link SimpleTableModel}.
+ * <li>This class extends {@link TomTableModel}.
  * <li>This class implements {@link TomEntity}.
  * 
- * @see SimpleJTableTransferHandler
+ * @see TomTableTransferHandler
  * 
  * @version 2010/03/02
  * @author Tom Brito
  */
-public class DefaultSimpleTableModel extends SimpleTableModel implements TomEntity {
+public class DefaultTomTableModel extends TomTableModel implements TomEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -41,7 +41,7 @@ public class DefaultSimpleTableModel extends SimpleTableModel implements TomEnti
      * Construtor default para serialização. Construtor com acesso público,
      * porém em classe com acesso default (pacote).
      */
-    public DefaultSimpleTableModel(int initialColumnCount) {
+    public DefaultTomTableModel(int initialColumnCount) {
 	this.columnsSize = initialColumnCount;
 	rows = new ArrayList<Row>();
 	addRow();
@@ -78,12 +78,12 @@ public class DefaultSimpleTableModel extends SimpleTableModel implements TomEnti
 
     public boolean sameValues(TomEntity obj) {
 
-	if (!(obj instanceof DefaultSimpleTableModel)) {
-	    Debug.equalsFail(DefaultSimpleTableModel.class, obj.getClass());
+	if (!(obj instanceof DefaultTomTableModel)) {
+	    Debug.equalsFail(DefaultTomTableModel.class, obj.getClass());
 	    return false;
 	}
 
-	DefaultSimpleTableModel model = (DefaultSimpleTableModel) obj;
+	DefaultTomTableModel model = (DefaultTomTableModel) obj;
 
 	if (rows.size() != model.rows.size()) {
 	    Debug.equalsFail(rows.size(), model.rows.size());

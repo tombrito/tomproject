@@ -9,19 +9,19 @@ import tomPack.TomEntity;
  * A extension of {@link AbstractTableModel} with some new utilities
  * implemented.
  * 
- * @see SimpleTable
+ * @see TomTable
  * 
  * @version 2009/11/05
  * @author Tom Brito
  */
-public abstract class SimpleTableModel extends AbstractTableModel implements TomEntity {
+public abstract class TomTableModel extends AbstractTableModel implements TomEntity {
 
     private static final long serialVersionUID = -8707412394448256273L;
 
     /**
      * <b>HINT!<br>
      * In most cases, like cells iteration, prefer to use
-     * {@link TableModel#getColumnCount()} for less {@link SimpleTableModel}
+     * {@link TableModel#getColumnCount()} for less {@link TomTableModel}
      * tighten.</b>
      * <p>
      * Returns the index of the last column.
@@ -33,7 +33,7 @@ public abstract class SimpleTableModel extends AbstractTableModel implements Tom
     /**
      * <b>HINT!<br>
      * In most cases, like cells iteration, prefer to use
-     * {@link TableModel#getRowCount()} for less {@link SimpleTableModel}
+     * {@link TableModel#getRowCount()} for less {@link TomTableModel}
      * tighten.</b>
      * <p>
      * Returns the index of the last row.

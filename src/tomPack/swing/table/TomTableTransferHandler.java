@@ -11,22 +11,22 @@ import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
-import tomPack.swing.SimpleTransferHandler;
+import tomPack.swing.TomTransferHandler;
 
 /**
- * Implementation of {@link SimpleTransferHandler} for {@link JTable}.
+ * Implementation of {@link TomTransferHandler} for {@link JTable}.
  * 
  * @version 2009/11/05
  * @author Tom Brito
  */
-public class SimpleJTableTransferHandler extends SimpleTransferHandler {
+public class TomTableTransferHandler extends TomTransferHandler {
 
     private static final long serialVersionUID = 8825883306831727325L;
 
     /** List of cells [row, column]. */
     private List<Point> cellMatrix = new ArrayList<Point>();
 
-    public SimpleJTableTransferHandler() {
+    public TomTableTransferHandler() {
 	super(DataFlavor.stringFlavor);
     }
 
