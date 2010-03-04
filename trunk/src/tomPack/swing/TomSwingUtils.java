@@ -13,13 +13,13 @@ import java.io.PrintStream;
 import java.util.Calendar;
 
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LookAndFeel;
 import javax.swing.TransferHandler;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 
 import tomPack.Debug;
 import tomPack.Translator;
@@ -91,7 +91,9 @@ public class TomSwingUtils {
      */
     public static void configUIManager() {
 	Translator.translate();
-	UIManager.put("ToolTip.background", new ColorUIResource(Color.YELLOW)); //$NON-NLS-1$
+	if (UIManager.getLookAndFeel() instanceof MetalLookAndFeel) {
+	    UIManager.put("ToolTip.background", new ColorUIResource(Color.YELLOW)); //$NON-NLS-1$
+	}
     }
 
     /**
@@ -187,33 +189,33 @@ public class TomSwingUtils {
 	    }
 	}
     }
-    
+
     public static TomPanel createInputPanelH(String name, int inputSize) {
 	TomPanel panel = new TomPanel();
 
 	JLabel label = new JLabel(name);
-	
+
 	TomTextField textField = new TomTextField(inputSize);
 	textField.setColumns(inputSize);
-	
+
 	panel.add(label);
 	panel.add(textField);
 	label.setLabelFor(textField); // to help assistive technology
-	
+
 	return panel;
     }
-    
+
     public static TomPanel createInputPanelV(String name, int inputSize) {
 	return createLabeledComponent(new JLabel(name), new TomTextField(inputSize));
     }
-    
+
     public static void main(String[] args) {
 	TomPanel panel = new TomPanel();
 	panel.add(createInputPanelV("Name", 10));
 	panel.add(createInputPanelV("Addr", 30));
-	
+
 	TomMainFrame frame = new TomMainFrame(panel);
 	frame.setVisible(true);
     }
-    
+
 }
