@@ -21,6 +21,7 @@ public class TomMainFrame extends TomFrame {
     public TomMainFrame(String name, Container contentPane) {
 	super(name, contentPane);
 	setDefaultCloseOperation(EXIT_ON_CLOSE);
+	setExtendedState(MAXIMIZED_BOTH);
     }
 
 }
