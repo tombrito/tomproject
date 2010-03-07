@@ -11,13 +11,16 @@ import tomPack.swing.filechooser.TomFileChooser;
 @Data
 public class TomFileManager {
 
-    private final TomFileChooser fc;
+    private final TomFileChooser fc = new TomFileChooser();
 
     private File currDir; // current selected directory
     private File currFile; // current selected file
 
+    public TomFileManager() {
+	// all file extensions will be accepted
+    }
+    
     public TomFileManager(String ext, String description) {
-	fc = new TomFileChooser();
 	fc.setFileFilter(new TomFileFilter(ext, description));
     }
 
