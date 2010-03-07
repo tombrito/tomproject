@@ -14,6 +14,10 @@ public class TomAction extends AbstractAction {
     private final Object object;
     private String failMsg = "Falha ao executar ação";
 
+    public TomAction(String methodName, Object object, String name) {
+	this(methodName, object, name, null, null);
+    }
+    
     public TomAction(String methodName, Object object, String name, String failMsg, Icon icon) {
 	super(name, icon);
 	try {
@@ -40,5 +44,61 @@ public class TomAction extends AbstractAction {
 	    Msg.fail(failMsg);
 	}
     }
-
+    
+    public void setFailMsg(String failMsg) {
+	this.failMsg = failMsg;
+    }
+    
+    //
+    // Action putValue methods
+    //
+    
+    public void setAcceleratorKey(Object newValue) {
+	putValue(ACCELERATOR_KEY, newValue);
+    }
+    
+    public void setActionCommandKey(Object newValue) {
+	putValue(ACTION_COMMAND_KEY, newValue);
+    }
+    
+    public void setDisplayedMnemonicIndexKey(Object newValue) {
+	putValue(DISPLAYED_MNEMONIC_INDEX_KEY, newValue);
+    }
+    
+    public void setLargeIconKey(Object newValue) {
+	putValue(LARGE_ICON_KEY, newValue);
+    }
+    
+    public void setMnemonicKey(Object newValue) {
+	putValue(MNEMONIC_KEY, newValue);
+    }
+    
+    public void setSelectedKey(Object newValue) {
+	putValue(SELECTED_KEY, newValue);
+    }
+    
+    public void setDefault(Object newValue) {
+	putValue(DEFAULT, newValue);
+    }
+    
+    public void setLongDescription(Object newValue) {
+	putValue(LONG_DESCRIPTION, newValue);
+    }
+    
+    public void setName(Object newValue) {
+	putValue(NAME, newValue);
+    }
+    
+    public void setShortDescription(Object newValue) {
+	putValue(SHORT_DESCRIPTION, newValue);
+    }
+    
+    public void setSmallIcon(Object newValue) {
+	putValue(SMALL_ICON, newValue);
+    }
+    
+    //
+    // Other methods
+    //
+    
 }
