@@ -14,14 +14,24 @@ public class TomAction extends AbstractAction {
     private final Object object;
     private String failMsg = "Falha ao executar ação";
 
+    //
+    // Constructors
+    //
+
     public TomAction(String methodName, Object object, String name) {
-	this(methodName, object, name, null, null);
+	this(null, methodName, object, name);
     }
-    
-    public TomAction(String methodName, Object object, String name, String failMsg, Icon icon) {
-	super(name, icon);
+
+    /**
+     * To call static method, pass a null <code>object</code> arg.
+     */
+    public TomAction(Class<?> clazz, String methodName, Object object, String name) {
+	super(name);
+	if (clazz == null) {
+	    clazz = object.getClass();
+	}
 	try {
-	    this.method = object.getClass().getDeclaredMethod(methodName);
+	    this.method = clazz.getDeclaredMethod(methodName);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    /*
@@ -31,10 +41,74 @@ public class TomAction extends AbstractAction {
 	    throw new RuntimeException("Fail to create method " + object.getClass() + "." + methodName); //$NON-NLS-1$//$NON-NLS-2$
 	}
 	this.object = object;
-	if (failMsg != null && !failMsg.isEmpty()) {
-	    this.failMsg = failMsg;
-	}
     }
+
+    public TomAction(String methodName, Object object, String name, String failMsg, Icon icon) {
+	this(null, methodName, object, name);
+	setFailMsg(failMsg);
+	setIcon(icon);
+    }
+
+    /**
+     * To call static method, pass a null <code>object</code> arg.
+     */
+    public TomAction(Class<?> clazz, String methodName, Object object, String name, String failMsg, Icon icon) {
+	this(clazz, methodName, object, name);
+	setFailMsg(failMsg);
+	setIcon(icon);
+    }
+
+    //
+    // Action putValue methods
+    //
+
+    public void setAcceleratorKey(Object newValue) {
+	putValue(ACCELERATOR_KEY, newValue);
+    }
+
+    public void setActionCommandKey(Object newValue) {
+	putValue(ACTION_COMMAND_KEY, newValue);
+    }
+
+    public void setDisplayedMnemonicIndexKey(Object newValue) {
+	putValue(DISPLAYED_MNEMONIC_INDEX_KEY, newValue);
+    }
+
+    public void setLargeIconKey(Object newValue) {
+	putValue(LARGE_ICON_KEY, newValue);
+    }
+
+    public void setMnemonicKey(Object newValue) {
+	putValue(MNEMONIC_KEY, newValue);
+    }
+
+    public void setSelectedKey(Object newValue) {
+	putValue(SELECTED_KEY, newValue);
+    }
+
+    public void setDefault(Object newValue) {
+	putValue(DEFAULT, newValue);
+    }
+
+    public void setLongDescription(Object newValue) {
+	putValue(LONG_DESCRIPTION, newValue);
+    }
+
+    public void setName(Object newValue) {
+	putValue(NAME, newValue);
+    }
+
+    public void setShortDescription(Object newValue) {
+	putValue(SHORT_DESCRIPTION, newValue);
+    }
+
+    public void setSmallIcon(Object newValue) {
+	putValue(SMALL_ICON, newValue);
+    }
+
+    //
+    // Other methods
+    //
 
     public void actionPerformed(ActionEvent ev) {
 	try {
@@ -44,61 +118,16 @@ public class TomAction extends AbstractAction {
 	    Msg.fail(failMsg);
 	}
     }
-    
+
     public void setFailMsg(String failMsg) {
-	this.failMsg = failMsg;
+	if (failMsg != null && !failMsg.isEmpty()) {
+	    this.failMsg = failMsg;
+	}
     }
-    
-    //
-    // Action putValue methods
-    //
-    
-    public void setAcceleratorKey(Object newValue) {
-	putValue(ACCELERATOR_KEY, newValue);
+
+    public void setIcon(Object icon) {
+	setSmallIcon(icon);
+	setLargeIconKey(icon);
     }
-    
-    public void setActionCommandKey(Object newValue) {
-	putValue(ACTION_COMMAND_KEY, newValue);
-    }
-    
-    public void setDisplayedMnemonicIndexKey(Object newValue) {
-	putValue(DISPLAYED_MNEMONIC_INDEX_KEY, newValue);
-    }
-    
-    public void setLargeIconKey(Object newValue) {
-	putValue(LARGE_ICON_KEY, newValue);
-    }
-    
-    public void setMnemonicKey(Object newValue) {
-	putValue(MNEMONIC_KEY, newValue);
-    }
-    
-    public void setSelectedKey(Object newValue) {
-	putValue(SELECTED_KEY, newValue);
-    }
-    
-    public void setDefault(Object newValue) {
-	putValue(DEFAULT, newValue);
-    }
-    
-    public void setLongDescription(Object newValue) {
-	putValue(LONG_DESCRIPTION, newValue);
-    }
-    
-    public void setName(Object newValue) {
-	putValue(NAME, newValue);
-    }
-    
-    public void setShortDescription(Object newValue) {
-	putValue(SHORT_DESCRIPTION, newValue);
-    }
-    
-    public void setSmallIcon(Object newValue) {
-	putValue(SMALL_ICON, newValue);
-    }
-    
-    //
-    // Other methods
-    //
-    
+
 }
