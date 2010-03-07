@@ -1,6 +1,7 @@
 package tomPack.swing;
 
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.LayoutManager;
 
 import javax.swing.BoxLayout;
@@ -12,7 +13,7 @@ public class TomPanel extends JPanel {
     public TomPanel() {
 	super();
     }
-    
+
     public TomPanel(LayoutManager mgr) {
 	this();
 	setLayout(mgr);
@@ -43,9 +44,17 @@ public class TomPanel extends JPanel {
     public void setDefaultCursor() {
 	setCursor(Cursor.getDefaultCursor());
     }
-    
+
     public void setBoxLayoutY() {
 	setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+    }
+
+    @Override
+    public void setSize(Dimension d) {
+	super.setSize(d);
+	setPreferredSize(d);
+	setMaximumSize(d);
+	setMinimumSize(d);
     }
 
 }
