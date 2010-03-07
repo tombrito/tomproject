@@ -1,4 +1,4 @@
-#Wed Mar 03 19:26:15 BRT 2010
+#Sun Mar 07 13:46:03 BRT 2010
 eclipse.preferences.version=1
 org.eclipse.jdt.core.compiler.problem.annotationSuperInterface=warning
 org.eclipse.jdt.core.compiler.problem.autoboxing=warning
@@ -24,7 +24,7 @@ org.eclipse.jdt.core.compiler.problem.methodWithConstructorName=ignore
 org.eclipse.jdt.core.compiler.problem.missingDeprecatedAnnotation=warning
 org.eclipse.jdt.core.compiler.problem.missingHashCodeMethod=warning
 org.eclipse.jdt.core.compiler.problem.missingOverrideAnnotation=warning
-org.eclipse.jdt.core.compiler.problem.missingSerialVersion=warning
+org.eclipse.jdt.core.compiler.problem.missingSerialVersion=ignore
 org.eclipse.jdt.core.compiler.problem.missingSynchronizedOnInheritedMethod=warning
 org.eclipse.jdt.core.compiler.problem.noEffectAssignment=warning
 org.eclipse.jdt.core.compiler.problem.noImplicitStringConversion=warning
