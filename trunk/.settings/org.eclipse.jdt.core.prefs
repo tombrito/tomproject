@@ -1,4 +1,4 @@
-#Sun Mar 07 13:46:03 BRT 2010
+#Sun Mar 07 16:36:47 BRT 2010
 eclipse.preferences.version=1
 org.eclipse.jdt.core.compiler.problem.annotationSuperInterface=warning
 org.eclipse.jdt.core.compiler.problem.autoboxing=warning
@@ -31,7 +31,7 @@ org.eclipse.jdt.core.compiler.problem.noImplicitStringConversion=warning
 org.eclipse.jdt.core.compiler.problem.nonExternalizedStringLiteral=warning
 org.eclipse.jdt.core.compiler.problem.nullReference=warning
 org.eclipse.jdt.core.compiler.problem.overridingPackageDefaultMethod=warning
-org.eclipse.jdt.core.compiler.problem.parameterAssignment=warning
+org.eclipse.jdt.core.compiler.problem.parameterAssignment=ignore
 org.eclipse.jdt.core.compiler.problem.possibleAccidentalBooleanAssignment=warning
 org.eclipse.jdt.core.compiler.problem.potentialNullReference=warning
 org.eclipse.jdt.core.compiler.problem.rawTypeReference=warning
