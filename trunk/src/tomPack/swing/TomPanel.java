@@ -3,17 +3,14 @@ package tomPack.swing;
 import java.awt.Cursor;
 import java.awt.LayoutManager;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 public class TomPanel extends JPanel {
 
-    private static final long serialVersionUID = 1L;
-    
     public TomPanel() {
-	setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	super();
     }
     
     public TomPanel(LayoutManager mgr) {
