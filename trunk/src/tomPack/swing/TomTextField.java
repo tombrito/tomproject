@@ -63,15 +63,17 @@ public class TomTextField extends JTextField {
     public TomTextField() {
 	this(null, 0);
     }
-    
+
     public TomTextField(int columns) {
 	this(null, columns);
     }
 
     protected TomTextField(TomDocument doc) {
 	this(doc, 0);
+	// solve the problems with the high in some layouts
+	setMaximumSize(getPreferredSize());
     }
-	
+
     protected TomTextField(TomDocument doc, int columns) {
 	super(columns);
 	if (doc == null) {
@@ -84,7 +86,7 @@ public class TomTextField extends JTextField {
     //
     // Other methods
     //
-    
+
     public boolean isEmpty() {
 	return getText().isEmpty();
     }
@@ -100,7 +102,7 @@ public class TomTextField extends JTextField {
     protected void setNumbersOnly(boolean numbersOnly) {
 	doc.setNumbersOnly(numbersOnly);
     }
-    
+
     protected TomDocument getTomDocument() {
 	return doc;
     }
