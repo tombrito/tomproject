@@ -21,7 +21,8 @@ public class TomAction extends AbstractAction {
     public TomAction(String methodName, Object object, String name) {
 	super(name);
 	try {
-	    this.method = object.getClass().getDeclaredMethod(methodName);
+	    method = object.getClass().getDeclaredMethod(methodName);
+	    method.setAccessible(true);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    /*
