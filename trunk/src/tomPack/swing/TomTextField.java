@@ -44,8 +44,6 @@ public class TomTextField extends JTextField {
      */
     @Deprecated
     public static TomTextField createNumericalTextField() {
-	// TODO create a subclass NumericalTextField with getValue() method
-	// returning a int
 	TomDocument doc = TomDocument.createNumericalDocument();
 	return new TomTextField(doc);
     }
