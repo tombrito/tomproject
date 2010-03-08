@@ -169,9 +169,15 @@ public class TomDialog extends JDialog {
      * Returns the result of the dialog box. <br>
      * <code>true</code> if user press the OK button, <code>false</code> if user
      * cancel or close.
+     * @deprecated use the more intuitive name isConfirm (better readability for if-blocks)
      */
+    @Deprecated
     public boolean getResult() {
 	return result;
+    }
+    
+    public boolean isConfirm() {
+	return getResult();
     }
 
     /** Set the result of the dialog. */
