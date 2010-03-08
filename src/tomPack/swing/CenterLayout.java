@@ -18,7 +18,8 @@ import javax.swing.JTextField;
  * The components added to a container with this layout will be centered
  * horizontally and vertically.
  * 
- * http://www.experts-exchange.com/Programming/Languages/Java/Q_21068321.html
+ * @author http://www.experts-exchange.com/Programming/Languages/Java/Q_21068321.html
+ * @author Tom Brito
  */
 public class CenterLayout implements LayoutManager {
 
@@ -43,9 +44,8 @@ public class CenterLayout implements LayoutManager {
     private Component getComponent(Container parent) {
 	if (parent.getComponentCount() > 0) {
 	    return parent.getComponent(0);
-	} else {
-	    throw new IllegalStateException("This layout assumes container only has one child component"); //$NON-NLS-1$
 	}
+	return null;
     }
 
     public void addLayoutComponent(String name, Component comp) {
@@ -57,15 +57,24 @@ public class CenterLayout implements LayoutManager {
     }
 
     public Dimension preferredLayoutSize(Container parent) {
+	if (getComponent(parent) == null) {
+	    parent.getPreferredSize();
+	}
 	return getComponent(parent).getPreferredSize();
     }
 
     public Dimension minimumLayoutSize(Container parent) {
+	if (getComponent(parent) == null) {
+	    parent.getMinimumSize();
+	}
 	return getComponent(parent).getMinimumSize();
     }
 
     public void layoutContainer(Container parent) {
 	Component comp = getComponent(parent);
+	if (comp == null) {
+	    return;
+	}
 	Dimension size = comp.getPreferredSize();
 	Dimension area = parent.getSize();
 
