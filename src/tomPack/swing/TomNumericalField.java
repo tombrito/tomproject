@@ -14,6 +14,10 @@ public class TomNumericalField extends TomTextField {
 	    throw new IllegalArgumentException("Trying to make a numerical field non-numerical.");
 	}
     }
+    
+    public int getValue() {
+	return Integer.valueOf(getText()).intValue();
+    }
 
     // TODO set max value
 
