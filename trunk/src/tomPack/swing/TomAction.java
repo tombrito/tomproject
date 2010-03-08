@@ -19,19 +19,9 @@ public class TomAction extends AbstractAction {
     //
 
     public TomAction(String methodName, Object object, String name) {
-	this(null, methodName, object, name);
-    }
-
-    /**
-     * To call static method, pass a null <code>object</code> arg.
-     */
-    public TomAction(Class<?> clazz, String methodName, Object object, String name) {
 	super(name);
-	if (clazz == null) {
-	    clazz = object.getClass();
-	}
 	try {
-	    this.method = clazz.getDeclaredMethod(methodName);
+	    this.method = object.getClass().getDeclaredMethod(methodName);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    /*
@@ -44,16 +34,7 @@ public class TomAction extends AbstractAction {
     }
 
     public TomAction(String methodName, Object object, String name, String failMsg, Icon icon) {
-	this(null, methodName, object, name);
-	setFailMsg(failMsg);
-	setIcon(icon);
-    }
-
-    /**
-     * To call static method, pass a null <code>object</code> arg.
-     */
-    public TomAction(Class<?> clazz, String methodName, Object object, String name, String failMsg, Icon icon) {
-	this(clazz, methodName, object, name);
+	this(methodName, object, name);
 	setFailMsg(failMsg);
 	setIcon(icon);
     }
