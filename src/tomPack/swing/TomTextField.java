@@ -68,17 +68,19 @@ public class TomTextField extends JTextField {
 
     protected TomTextField(TomDocument doc) {
 	this(doc, 0);
-	// solve the problems with the high in some layouts
-	setMaximumSize(getPreferredSize());
     }
 
     protected TomTextField(TomDocument doc, int columns) {
 	super(columns);
+	
 	if (doc == null) {
 	    doc = TomDocument.createTomDocument();
 	}
 	this.doc = doc;
 	setDocument(doc);
+
+	// solve the problems with the high in some layouts
+	setMaximumSize(getPreferredSize());
     }
 
     //
