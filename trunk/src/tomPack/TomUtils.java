@@ -1,7 +1,10 @@
 package tomPack;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.regex.Matcher;
@@ -127,6 +130,18 @@ public class TomUtils {
 	Pattern p = Pattern.compile(mask); // e.g. I0.0, Q0.0
 	Matcher m = p.matcher(value);
 	return m.find();
+    }
+
+    public static String readFile(String filename) throws IOException {
+	BufferedReader reader = new BufferedReader(new FileReader(filename));
+	String line = null;
+	StringBuilder stringBuilder = new StringBuilder();
+	String lineSeparator = System.getProperty("line.separator"); //$NON-NLS-1$
+	while ((line = reader.readLine()) != null) {
+	    stringBuilder.append(line);
+	    stringBuilder.append(lineSeparator);
+	}
+	return stringBuilder.toString();
     }
 
 }
