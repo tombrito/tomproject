@@ -4,8 +4,6 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import tomPack.swing.Msg;
-
 /**
  * Messages language handler. Used internally.
  * 
@@ -14,21 +12,9 @@ import tomPack.swing.Msg;
  */
 public class Messages {
 
-    private static final String BUNDLE_NAME = "tomPack.externalization.messages"; //$NON-NLS-1$
+    private static final String BUNDLE_NAME = "tomPack.externalization.messages_"; //$NON-NLS-1$
 
-    private static ResourceBundle RESOURCE_BUNDLE;
-
-    static {
-	try {
-	    RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
-	} catch (Exception e) {
-	    e.printStackTrace();
-	    RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME, Locale.US);
-	}
-    }
-
-    private Messages() {
-    }
+    private static ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME + Locale.getDefault());
 
     public static String getString(String key) {
 	try {
@@ -38,9 +24,4 @@ public class Messages {
 	}
     }
 
-    @SuppressWarnings("nls")
-    public static void main(String[] args) {
-	System.out.println("Messages test");
-	Msg.inf("test"); //$NON-NLS-1$
-    }
 }
