@@ -5,6 +5,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 public class TomFrame extends JFrame {
 
@@ -60,7 +61,7 @@ public class TomFrame extends JFrame {
 	if (contentPane != null)
 	    setContentPane(contentPane);
 	pack();
-	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	setSize(new Dimension(800, 600));
 	setLocationRelativeTo(null);
     }
