@@ -76,6 +76,12 @@ public class TomFrame extends JFrame {
 	super.setSize(width, height);
 	setLocationRelativeTo(null);
     }
+    
+    @Override
+    public void pack() {
+        super.pack();
+        setLocationRelativeTo(null);
+    }
 
     public void setWaitCursor() {
 	setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
