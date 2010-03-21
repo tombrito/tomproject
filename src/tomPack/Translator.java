@@ -13,9 +13,6 @@ import tomPack.externalization.Messages;
  */
 public class Translator {
 
-    // TODO Deve-se externalizar as strings? Ou depende apenas da JVM?
-    // Se necessário: http://www.rgagnon.com/javadetails/JavaUIDefaults.txt
-
     public static void translate() {
 
 	UIManager.put("OptionPane.yesButtonText", Messages.getString("Translator.1")); //$NON-NLS-1$ //$NON-NLS-2$
