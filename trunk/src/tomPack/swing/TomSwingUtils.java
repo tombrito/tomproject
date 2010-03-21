@@ -106,7 +106,7 @@ public class TomSwingUtils {
      * @throws FileNotFoundException
      *             if don't find the specified path.
      */
-    public static void initErrorLogFile(String path) throws FileNotFoundException {
+    public static void initErrorLogFile(String path) throws Exception {
 	if (Debug.DEBUG_MODE) {
 	    return; // use default console output
 	}
@@ -118,7 +118,10 @@ public class TomSwingUtils {
 
 	File dir = new File(path);
 	if (!dir.exists()) {
-	    dir.mkdir();
+	    boolean created = dir.mkdir();
+	    if (!created) {
+		throw new Exception("Could not create dir: " + dir); //$NON-NLS-1$
+	    }
 	}
 	if (!path.endsWith(File.separator)) {
 	    path += File.separator;
