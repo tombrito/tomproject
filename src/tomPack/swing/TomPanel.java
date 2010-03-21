@@ -38,64 +38,94 @@ public class TomPanel extends JPanel {
     // Layout methods
     //
 
-    public void setBorderLayout() {
-	setLayout(new BorderLayout());
+    public LayoutManager setBorderLayout() {
+	LayoutManager layout = new BorderLayout();
+	setLayout(layout);
+	return layout;
     }
 
-    public void setBorderLayout(int hgap, int vgap) {
-	setLayout(new BorderLayout(hgap, vgap));
+    public LayoutManager setBorderLayout(int hgap, int vgap) {
+	LayoutManager layout = new BorderLayout(hgap, vgap);
+	setLayout(layout);
+	return layout;
     }
 
-    public void setBoxLayoutX() {
-	setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+    public LayoutManager setBoxLayoutX() {
+	LayoutManager layout = new BoxLayout(this, BoxLayout.X_AXIS);
+	setLayout(layout);
+	return layout;
     }
 
-    public void setBoxLayoutY() {
-	setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+    public LayoutManager setBoxLayoutY() {
+	LayoutManager layout = new BoxLayout(this, BoxLayout.Y_AXIS);
+	setLayout(layout);
+	return layout;
     }
 
-    public void setCardLayout() {
-	setLayout(new CardLayout());
+    public LayoutManager setCardLayout() {
+	LayoutManager layout = new CardLayout();
+	setLayout(layout);
+	return layout;
     }
 
-    public void setCardLayout(int hgap, int vgap) {
-	setLayout(new CardLayout(hgap, vgap));
+    public LayoutManager setCardLayout(int hgap, int vgap) {
+	LayoutManager layout = new CardLayout(hgap, vgap);
+	setLayout(layout);
+	return layout;
     }
 
-    public void setFlowLayout() {
-	setLayout(new FlowLayout());
+    public LayoutManager setFlowLayout() {
+	LayoutManager layout = new FlowLayout();
+	setLayout(layout);
+	return layout;
     }
 
-    public void setFlowLayout(int align) {
-	setLayout(new FlowLayout(align));
+    public LayoutManager setFlowLayout(int align) {
+	LayoutManager layout = new FlowLayout(align);
+	setLayout(layout);
+	return layout;
     }
 
-    public void setFlowLayout(int align, int hgap, int vgap) {
-	setLayout(new FlowLayout(align, hgap, vgap));
+    public LayoutManager setFlowLayout(int align, int hgap, int vgap) {
+	LayoutManager layout = new FlowLayout(align, hgap, vgap);
+	setLayout(layout);
+	return layout;
     }
 
-    public void setGridBagLayout() {
-	setLayout(new GridBagLayout());
+    public LayoutManager setGridBagLayout() {
+	LayoutManager layout = new GridBagLayout();
+	setLayout(layout);
+	return layout;
     }
 
-    public void setGridLayout() {
-	setLayout(new GridLayout());
+    public LayoutManager setGridLayout() {
+	LayoutManager layout = new GridLayout();
+	setLayout(layout);
+	return layout;
     }
 
-    public void setGridLayout(int rows, int cols) {
-	setLayout(new GridLayout(rows, cols));
+    public LayoutManager setGridLayout(int rows, int cols) {
+	LayoutManager layout = new GridLayout(rows, cols);
+	setLayout(layout);
+	return layout;
     }
 
-    public void setGridLayout(int rows, int cols, int hgap, int vgap) {
-	setLayout(new GridLayout(rows, cols, hgap, vgap));
+    public LayoutManager setGridLayout(int rows, int cols, int hgap, int vgap) {
+	LayoutManager layout = new GridLayout(rows, cols, hgap, vgap);
+	setLayout(layout);
+	return layout;
     }
 
-    public void setGroupLayout(Container host) {
-	setLayout(new GroupLayout(host));
+    public LayoutManager setGroupLayout(Container host) {
+	LayoutManager layout = new GroupLayout(host);
+	setLayout(layout);
+	return layout;
     }
 
-    public void setSpringLayout() {
-	setLayout(new SpringLayout());
+    public LayoutManager setSpringLayout() {
+	LayoutManager layout = new SpringLayout();
+	setLayout(layout);
+	return layout;
     }
 
     //
