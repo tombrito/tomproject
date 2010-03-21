@@ -12,7 +12,7 @@ public class Debug {
      * Debug mode, if true, show the debug msgs. <br>
      * Must be initialized on constructor.
      */
-    public static Boolean DEBUG_MODE = false;
+    public static boolean DEBUG_MODE = false;
 
     /**
      * Prints the parameter message only if the {@link Debug#DEBUG_MODE} is
