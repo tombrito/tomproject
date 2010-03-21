@@ -9,7 +9,7 @@ import org.w3c.dom.NodeList;
 
 public class TomXMLUtils {
     
-    public List<String> getValueList(Element rootElement) {
+    public static List<String> getValueList(Element rootElement) {
 	List<String> valueList = new ArrayList<String>();
 	NodeList manifestNodes = rootElement.getChildNodes();
 	for (int i = 0; i < manifestNodes.getLength(); i++) {
