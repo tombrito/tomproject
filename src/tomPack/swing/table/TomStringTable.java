@@ -14,8 +14,8 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 /**
- * {@link TomTable} that works only with {@link DefaultTableModel}, and have
- * the delegations to {@link DefaultTableModel}, {@link TableColumnModel} and
+ * {@link TomTable} that works only with {@link DefaultTableModel}, and have the
+ * delegations to {@link DefaultTableModel}, {@link TableColumnModel} and
  * {@link ListSelectionModel}.
  * 
  * @version 2009/11/13
@@ -60,8 +60,11 @@ public class TomStringTable extends TomTable {
 	model.addTableModelListener(l);
     }
 
+    @Override
     public boolean equals(Object obj) {
-	return model.equals(obj);
+	if (obj instanceof DefaultTableModel)
+	    return model.equals(obj);
+	return false;
     }
 
     @Override

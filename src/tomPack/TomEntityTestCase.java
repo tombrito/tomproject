@@ -21,7 +21,7 @@ import junit.framework.TestCase;
 public abstract class TomEntityTestCase extends TestCase {
 
     // TODO where to save on on linux?
-    private final File file = new File("c:/Test.jl"); //$NON-NLS-1$
+    private final File file = new File("TestCaseOutput"); //$NON-NLS-1$
 
     private void write(TomEntity entity) {
 	try {
@@ -50,6 +50,7 @@ public abstract class TomEntityTestCase extends TestCase {
 	return null;
     }
 
+    @Override
     protected void setUp() {
 	try {
 	    super.setUp();
@@ -58,11 +59,12 @@ public abstract class TomEntityTestCase extends TestCase {
 	    fail();
 	}
 
-	Msg.testMode = true;
-	Debug.DEBUG_MODE = true;
+	Msg.setTestMode(true);
+	Debug.setDebugMode(true);
 	doPersistenceTest();
     }
 
+    @Override
     protected void tearDown() {
 	// test data persistence after the test
 	doPersistenceTest();

@@ -1,9 +1,10 @@
 package tomPack;
 
+import lombok.Getter;
+
 /**
  * Class used for debug messages.
  * 
- * @version 2009/08/25
  * @author Tom Brito
  */
 public class Debug {
@@ -12,23 +13,28 @@ public class Debug {
      * Debug mode, if true, show the debug msgs. <br>
      * Must be initialized on constructor.
      */
-    public static boolean DEBUG_MODE = false;
+    @Getter
+    private static boolean debugMode = false;
+    
+    public static void setDebugMode(boolean b) {
+	debugMode = b;
+    }
 
     /**
-     * Prints the parameter message only if the {@link Debug#DEBUG_MODE} is
+     * Prints the parameter message only if the {@link Debug#debugMode} is
      * enabled.
      * 
      * @param msg
      *            - the message to display.
      */
     public static void println(Object obj) {
-	if (Debug.DEBUG_MODE) {
+	if (Debug.debugMode) {
 	    System.out.println(obj.toString());
 	}
     }
 
     public static void print(Object obj) {
-	if (Debug.DEBUG_MODE) {
+	if (Debug.debugMode) {
 	    System.out.print(obj.toString());
 	}
     }
@@ -41,7 +47,7 @@ public class Debug {
     private static boolean print = true;
 
     public static void equalsFail(Object expected, Object actual) {
-	if (Debug.DEBUG_MODE) {
+	if (Debug.debugMode) {
 	    synchronized (Debug.class) {
 		if (print) {
 		    print = false;
