@@ -107,7 +107,7 @@ public class TomSwingUtils {
      *             if don't find the specified path.
      */
     public static void initErrorLogFile(String path) throws Exception {
-	if (Debug.DEBUG_MODE) {
+	if (Debug.isDebugMode()) {
 	    return; // use default console output
 	}
 	String filename = ""; //$NON-NLS-1$

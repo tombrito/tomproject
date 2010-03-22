@@ -29,10 +29,10 @@ public class Translator {
 	UIManager.put("FileChooser.fileAttrHeaderText", Messages.getString("Translator.56")); //$NON-NLS-1$ //$NON-NLS-2$
 	UIManager.put("FileChooser.fileDateHeaderText", Messages.getString("Translator.54")); //$NON-NLS-1$ //$NON-NLS-2$
 	UIManager.put("FileChooser.fileNameHeaderText", Messages.getString("Translator.48")); //$NON-NLS-1$ //$NON-NLS-2$
-	UIManager.put("FileChooser.fileNameLabelMnemonic", new Integer('N')); // N //$NON-NLS-1$
+	UIManager.put("FileChooser.fileNameLabelMnemonic", Integer.valueOf('N')); // N //$NON-NLS-1$
 	UIManager.put("FileChooser.fileNameLabelText", Messages.getString("Translator.23")); //$NON-NLS-1$ //$NON-NLS-2$
 	UIManager.put("FileChooser.fileSizeHeaderText", Messages.getString("Translator.50")); //$NON-NLS-1$ //$NON-NLS-2$
-	UIManager.put("FileChooser.filesOfTypeLabelMnemonic", new Integer('T')); // T //$NON-NLS-1$
+	UIManager.put("FileChooser.filesOfTypeLabelMnemonic", Integer.valueOf('T')); // T //$NON-NLS-1$
 	UIManager.put("FileChooser.filesOfTypeLabelText", Messages.getString("Translator.26")); //$NON-NLS-1$ //$NON-NLS-2$
 	UIManager.put("FileChooser.fileTypeHeaderText", Messages.getString("Translator.52")); //$NON-NLS-1$ //$NON-NLS-2$
 
@@ -42,7 +42,7 @@ public class Translator {
 	UIManager.put("FileChooser.listViewButtonToolTipText", Messages.getString("Translator.40")); //$NON-NLS-1$ //$NON-NLS-2$
 	UIManager.put("FileChooser.listViewButtonAccessibleName", Messages.getString("Translator.42")); //$NON-NLS-1$ //$NON-NLS-2$
 
-	UIManager.put("FileChooser.lookInLabelMnemonic", new Integer('E')); //$NON-NLS-1$
+	UIManager.put("FileChooser.lookInLabelMnemonic", Integer.valueOf('E')); //$NON-NLS-1$
 	UIManager.put("FileChooser.lookInLabelText", Messages.getString("Translator.18")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	UIManager.put("FileChooser.newFolderToolTipText", Messages.getString("Translator.36")); //$NON-NLS-1$ //$NON-NLS-2$

@@ -8,8 +8,6 @@ import javax.swing.Icon;
 
 public class TomAction extends AbstractAction {
 
-    private static final long serialVersionUID = -1398491979352649127L;
-
     private final Method method;
     private final Object object;
     private String failMsg = "Falha ao executar ação";

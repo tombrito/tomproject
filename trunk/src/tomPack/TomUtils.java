@@ -10,6 +10,8 @@ import java.io.OutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import lombok.Cleanup;
+
 /**
  * Development utilities.
  * 
@@ -40,7 +42,7 @@ public class TomUtils {
     public static void assertNotNull(Object... objects) {
 	for (Object o : objects) {
 	    if (o == null) {
-		throw new NullPointerException("Null object: " + o); //$NON-NLS-1$
+		throw new NullPointerException();
 	    }
 	}
     }
@@ -57,12 +59,12 @@ public class TomUtils {
 
 	boolean success = true;
 	byte[] buffer;
-	InputStream in;
-	OutputStream out;
 
 	try {
-	    in = new FileInputStream(inputFileName);
-	    out = new FileOutputStream(outputFileName);
+	    @Cleanup
+	    InputStream in = new FileInputStream(inputFileName);
+	    @Cleanup
+	    OutputStream out = new FileOutputStream(outputFileName);
 	    buffer = new byte[in.available()];
 
 	    in.read(buffer);
@@ -133,6 +135,7 @@ public class TomUtils {
     }
 
     public static String readFile(String filename) throws IOException {
+	@Cleanup
 	BufferedReader reader = new BufferedReader(new FileReader(filename));
 	String line = null;
 	StringBuilder stringBuilder = new StringBuilder();

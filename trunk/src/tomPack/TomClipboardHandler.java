@@ -30,7 +30,7 @@ public class TomClipboardHandler {
     @SuppressWarnings("nls")
     public static void main(String[] args) throws Exception {
 	MyTransferableTest a1 = new MyTransferableTest();
-	MyTransferableTest a2 = new MyTransferableTest();
+	MyTransferableTest a2;
 	a1.i = 8;
 	TomClipboardHandler.copy(a1);
 	a2 = (MyTransferableTest) TomClipboardHandler.getTransferData(MyTransferableTest.flavor);

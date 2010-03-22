@@ -2,6 +2,9 @@ package tomPack.swing;
 
 import javax.swing.JOptionPane;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import tomPack.Debug;
 import tomPack.externalization.Messages;
 
@@ -14,7 +17,12 @@ import tomPack.externalization.Messages;
 public class Msg {
 
     /** Used for JUnit Test Cases. */
-    public static boolean testMode = false;
+    @Getter
+    private static boolean testMode = false;
+    
+    public static void setTestMode(boolean testMode) {
+	Msg.testMode = testMode;
+    }
 
     private static String lastDebugMsg = ""; //$NON-NLS-1$
 
@@ -27,10 +35,10 @@ public class Msg {
      *            : Mensagem a ser exibida.
      */
     public static void debug(Class<?> classe, String msg) {
-	if (!Debug.DEBUG_MODE) {
+	if (!Debug.isDebugMode()) {
 	    return;
 	}
-	if (lastDebugMsg != msg) {
+	if (!lastDebugMsg.equals(msg)) {
 	    lastDebugMsg = msg;
 	    String className = classe.getSimpleName();
 	    String debugMsg = ("DEBUG <" + className + "> - " + msg); //$NON-NLS-1$ //$NON-NLS-2$
