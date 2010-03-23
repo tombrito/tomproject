@@ -16,7 +16,7 @@ import tomPack.externalization.Messages;
  * @version 2009/11/05
  * @author Tom Brito
  */
-public class TomTable extends JTable implements Cloneable {
+public class TomTable extends DelegatorTable implements Cloneable {
 
     private static final long serialVersionUID = 76564082602133170L;
 
