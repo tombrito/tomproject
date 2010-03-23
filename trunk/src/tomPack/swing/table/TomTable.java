@@ -244,6 +244,11 @@ public class TomTable extends JTable implements Cloneable {
 
     /**
      * Called wherever cells are inserted on TableModel.
+     * 
+     * @param firstRow
+     *            - the first inserted row from the table
+     * @param lastRow
+     *            - the last inserted row from the table
      */
     protected void tableCellsInserted(int firstRow, int lastRow) {
 	// provided for subclasses use
@@ -251,6 +256,11 @@ public class TomTable extends JTable implements Cloneable {
 
     /**
      * Called wherever cells are deleted on TableModel.
+     * 
+     * @param firstRow
+     *            - the first deleted row from the table
+     * @param lastRow
+     *            - the last deleted row from the table
      */
     protected void tableCellsDeleted(int firstRow, int lastRow) {
 	// provided for subclasses use
