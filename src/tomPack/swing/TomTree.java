@@ -88,16 +88,17 @@ public class TomTree extends JTree {
 	 * in an element that isn't rooted at root.
 	 */
 	if (aNode == null) {
-	    if (depth == 0)
+	    if (depth == 0) {
 		return null;
-	    else
-		retNodes = new TreeNode[depth];
+	    }
+	    retNodes = new TreeNode[depth];
 	} else {
 	    depth++;
-	    if (aNode == getModel().getRoot())
+	    if (aNode == getModel().getRoot()) {
 		retNodes = new TreeNode[depth];
-	    else
+	    } else {
 		retNodes = getPathToRoot(aNode.getParent(), depth);
+	    }
 	    retNodes[retNodes.length - depth] = aNode;
 	}
 

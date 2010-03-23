@@ -3,7 +3,6 @@ package tomPack.swing;
 import javax.swing.JOptionPane;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import tomPack.Debug;
 import tomPack.externalization.Messages;

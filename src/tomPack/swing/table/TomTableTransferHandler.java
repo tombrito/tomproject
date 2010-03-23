@@ -30,6 +30,7 @@ public class TomTableTransferHandler extends TomTransferHandler {
 	super(DataFlavor.stringFlavor);
     }
 
+    @Override
     protected Transferable createTransferable(JComponent comp) {
 	JTable table = (JTable) comp;
 
@@ -106,6 +107,7 @@ public class TomTableTransferHandler extends TomTransferHandler {
 	return true;
     }
 
+    @Override
     protected void exportDone(JComponent source, Transferable data, int action) {
 	if (action != MOVE) {
 	    return;
