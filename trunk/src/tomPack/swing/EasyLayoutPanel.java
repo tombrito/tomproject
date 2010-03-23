@@ -15,7 +15,7 @@ import javax.swing.SpringLayout;
 /**
  * A {@link JPanel} with layout convenience methods.
  */
-public class TomEasyLayoutPanel extends JPanel {
+public class EasyLayoutPanel extends JPanel {
 
     public LayoutManager setBorderLayout() {
 	LayoutManager layout = new BorderLayout();

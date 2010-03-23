@@ -9,7 +9,7 @@ import java.awt.PopupMenu;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
-public class TomPanel extends TomEasyLayoutPanel {
+public class TomPanel extends EasyLayoutPanel {
 
     //
     // Constructors
