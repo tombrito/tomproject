@@ -20,7 +20,6 @@ import junit.framework.TestCase;
  */
 public abstract class TomEntityTestCase extends TestCase {
 
-    // TODO where to save on on linux?
     private final File file = new File("TestCaseOutput"); //$NON-NLS-1$
 
     private void write(TomEntity entity) {
@@ -94,7 +93,7 @@ public abstract class TomEntityTestCase extends TestCase {
      * @return
      * @throws Exception
      */
-    public static <T> T getField(Object obj, Class c, String fieldName) {
+    public static <T> T getField(Object obj, Class<?> c, String fieldName) {
 	try {
 	    Field field = c.getDeclaredField(fieldName);
 	    field.setAccessible(true);
@@ -114,7 +113,7 @@ public abstract class TomEntityTestCase extends TestCase {
      * @param methodName
      * @return
      */
-    public static <T> T invokeMethod(Object obj, Class c, String methodName) {
+    public static <T> T invokeMethod(Object obj, Class<?> c, String methodName) {
 	try {
 	    Method method = c.getDeclaredMethod(methodName);
 	    method.setAccessible(true);
@@ -134,7 +133,7 @@ public abstract class TomEntityTestCase extends TestCase {
      * @param parameterTypes
      * @return
      */
-    public static Method getMethod(Class c, String methodName, Class... parameterTypes) {
+    public static Method getMethod(Class<?> c, String methodName, Class<?>... parameterTypes) {
 	try {
 	    Method method = c.getDeclaredMethod(methodName, parameterTypes);
 	    method.setAccessible(true);
@@ -146,7 +145,7 @@ public abstract class TomEntityTestCase extends TestCase {
 	}
     }
 
-    public Object getField(Class c, String fieldName) {
+    public Object getField(Class<?> c, String fieldName) {
 	return getField(getWEntity(), c, fieldName);
     }
 
@@ -156,7 +155,7 @@ public abstract class TomEntityTestCase extends TestCase {
      * @param methodName
      * @return
      */
-    public Object getMethod(Class c, String methodName) {
+    public Object getMethod(Class<?> c, String methodName) {
 	return invokeMethod(getWEntity(), c, methodName);
     }
 
