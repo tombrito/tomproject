@@ -93,7 +93,7 @@ public class TomDialogYesNo extends TomDialog {
     public static boolean show(String title, String question, boolean noAsDefault) {
 	TomDialogYesNo dialog = new TomDialogYesNo(title, question, noAsDefault);
 	dialog.setVisible(true);
-	return dialog.getResult();
+	return dialog.isConfirm();
     }
 
     //
