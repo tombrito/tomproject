@@ -40,7 +40,11 @@ public class TypedTable<T> extends TomTable {
 
     @Override
     public boolean equals(Object obj) {
-	return model.equals(obj);
+	if (obj instanceof TypedTable<?>) {
+	    TypedTable<?> table = (TypedTable<?>) obj;
+	    return model.equals(table.model);
+	}
+	return false;
     }
 
     @Override
