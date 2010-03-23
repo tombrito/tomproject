@@ -25,7 +25,7 @@ import tomPack.TomUtils;
  * @version 2010/03/02
  * @author Tom Brito
  */
-public class DefaultTomTableModel extends TomTableModel implements TomEntity {
+public class TomDefaultTableModel extends TomTableModel {
 
     private static final long serialVersionUID = 1L;
 
@@ -41,7 +41,7 @@ public class DefaultTomTableModel extends TomTableModel implements TomEntity {
      * Construtor default para serialização. Construtor com acesso público,
      * porém em classe com acesso default (pacote).
      */
-    public DefaultTomTableModel(int initialColumnCount) {
+    public TomDefaultTableModel(int initialColumnCount) {
 	this.columnsSize = initialColumnCount;
 	rows = new ArrayList<Row>();
 	addRow();
@@ -52,8 +52,8 @@ public class DefaultTomTableModel extends TomTableModel implements TomEntity {
     //
 
     public void save(ObjectOutput out) throws IOException {
-	out.writeObject(rows.size());
-	out.writeObject(columnsSize);
+	out.writeObject(Integer.valueOf(rows.size()));
+	out.writeObject(Integer.valueOf(columnsSize));
 	for (int r = 0; r < rows.size(); r++) {
 	    Row row = rows.get(r);
 	    for (int c = 0; c < columnsSize; c++) {
@@ -65,8 +65,8 @@ public class DefaultTomTableModel extends TomTableModel implements TomEntity {
 
     public void load(ObjectInput in) throws IOException, ClassNotFoundException {
 	rows.clear();
-	Integer rowsSize = (Integer) in.readObject();
-	columnsSize = (Integer) in.readObject();
+	int rowsSize = ((Integer) in.readObject()).intValue();
+	columnsSize = ((Integer) in.readObject()).intValue();
 	for (int r = 0; r < rowsSize; r++) {
 	    Row row = new Row();
 	    for (int c = 0; c < columnsSize; c++) {
@@ -78,15 +78,17 @@ public class DefaultTomTableModel extends TomTableModel implements TomEntity {
 
     public boolean sameValues(TomEntity obj) {
 
-	if (!(obj instanceof DefaultTomTableModel)) {
-	    Debug.equalsFail(DefaultTomTableModel.class, obj.getClass());
+	if (!(obj instanceof TomDefaultTableModel)) {
+	    Debug.equalsFail(TomDefaultTableModel.class, obj.getClass());
 	    return false;
 	}
 
-	DefaultTomTableModel model = (DefaultTomTableModel) obj;
+	TomDefaultTableModel model = (TomDefaultTableModel) obj;
 
 	if (rows.size() != model.rows.size()) {
-	    Debug.equalsFail(rows.size(), model.rows.size());
+	    Object expected = Integer.valueOf(rows.size());
+	    Object actual = Integer.valueOf(model.rows.size());
+	    Debug.equalsFail(expected, actual);
 	    return false;
 	}
 
@@ -94,7 +96,9 @@ public class DefaultTomTableModel extends TomTableModel implements TomEntity {
 	    Row linha1 = rows.get(i);
 	    Row linha2 = model.rows.get(i);
 	    if (linha1.size() != linha2.size()) {
-		Debug.equalsFail(linha1.size(), linha2.size());
+		Object expected = Integer.valueOf(linha1.size());
+		Object actual = Integer.valueOf(linha2.size());
+		Debug.equalsFail(expected, actual);
 		return false;
 	    }
 	    for (int j = 0; j < linha1.size(); j++) {
@@ -116,6 +120,7 @@ public class DefaultTomTableModel extends TomTableModel implements TomEntity {
 	return rows;
     }
 
+    @Override
     public boolean isCellEditable(int row, int col) {
 	return true;
     }
@@ -152,6 +157,7 @@ public class DefaultTomTableModel extends TomTableModel implements TomEntity {
      * 
      * @see javax.swing.table.TableModel#setValueAt(java.lang.Object, int, int)
      */
+    @Override
     public void setValueAt(Object value, int row, int col) {
 	rows.get(row).set(col, value.toString());
 	fireTableCellUpdated(row, col);
