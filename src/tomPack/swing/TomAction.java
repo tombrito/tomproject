@@ -6,11 +6,13 @@ import java.lang.reflect.Method;
 import javax.swing.AbstractAction;
 import javax.swing.Icon;
 
+import tomPack.externalization.Messages;
+
 public class TomAction extends AbstractAction {
 
     private final Method method;
     private final Object object;
-    private String failMsg = "Falha ao executar ação";
+    private String failMsg = Messages.getString("TomAction.0"); //$NON-NLS-1$
 
     //
     // Constructors

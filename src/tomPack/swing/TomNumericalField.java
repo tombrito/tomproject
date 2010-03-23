@@ -11,7 +11,7 @@ public class TomNumericalField extends TomTextField {
     @Override
     protected void setNumbersOnly(boolean numbersOnly) {
 	if (!numbersOnly) {
-	    throw new IllegalArgumentException("Trying to make a numerical field non-numerical.");
+	    throw new IllegalArgumentException("Trying to make a numerical field non-numerical."); //$NON-NLS-1$
 	}
     }
     
