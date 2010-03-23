@@ -29,18 +29,23 @@ public abstract class TomTransferHandler extends TransferHandler {
     // Methods
     //
 
+    @Override
     protected abstract Transferable createTransferable(JComponent comp);
 
+    @Override
     public int getSourceActions(JComponent c) {
 	return COPY_OR_MOVE;
     }
 
+    @Override
     public abstract boolean importData(TransferSupport info);
 
+    @Override
     public boolean importData(JComponent c, Transferable t) {
 	throw new UnsupportedOperationException("Please, use importData(TransferSupport)"); //$NON-NLS-1$
     }
 
+    @Override
     public boolean canImport(JComponent c, DataFlavor[] flavors) {
 	for (DataFlavor flavor : flavors) {
 	    if (flavor.equals(this.flavor)) {
