@@ -212,10 +212,11 @@ public class TomSwingUtils {
 	return createLabeledComponent(new JLabel(name), new TomTextField(inputSize));
     }
 
+    @SuppressWarnings("nls")
     public static void main(String[] args) {
 	TomPanel panel = new TomPanel();
 	panel.add(createInputPanelV("Name", 10));
-	panel.add(createInputPanelV("Addr", 30));
+	panel.add(createInputPanelV("Address", 30));
 
 	TomMainFrame frame = new TomMainFrame(panel);
 	frame.setVisible(true);
