@@ -40,7 +40,7 @@ public class TomStringTable extends TomTable {
 	model.addColumn(columnName, columnData);
     }
 
-    public void addColumn(Object columnName, Vector columnData) {
+    public void addColumn(Object columnName, Vector<?> columnData) {
 	model.addColumn(columnName, columnData);
     }
 
@@ -52,7 +52,7 @@ public class TomStringTable extends TomTable {
 	model.addRow(rowData);
     }
 
-    public void addRow(Vector rowData) {
+    public void addRow(Vector<?> rowData) {
 	model.addRow(rowData);
     }
 
@@ -94,7 +94,7 @@ public class TomStringTable extends TomTable {
 	model.fireTableStructureChanged();
     }
 
-    public Vector getDataVector() {
+    public Vector<?> getDataVector() {
 	return model.getDataVector();
     }
 
@@ -145,7 +145,7 @@ public class TomStringTable extends TomTable {
 	model.setColumnIdentifiers(newIdentifiers);
     }
 
-    public void setColumnIdentifiers(Vector columnIdentifiers) {
+    public void setColumnIdentifiers(Vector<?> columnIdentifiers) {
 	model.setColumnIdentifiers(columnIdentifiers);
     }
 
@@ -153,7 +153,7 @@ public class TomStringTable extends TomTable {
 	model.setDataVector(dataVector, columnIdentifiers);
     }
 
-    public void setDataVector(Vector dataVector, Vector columnIdentifiers) {
+    public void setDataVector(Vector<?> dataVector, Vector<?> columnIdentifiers) {
 	model.setDataVector(dataVector, columnIdentifiers);
     }
 
