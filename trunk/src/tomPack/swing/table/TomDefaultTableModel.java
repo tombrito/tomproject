@@ -25,6 +25,7 @@ import tomPack.TomUtils;
  * @version 2010/03/02
  * @author Tom Brito
  */
+// Evaluate do a TypedTableModel (like the TypedTable)
 public class TomDefaultTableModel extends TomTableModel {
 
     private static final long serialVersionUID = 1L;
