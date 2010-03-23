@@ -62,8 +62,10 @@ public class TomStringTable extends TomTable {
 
     @Override
     public boolean equals(Object obj) {
-	if (obj instanceof DefaultTableModel)
-	    return model.equals(obj);
+	if (obj instanceof TomStringTable) {
+	    TomStringTable table = (TomStringTable) obj;
+	    return model.equals(table.model);
+	}
 	return false;
     }
 
