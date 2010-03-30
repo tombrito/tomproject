@@ -54,22 +54,21 @@ public class TomUtils {
      * @param outputFileName
      * @return <code>true</code> se o conteúdo foi copiado com sucesso. Se
      *         ocorrer qualquer Exception, retorna <code>false</code>.
+     * 
+     * @deprecated use apache commons-io.
      */
+    @Deprecated
     public static boolean copyFile(String inputFileName, String outputFileName) {
 
 	boolean success = true;
-	byte[] buffer;
 
 	try {
 	    @Cleanup
 	    InputStream in = new FileInputStream(inputFileName);
 	    @Cleanup
 	    OutputStream out = new FileOutputStream(outputFileName);
-	    buffer = new byte[in.available()];
 
-	    in.read(buffer);
-	    out.write(buffer);
-	    out.flush();
+	    copy(in, out);
 
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -78,6 +77,25 @@ public class TomUtils {
 
 	return success;
 
+    }
+
+    private static int copy(InputStream input, OutputStream output) throws IOException {
+	long count = copyLarge(input, output);
+	if (count > Integer.MAX_VALUE) {
+	    return -1;
+	}
+	return (int) count;
+    }
+
+    private static long copyLarge(InputStream input, OutputStream output) throws IOException {
+	byte[] buffer = new byte[1024 * 4];
+	long count = 0;
+	int n = 0;
+	while (-1 != (n = input.read(buffer))) {
+	    output.write(buffer, 0, n);
+	    count += n;
+	}
+	return count;
     }
 
     /**
