@@ -58,6 +58,15 @@ public class TomFileChooser extends JFileChooser {
     //
     // Open dialog
     //
+    
+    @Override
+    public int showOpenDialog(Component parent) throws HeadlessException {
+	int result = super.showOpenDialog(parent);
+	if (result == JFileChooser.APPROVE_OPTION) {
+	    setCurrentFile(getSelectedFile());
+	}
+	return result;
+    }
 
     /**
      * Set the current directory and delegate to {@link #showOpenDialog()}.
@@ -72,14 +81,7 @@ public class TomFileChooser extends JFileChooser {
     /** @return the selected File to open or null. */
     public File showOpenDialog() {
 	int result = showOpenDialog((Component) null);
-	if (result == JFileChooser.APPROVE_OPTION) {
-	    File selected = getSelectedFile();
-	    if (selected != null) {
-		setCurrentFile(selected);
-		return currentFile;
-	    }
-	}
-	return null;
+	return (result == JFileChooser.APPROVE_OPTION) ? currentFile : null;
     }
 
     //
@@ -117,7 +119,6 @@ public class TomFileChooser extends JFileChooser {
     /** @return the selected File to write on. */
     public File showSaveDialog() {
 	int result = showSaveDialog((Component) null);
-	// current file was setted if approved
 	return (result == JFileChooser.APPROVE_OPTION) ? currentFile : null;
     }
 
