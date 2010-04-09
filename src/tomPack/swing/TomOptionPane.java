@@ -69,7 +69,7 @@ public class TomOptionPane {
 	return (result == confirmOption);
     }
 
-    int result;
+    protected int result;
 
     private TomOptionPane(int result) {
 	this.result = result;

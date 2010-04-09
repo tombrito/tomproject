@@ -52,11 +52,11 @@ public class TomDocument extends PlainDocument {
     //
     //
 
-    private boolean caps = false;
+    protected boolean caps = false;
 
-    private int maxLength;
+    protected int maxLength;
 
-    private boolean numbersOnly = false;
+    protected boolean numbersOnly = false;
 
     //
     //

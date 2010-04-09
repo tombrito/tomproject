@@ -21,7 +21,7 @@ public class JSpinnerCellEditor extends AbstractCellEditor implements TableCellE
 
     private static final long serialVersionUID = 1L;
 
-    private JSpinner spinner;
+    protected JSpinner spinner;
 
     public JSpinnerCellEditor(JSpinner spinner) {
 	this.spinner = spinner;

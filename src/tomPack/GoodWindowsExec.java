@@ -10,10 +10,10 @@ import java.io.InputStreamReader;
 
 @SuppressWarnings("nls")
 class StreamGobbler extends Thread {
-    InputStream is;
-    String type;
+    protected InputStream is;
+    protected String type;
 
-    StreamGobbler(InputStream is, String type) {
+    protected StreamGobbler(InputStream is, String type) {
 	this.is = is;
 	this.type = type;
     }

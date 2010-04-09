@@ -8,8 +8,8 @@ import javax.swing.filechooser.FileFilter;
 
 public class TomFileFilter extends FileFilter {
 
-    private final List<String> extensionList = new ArrayList<String>();
-    private final String description;
+    protected final List<String> extensionList = new ArrayList<String>();
+    protected final String description;
 
     public TomFileFilter(String extension, String description) {
 	this(description, new String[] { extension });

@@ -100,7 +100,7 @@ public class TomDialogYesNo extends TomDialog {
     // Initialization
     //
 
-    final boolean noAsDefault;
+    protected final boolean noAsDefault;
 
     public TomDialogYesNo(String title, String question) {
 	this(title, question, false);

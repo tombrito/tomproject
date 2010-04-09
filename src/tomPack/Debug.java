@@ -44,7 +44,7 @@ public class Debug {
      * You do not need to read thousands of exceptions before you correct the
      * first one.
      */
-    private static boolean print = true;
+    protected static boolean print = true;
 
     public static void equalsFail(Object expected, Object actual) {
 	if (Debug.debugMode) {
