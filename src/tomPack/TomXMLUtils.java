@@ -44,8 +44,7 @@ public class TomXMLUtils {
     public static Document parseXML(File xmlFile) throws ParserConfigurationException, SAXException, IOException {
 	DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-	// TODO show progress bar
-	// TODO assess use SAX (research)
+	// TODO Issue #74 - show progress bar or use SAX (research)
 	System.out.println("parsing..."); //$NON-NLS-1$
 	return docBuilder.parse(xmlFile);
     }
