@@ -29,7 +29,7 @@ public class FullKeyListener implements ContainerListener {
     // 1 - add this Dialog as a ContainerListener to the Container
     // 2 - call this function recursively for every child of the Container.
 
-    private KeyListener listener;
+    protected KeyListener listener;
 
     public FullKeyListener(KeyListener l) {
 	this.listener = l;

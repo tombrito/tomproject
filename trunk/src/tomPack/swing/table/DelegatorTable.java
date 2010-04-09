@@ -22,10 +22,9 @@ import javax.swing.table.TableModel;
  */
 public class DelegatorTable extends JTable {
 
+    // this guys cannot be protected due to super.set() call needed
     private TableModel model;
-
     private TableColumnModel columnModel;
-
     private ListSelectionModel selectionModel;
 
     //

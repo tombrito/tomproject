@@ -15,16 +15,13 @@ import tomPack.swing.TomTransferHandler;
 
 /**
  * Implementation of {@link TomTransferHandler} for {@link JTable}.
- * 
- * @version 2009/11/05
- * @author Tom Brito
  */
 public class TomTableTransferHandler extends TomTransferHandler {
 
     private static final long serialVersionUID = 8825883306831727325L;
 
     /** List of cells [row, column]. */
-    private List<Point> cellMatrix = new ArrayList<Point>();
+    protected List<Point> cellMatrix = new ArrayList<Point>();
 
     public TomTableTransferHandler() {
 	super(DataFlavor.stringFlavor);

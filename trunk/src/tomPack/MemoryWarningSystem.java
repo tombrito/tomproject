@@ -36,7 +36,7 @@ public class MemoryWarningSystem {
     // * Static attributes and methods
     // ****************************************************
 
-    static final MemoryPoolMXBean tenuredGenPool = findTenuredGenPool();
+    protected static final MemoryPoolMXBean tenuredGenPool = findTenuredGenPool();
 
     /**
      * Initialize the memory warning system with a default listener that shows a
@@ -104,7 +104,7 @@ public class MemoryWarningSystem {
     // * Instance attributes and methods
     // ****************************************************
 
-    final Collection<Listener> listeners = new ArrayList<Listener>();
+    protected final Collection<Listener> listeners = new ArrayList<Listener>();
 
     public MemoryWarningSystem() {
 	MemoryMXBean mbean = ManagementFactory.getMemoryMXBean();

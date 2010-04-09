@@ -30,9 +30,9 @@ public class TomDefaultTableModel extends TomTableModel {
 
     private static final long serialVersionUID = 1L;
 
-    private List<Row> rows = null;
+    protected List<Row> rows = null;
 
-    private int columnsSize;
+    protected int columnsSize;
 
     //
     // Initialization

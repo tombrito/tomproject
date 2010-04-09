@@ -10,13 +10,12 @@ import javax.swing.table.TableModel;
 /**
  * {@link TomTable} that works only with {@link DefaultTableModel}, and have the
  * delegations to {@link DefaultTableModel} methods.
- * 
- * @author Tom Brito
  */
 public class TypedTable<T> extends TomTable {
 
     private static final long serialVersionUID = 1793819982167790132L;
 
+    // cannot be protected (see the setter)
     private DefaultTableModel model;
 
     // ****************************************************
