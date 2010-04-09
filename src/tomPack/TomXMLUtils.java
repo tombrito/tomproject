@@ -19,11 +19,14 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import com.sun.org.apache.xerces.internal.dom.DOMImplementationImpl;
 
 public class TomXMLUtils {
 
@@ -63,6 +66,12 @@ public class TomXMLUtils {
 	xformer.setOutputProperty(OutputKeys.INDENT, "yes"); //$NON-NLS-1$
 	xformer.transform(source, result);
 
+    }
+
+    public static Document createDocument(String rootElementName) {
+	DOMImplementation domImpl = DOMImplementationImpl.getDOMImplementation();
+	Document doc = domImpl.createDocument(null, rootElementName, null);
+	return doc;
     }
 
 }
