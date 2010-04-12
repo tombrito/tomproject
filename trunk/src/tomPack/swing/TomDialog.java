@@ -38,8 +38,8 @@ import javax.swing.JScrollPane;
  * same version of this class.
  * 
  * @see TomOptionPane
+ * @see TomDialogYesNo
  * 
- * @version 2009/11/18
  * @author Tom Brito
  */
 public class TomDialog extends JDialog {
@@ -79,8 +79,8 @@ public class TomDialog extends JDialog {
 	public void keyPressed(KeyEvent e) {
 
 	    /*
-	     * TODO TomComboBox (off-topic with this class) A JComboBox make its
-	     * "stop editing" by the escape key.
+	     * TODO Issue #90: TomDialog should not exit if press 'esc' while
+	     * editing a JComboBox.
 	     * 
 	     * This, for while, don't justify remove the escape handle of
 	     * TomDialog.
@@ -152,7 +152,7 @@ public class TomDialog extends JDialog {
     public JButton getOkButton(String name) {
 	return new JButton(new OKAct(name));
     }
-    
+
     public JButton getCancelButton(String name) {
 	return new JButton(new CancelAct(name));
     }
@@ -169,13 +169,15 @@ public class TomDialog extends JDialog {
      * Returns the result of the dialog box. <br>
      * <code>true</code> if user press the OK button, <code>false</code> if user
      * cancel or close.
-     * @deprecated use the more intuitive name isConfirm (better readability for if-blocks)
+     * 
+     * @deprecated use the more intuitive name isConfirm (better readability for
+     *             if-blocks)
      */
     @Deprecated
     public boolean getResult() {
 	return result;
     }
-    
+
     public boolean isConfirm() {
 	return getResult();
     }
@@ -204,7 +206,7 @@ public class TomDialog extends JDialog {
 	result = false;
 	setVisible(false);
     }
-    
+
     public void setWaitCursor() {
 	setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     }

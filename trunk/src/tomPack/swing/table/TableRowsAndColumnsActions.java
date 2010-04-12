@@ -21,8 +21,7 @@ import tomPack.externalization.Messages;
  */
 public class TableRowsAndColumnsActions {
 
-    // TODO what about make independent actions instead of this get methods?
-    // at least separete rows and columns actions.
+    // TODO Issue #91: TableRowsAndColumnsActions organization
 
     private final TableRowAndColumnActHandler handler;
 

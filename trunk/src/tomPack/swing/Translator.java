@@ -1,4 +1,4 @@
-package tomPack;
+package tomPack.swing;
 
 import java.util.Locale;
 

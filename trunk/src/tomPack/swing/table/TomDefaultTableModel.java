@@ -10,8 +10,8 @@ import javax.swing.table.DefaultTableModel;
 
 import tomPack.Debug;
 import tomPack.Row;
-import tomPack.TomEntity;
 import tomPack.TomUtils;
+import tomPack.unitTest.TomEntity;
 
 /**
  * Table Model to handle Strings.

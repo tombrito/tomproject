@@ -1,4 +1,4 @@
-package tomPack;
+package tomPack.unitTest;
 
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -41,9 +41,12 @@ public interface TomEntity {
      * 
      * @param wpack
      *            .WObject
+     * 
      * @return <code>true</code> if the values are the same.
+     * 
+     * @deprecated use equals() method.
      */
-    // TODO created by a mistake. Use equals() method.
+    @Deprecated
     public abstract boolean sameValues(TomEntity obj);
 
 }

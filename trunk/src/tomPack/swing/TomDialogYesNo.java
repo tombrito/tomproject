@@ -30,7 +30,6 @@ import tomPack.swing.images.Images;
  * @see TomDialog
  * @see TomOptionPane
  * 
- * @version 2009/11/18
  * @author Tom Brito
  */
 public class TomDialogYesNo extends TomDialog {
@@ -72,8 +71,8 @@ public class TomDialogYesNo extends TomDialog {
      *         the dialog.
      */
     public static boolean show(String title, String question) {
-	// TODO what's the advantage of this instead of
-	// SimpleOptionPane.showYesNoDialog()?
+	// TODO Issue #93: at 2 dialogs - what's the advantage of this instead of
+	// SimpleDialogYesNo.show()?
 	return show(title, question, false);
     }
 

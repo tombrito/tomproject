@@ -22,7 +22,9 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
 import tomPack.Debug;
-import tomPack.Translator;
+
+import com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel;
+import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 
 /**
  * Utilities for Graphical User Interfaces.
@@ -64,31 +66,59 @@ public class TomSwingUtils {
     // * Application Initialization
     // ****************************************************
 
-    /** Set the current system {@link LookAndFeel} and default. */
-    public static void initLaf() {
+    public static void initLaf(LookAndFeel laf) {
+	initLaf(laf.getClass().getName());
+    }
+
+    public static void initLaf(String laf) {
 
 	// winLAF considerations:
 	// - JTable serialization (not really a problem).
-	// - tamanho minusculo dos botoes da JToolBar.
+	// - very small buttons at JToolBar
 
 	// metalLAF considerations:
 	// - Save and Open Dialogs fail some times.
 	// - Don't have the default behavior for ALT to select menus.
+	// - ATL button does not works properly in Windows environment
+	// - JFileChooser does not works properly in Windows environment
 
 	// nimbusLAF considerations:
 	// - Renderization problems with tables and tool bar's buttons colors
 	// (gloogle it to see yourself).
+	// - ATL button does not works properly in Windows environment
+	// - JFileChooser does not works properly in Windows environment
 
 	try {
-	    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	    UIManager.setLookAndFeel(laf);
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
     }
 
+    /** Set the current system {@link LookAndFeel} as default. */
+    public static void initSystemLaf() {
+	initLaf(UIManager.getSystemLookAndFeelClassName());
+    }
+
+    public static void initNimbusLaf() {
+	initLaf(new NimbusLookAndFeel());
+    }
+
+    public static void initWindowsLaf() {
+	initLaf(new WindowsLookAndFeel());
+    }
+
+    public static void initMetalLaf() {
+	initLaf(new MetalLookAndFeel());
+    }
+
     /**
-     * TODO check this method utility
+     * Use the {@link Translator#translate()} to translate, and the laf methods
+     * to init laf. Preferred LAFs are:
+     * 
+     * <li>{@link #initSystemLaf()} <li>{@link #initNimbusLaf()}
      */
+    @Deprecated
     public static void configUIManager() {
 	Translator.translate();
 	if (UIManager.getLookAndFeel() instanceof MetalLookAndFeel) {
