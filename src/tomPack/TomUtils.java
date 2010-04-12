@@ -10,12 +10,13 @@ import java.io.OutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import tomPack.unitTest.TomEntity;
+
 import lombok.Cleanup;
 
 /**
  * Development utilities.
  * 
- * @version 2009/12/05
  * @author Tom Brito
  */
 public class TomUtils {
@@ -120,7 +121,9 @@ public class TomUtils {
      * @param e1
      * @param e2
      * @return
+     * @deprecated use {@link #equals(Object, Object)}.
      */
+    @Deprecated
     public static boolean sameValues(TomEntity e1, TomEntity e2) {
 
 	// if one is null, the other needs to be too.

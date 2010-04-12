@@ -109,7 +109,7 @@ public class TomDocument extends PlainDocument {
 	this.numbersOnly = numbersOnly;
     }
 
-    // TODO shouldn't be using a filter?
+    // TODO Issue #89: TomDocument.insertString shouldn't be using a filter?
     @Override
     public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
 

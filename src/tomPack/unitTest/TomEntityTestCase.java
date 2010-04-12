@@ -1,4 +1,4 @@
-package tomPack;
+package tomPack.unitTest;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import tomPack.Debug;
 import tomPack.swing.Msg;
 
 import junit.framework.TestCase;
@@ -15,7 +16,6 @@ import junit.framework.TestCase;
 /**
  * Abstract class extends TestCase to test {@link TomEntity} objects.
  * 
- * @version 2009/11/04
  * @author Tom Brito
  */
 public abstract class TomEntityTestCase extends TestCase {
@@ -67,7 +67,9 @@ public abstract class TomEntityTestCase extends TestCase {
     protected void tearDown() {
 	// test data persistence after the test
 	doPersistenceTest();
-	file.deleteOnExit(); // TODO why do not delete on exit?
+
+	// TODO Issue #92: TomEntityTestCase why do not delete file on exit?
+	file.deleteOnExit();
 
 	try {
 	    super.tearDown();
@@ -93,6 +95,7 @@ public abstract class TomEntityTestCase extends TestCase {
      * @return
      * @throws Exception
      */
+    @SuppressWarnings("unchecked")
     public static <T> T getField(Object obj, Class<?> c, String fieldName) {
 	try {
 	    Field field = c.getDeclaredField(fieldName);
@@ -113,6 +116,7 @@ public abstract class TomEntityTestCase extends TestCase {
      * @param methodName
      * @return
      */
+    @SuppressWarnings("unchecked")
     public static <T> T invokeMethod(Object obj, Class<?> c, String methodName) {
 	try {
 	    Method method = c.getDeclaredMethod(methodName);
@@ -173,7 +177,7 @@ public abstract class TomEntityTestCase extends TestCase {
 	TomEntity currentEntity = getWEntity();
 	write(currentEntity);
 	TomEntity loadedEntity = read();
-	assertTrue(currentEntity.sameValues(loadedEntity));
+	assertTrue(currentEntity.equals(loadedEntity));
 	setWEntity(loadedEntity);
     }
 

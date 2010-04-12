@@ -23,8 +23,6 @@ import tomPack.externalization.Messages;
  * 
  * @author http://www.javaspecialists.eu/archive/Issue092.html
  * @author Tom Brito
- * 
- * @version 2009/11/06
  */
 public class MemoryWarningSystem {
 
@@ -60,6 +58,10 @@ public class MemoryWarningSystem {
 		System.err.flush();
 		String msg = Messages.getString("Main.12") //$NON-NLS-1$
 			+ Messages.getString("Main.13"); //$NON-NLS-1$
+		/*
+		 * TODO Issue #94: MemoryWarningSystem.initMemoryWarningSystem()
+		 * should use a listener instead of swing component to show msg.
+		 */
 		JOptionPane.showMessageDialog(null, msg, Messages.getString("Main.14"), //$NON-NLS-1$
 			JOptionPane.WARNING_MESSAGE);
 	    }
@@ -88,8 +90,11 @@ public class MemoryWarningSystem {
      */
     private static MemoryPoolMXBean findTenuredGenPool() {
 	for (MemoryPoolMXBean pool : ManagementFactory.getMemoryPoolMXBeans()) {
+
+	    // TODO Issue #87: What's the best approach for the
+	    // MemoryWarningSystem class?
 	    /*
-	     * TODO I don't know whether this approach is better, or whether we
+	     * I don't know whether this approach is better, or whether we
 	     * should rather check for the pool name "Tenured Gen"?
 	     * (javaspecialists)
 	     */

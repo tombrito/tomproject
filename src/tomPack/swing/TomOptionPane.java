@@ -20,7 +20,7 @@ public class TomOptionPane {
     public static TomDialogYesNo createNoYesDialog(String title, String question, boolean noAsDefault) {
 
 	/*
-	 * TODO what's the advantage of this instead of
+	 * TODO Issue #93: at 2 dialogs - what's the advantage of this instead of
 	 * SimpleDialogYesNo.show()?
 	 */
 

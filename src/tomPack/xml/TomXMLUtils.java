@@ -1,4 +1,4 @@
-package tomPack;
+package tomPack.xml;
 
 import java.io.File;
 import java.io.IOException;

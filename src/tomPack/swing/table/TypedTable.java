@@ -31,7 +31,7 @@ public class TypedTable<T> extends TomTable {
     public void setModel(TableModel dataModel) {
 	if (!(dataModel instanceof DefaultTableModel)) {
 	    String err = "Just DefaultTableModel supported."; //$NON-NLS-1$
-	    throw new UnsupportedOperationException(err);
+	    throw new RuntimeException(err);
 	}
 	this.model = (DefaultTableModel) dataModel;
 	super.setModel(dataModel);
@@ -311,18 +311,6 @@ public class TypedTable<T> extends TomTable {
      */
     public void setRowCount(int rowCount) {
 	model.setRowCount(rowCount);
-    }
-
-    /**
-     * @param aValue
-     * @param row
-     * @param column
-     * @see javax.swing.table.DefaultTableModel#setValueAt(java.lang.Object, int, int)
-     */
-    @Override
-    public void setValueAt(Object aValue, int row, int column) {
-	// TODO check if need override this method
-	model.setValueAt(aValue, row, column);
     }
 
     // ****************************************************

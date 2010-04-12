@@ -3,7 +3,7 @@ package tomPack.swing.table;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-import tomPack.TomEntity;
+import tomPack.unitTest.TomEntity;
 
 /**
  * A extension of {@link AbstractTableModel} with some new utilities
