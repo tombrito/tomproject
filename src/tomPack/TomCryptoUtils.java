@@ -5,7 +5,7 @@ import java.security.Key;
 
 import javax.crypto.Cipher;
 
-import org.apache.commons.lang3.SerializationUtils;
+import org.apache.commons.lang.SerializationUtils;
 
 public class TomCryptoUtils {
     
