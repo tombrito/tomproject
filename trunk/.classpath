@@ -4,5 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre6"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/lombok.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ApacheCommonsIO"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ApacheCommonsLang"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
