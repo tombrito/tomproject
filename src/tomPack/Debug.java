@@ -15,9 +15,10 @@ public class Debug {
      */
     @Getter
     private static boolean debugMode = false;
-    
+
     public static void setDebugMode(boolean b) {
 	debugMode = b;
+	println("Debug mode = " + b); //$NON-NLS-1$
     }
 
     /**
