@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import tomPack.externalization.Messages;
 
 /**
- * This class is used to throw a warning in case of low avaiable memory for the
+ * This class is used to throw a warning in case of low available memory for the
  * JVM.
  * 
  * @see #initMemoryWarningSystem()
