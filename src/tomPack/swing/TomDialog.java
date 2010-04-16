@@ -108,6 +108,7 @@ public class TomDialog extends JDialog {
 
     public TomDialog(String title) {
 	super((JFrame) null, title, true);
+	setResizable(false); // by default, dialogs shouldn't be resizable
 	FullKeyListener listener = new FullKeyListener(new DialogKeyAdapter());
 	listener.addFullKeyListenerTo(this);
     }
@@ -120,6 +121,10 @@ public class TomDialog extends JDialog {
 	}
 	initView(centerPanel, optionsButtons);
     }
+
+    // ****************************************************
+    // * View initialization
+    // ****************************************************
 
     public void initView(JPanel centerPanel, JButton... optionsButtons) {
 
@@ -148,23 +153,23 @@ public class TomDialog extends JDialog {
     // ****************************************************
     // * Other methods
     // ****************************************************
-    
+
     @Override
     public void setSize(Dimension d) {
-        super.setSize(d);
-        setLocationRelativeTo(null);
+	super.setSize(d);
+	setLocationRelativeTo(null);
     }
-    
+
     @Override
     public void setSize(int width, int height) {
-        super.setSize(width, height);
-        setLocationRelativeTo(null);
+	super.setSize(width, height);
+	setLocationRelativeTo(null);
     }
-    
+
     @Override
     public void pack() {
-        super.pack();
-        setLocationRelativeTo(null);
+	super.pack();
+	setLocationRelativeTo(null);
     }
 
     public JButton getOkButton(String name) {
