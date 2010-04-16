@@ -22,7 +22,7 @@ import javax.swing.JScrollPane;
 
 /**
  * A extended version of {@link JDialog}, with fast-keys to yes (s - sim) and no
- * (n - não).
+ * (n - nï¿½o).
  * 
  * <p>
  * Adapted From: JavaTip 69: Press Escape to close your Java dialog windows
@@ -148,6 +148,24 @@ public class TomDialog extends JDialog {
     // ****************************************************
     // * Other methods
     // ****************************************************
+    
+    @Override
+    public void setSize(Dimension d) {
+        super.setSize(d);
+        setLocationRelativeTo(null);
+    }
+    
+    @Override
+    public void setSize(int width, int height) {
+        super.setSize(width, height);
+        setLocationRelativeTo(null);
+    }
+    
+    @Override
+    public void pack() {
+        super.pack();
+        setLocationRelativeTo(null);
+    }
 
     public JButton getOkButton(String name) {
 	return new JButton(new OKAct(name));
