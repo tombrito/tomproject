@@ -14,14 +14,12 @@ import javax.swing.JOptionPane;
  */
 public class TomOptionPane {
 
-    /**
-     * Delegato to {@link TomDialogYesNo}.
-     */
+    /** Delegate to {@link TomDialogYesNo}. */
     public static TomDialogYesNo createNoYesDialog(String title, String question, boolean noAsDefault) {
 
 	/*
-	 * TODO Issue #93: at 2 dialogs - what's the advantage of this instead of
-	 * SimpleDialogYesNo.show()?
+	 * TODO Issue #93: at 2 dialogs - what's the advantage of this instead
+	 * of TomDialogYesNo.show()?
 	 */
 
 	return new TomDialogYesNo(title, question, noAsDefault);
