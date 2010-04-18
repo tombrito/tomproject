@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="lib/ext/lombok.jar"/>
 	<classpathentry kind="lib" path="lib/ext/commons-io-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/ext/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="lib/ext/commons-codec-1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
