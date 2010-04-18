@@ -57,7 +57,7 @@ public class Msg {
 	e.printStackTrace();
 	if (!Msg.testMode) {
 	    try {
-		String msg = (e.getMessage() + Messages.getString("Msg.4")); //$NON-NLS-1$
+		String msg = e.getMessage();
 		JOptionPane.showMessageDialog(null, msg, Messages.getString("Msg.5"), //$NON-NLS-1$
 			JOptionPane.ERROR_MESSAGE);
 	    } catch (Exception e2) {
@@ -82,7 +82,6 @@ public class Msg {
 	if (!Msg.testMode) {
 	    Debug.println(Messages.getString("Msg.7") + msg); //$NON-NLS-1$
 	    try {
-		msg += (Messages.getString("Msg.8")); //$NON-NLS-1$
 		JOptionPane.showMessageDialog(null, msg, title, JOptionPane.ERROR_MESSAGE);
 	    } catch (Exception e) {
 		e.printStackTrace();
