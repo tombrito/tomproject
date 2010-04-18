@@ -6,6 +6,7 @@ import java.awt.event.ComponentEvent;
 
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  * A simplified version of {@link JOptionPane}.
@@ -33,6 +34,18 @@ public class TomOptionPane {
     public static boolean showYesNoDialog(String title, Object[] fields, final Component initialFocused) {
 	return showBooleanDialog(title, fields, initialFocused, JOptionPane.YES_NO_OPTION, JOptionPane.YES_OPTION,
 		JOptionPane.NO_OPTION);
+    }
+    
+    /*
+     * Works just fine at home. See at work.
+     */
+    @SuppressWarnings("nls")
+    public static void main(String[] args) {
+	System.out.println("start");
+	JTextField tf = new JTextField();
+	Object[] fields = new Object[] {"Test", tf};
+	showOkCancelDialog("Title", fields, tf);
+	System.out.println("end");
     }
 
     public static boolean showBooleanDialog(String title, Object[] fields, final Component initialFocused,
@@ -66,7 +79,7 @@ public class TomOptionPane {
 
 	return (result == confirmOption);
     }
-
+    
     protected int result;
 
     private TomOptionPane(int result) {
