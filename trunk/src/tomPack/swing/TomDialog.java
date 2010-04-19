@@ -10,8 +10,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -106,25 +104,44 @@ public class TomDialog extends JDialog {
     // * Constructors
     // ****************************************************
 
+    public TomDialog(JFrame owner, String title) {
+	super(owner, title, true);
+	init();
+    }
+
+    public TomDialog(JDialog owner, String title) {
+	super(owner, title, true);
+	init();
+    }
+
     public TomDialog(String title) {
-	super((JFrame) null, title, true);
-	setResizable(false); // by default, dialogs shouldn't be resizable
-	FullKeyListener listener = new FullKeyListener(new DialogKeyAdapter());
-	listener.addFullKeyListenerTo(this);
+	this((JFrame) null, title);
+    }
+
+    public TomDialog(JFrame owner, String title, JPanel centerPanel, JButton... optionsButtons) {
+	this(owner, title);
+	initView(centerPanel, optionsButtons);
+    }
+
+    public TomDialog(JDialog owner, String title, JPanel centerPanel, JButton... optionsButtons) {
+	this(owner, title);
+	initView(centerPanel, optionsButtons);
     }
 
     public TomDialog(String title, JPanel centerPanel, JButton... optionsButtons) {
 	this(title);
-	List<JButton> optionButtonList = new ArrayList<JButton>();
-	for (JButton btn : optionsButtons) {
-	    optionButtonList.add(btn);
-	}
 	initView(centerPanel, optionsButtons);
     }
 
     // ****************************************************
     // * View initialization
     // ****************************************************
+
+    private void init() {
+	setResizable(false); // by default, dialogs shouldn't be resizable
+	FullKeyListener listener = new FullKeyListener(new DialogKeyAdapter());
+	listener.addFullKeyListenerTo(this);
+    }
 
     public void initView(JPanel centerPanel, JButton... optionsButtons) {
 
@@ -134,20 +151,19 @@ public class TomDialog extends JDialog {
 	tableScrollPane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	tableScrollPane.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
 
-	// Options
-	JPanel optionsPane = new JPanel();
-	for (Component op : optionsButtons) {
-	    optionsPane.add(op);
-	}
-
 	setLayout(new BorderLayout());
 	add(tableScrollPane);
-	add(optionsPane, BorderLayout.SOUTH);
 
-	// with less width the last button hides
-	setPreferredSize(new Dimension(700, 300));
+	// Options
+	if (optionsButtons.length > 0) {
+	    JPanel optionsPane = new JPanel();
+	    for (Component op : optionsButtons) {
+		optionsPane.add(op);
+	    }
+	    add(optionsPane, BorderLayout.SOUTH);
+	}
+
 	pack();
-	setLocationRelativeTo(null);
     }
 
     // ****************************************************
@@ -156,13 +172,16 @@ public class TomDialog extends JDialog {
 
     @Override
     public void setSize(Dimension d) {
-	super.setSize(d);
-	setLocationRelativeTo(null);
+	setSize(d.width, d.height);
     }
 
     @Override
     public void setSize(int width, int height) {
 	super.setSize(width, height);
+	Dimension d = new Dimension(width, height);
+	setPreferredSize(d);
+	setMaximumSize(d);
+	setMinimumSize(d);
 	setLocationRelativeTo(null);
     }
 
