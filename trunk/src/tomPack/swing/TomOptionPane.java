@@ -1,12 +1,15 @@
 package tomPack.swing;
 
 import java.awt.Component;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 
 /**
  * A simplified version of {@link JOptionPane}.
@@ -27,15 +30,15 @@ public class TomOptionPane {
     }
 
     public static boolean showOkCancelDialog(String title, Object[] fields, final Component initialFocused) {
-	return showBooleanDialog(title, fields, initialFocused, JOptionPane.OK_CANCEL_OPTION, JOptionPane.OK_OPTION,
-		JOptionPane.CANCEL_OPTION);
+	return showBooleanDialog(title, fields, initialFocused, JOptionPane.OK_CANCEL_OPTION,
+		JOptionPane.OK_OPTION, JOptionPane.CANCEL_OPTION);
     }
 
     public static boolean showYesNoDialog(String title, Object[] fields, final Component initialFocused) {
-	return showBooleanDialog(title, fields, initialFocused, JOptionPane.YES_NO_OPTION, JOptionPane.YES_OPTION,
-		JOptionPane.NO_OPTION);
+	return showBooleanDialog(title, fields, initialFocused, JOptionPane.YES_NO_OPTION,
+		JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
     }
-    
+
     /*
      * Works just fine at home. See at work.
      */
@@ -43,7 +46,7 @@ public class TomOptionPane {
     public static void main(String[] args) {
 	System.out.println("start");
 	JTextField tf = new JTextField();
-	Object[] fields = new Object[] {"Test", tf};
+	Object[] fields = new Object[] { "Test", tf };
 	showOkCancelDialog("Title", fields, tf);
 	System.out.println("end");
     }
@@ -55,13 +58,28 @@ public class TomOptionPane {
 
 	JDialog dialog = optionPane.createDialog(title);
 
+	if (initialFocused == null) {
+	    for (Object field : fields) {
+		if (field instanceof Component) {
+		    Component comp = (Component) field;
+		    if (comp.isFocusable()) {
+			comp.requestFocusInWindow();
+			break;
+		    }
+		}
+	    }
+	}
 	if (initialFocused != null) {
-	    // Call focus to initialFocused component after show dialog
-	    dialog.addComponentListener(new ComponentAdapter() {
+	    dialog.addWindowListener(new WindowAdapter() {
 		@Override
-		public void componentShown(ComponentEvent e) {
-		    super.componentShown(e);
-		    initialFocused.requestFocusInWindow();
+		public void windowActivated(WindowEvent ev) {
+		    Timer timer = new Timer(50, new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+			    initialFocused.requestFocusInWindow();
+			}
+		    });
+		    timer.setRepeats(false);
+		    timer.start();
 		}
 	    });
 	}
@@ -79,7 +97,7 @@ public class TomOptionPane {
 
 	return (result == confirmOption);
     }
-    
+
     protected int result;
 
     private TomOptionPane(int result) {
