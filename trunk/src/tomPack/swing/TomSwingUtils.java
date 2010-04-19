@@ -7,6 +7,11 @@ import java.awt.Cursor;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -16,6 +21,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LookAndFeel;
+import javax.swing.Timer;
 import javax.swing.TransferHandler;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
@@ -29,7 +35,6 @@ import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 /**
  * Utilities for Graphical User Interfaces.
  * 
- * @version 2009/11/08
  * @author Tom Brito
  */
 public class TomSwingUtils {
@@ -250,6 +255,23 @@ public class TomSwingUtils {
 
 	TomMainFrame frame = new TomMainFrame(panel);
 	frame.setVisible(true);
+    }
+
+    public static void setInitialFocused(Window window, final Component initialFocused) {
+	if (initialFocused != null) {
+	    window.addWindowListener(new WindowAdapter() {
+		@Override
+		public void windowActivated(WindowEvent ev) {
+		    Timer timer = new Timer(50, new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+			    initialFocused.requestFocusInWindow();
+			}
+		    });
+		    timer.setRepeats(false);
+		    timer.start();
+		}
+	    });
+	}
     }
 
 }
