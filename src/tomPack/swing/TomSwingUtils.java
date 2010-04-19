@@ -258,7 +258,7 @@ public class TomSwingUtils {
     }
 
     public static void setInitialFocused(Window window, final Component initialFocused) {
-	if (initialFocused != null) {
+	if ((window != null) && (initialFocused != null)) {
 	    window.addWindowListener(new WindowAdapter() {
 		@Override
 		public void windowActivated(WindowEvent ev) {
