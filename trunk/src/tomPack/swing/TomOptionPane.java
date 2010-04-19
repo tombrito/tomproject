@@ -24,10 +24,15 @@ public class TomOptionPane {
 	return new TomDialogYesNo(title, question, noAsDefault);
     }
 
-    public static boolean showOkCancelDialog(String title, Object[] fields) {
+    public static boolean showOkCancelDialog(String title, Object... fields) {
 	return showOkCancelDialog(title, fields, null);
     }
 
+    public static boolean showOkCancelDialog(String title, Component initialFocused, Object... fields) {
+	return showOkCancelDialog(title, fields, initialFocused);
+    }
+
+    @Deprecated
     public static boolean showOkCancelDialog(String title, Object[] fields, Component initialFocused) {
 	return showBooleanDialog(title, fields, initialFocused, JOptionPane.OK_CANCEL_OPTION,
 		JOptionPane.OK_OPTION, JOptionPane.CANCEL_OPTION);
