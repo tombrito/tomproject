@@ -24,7 +24,11 @@ public class TomOptionPane {
 	return new TomDialogYesNo(title, question, noAsDefault);
     }
 
-    public static boolean showOkCancelDialog(String title, Object[] fields, final Component initialFocused) {
+    public static boolean showOkCancelDialog(String title, Object[] fields) {
+	return showOkCancelDialog(title, fields, null);
+    }
+
+    public static boolean showOkCancelDialog(String title, Object[] fields, Component initialFocused) {
 	return showBooleanDialog(title, fields, initialFocused, JOptionPane.OK_CANCEL_OPTION,
 		JOptionPane.OK_OPTION, JOptionPane.CANCEL_OPTION);
     }
@@ -46,7 +50,7 @@ public class TomOptionPane {
 	System.out.println("end");
     }
 
-    public static boolean showBooleanDialog(String title, Object[] fields, final Component initialFocused,
+    public static boolean showBooleanDialog(String title, Object[] fields, Component initialFocused,
 	    int dialogType, int confirmOption, int negateOption) {
 
 	JOptionPane optionPane = new JOptionPane(fields, JOptionPane.PLAIN_MESSAGE, dialogType, null, null);
@@ -58,7 +62,7 @@ public class TomOptionPane {
 		if (field instanceof Component) {
 		    Component comp = (Component) field;
 		    if (comp.isFocusable()) {
-			comp.requestFocusInWindow();
+			initialFocused = comp;
 			break;
 		    }
 		}
