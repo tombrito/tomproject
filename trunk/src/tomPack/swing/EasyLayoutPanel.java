@@ -107,4 +107,9 @@ public class EasyLayoutPanel extends JPanel {
 	return layout;
     }
 
+    /** Set {@link CenterLayout} as layout manager. */
+    public void setCenterLayout() {
+	setLayout(new CenterLayout());
+    }
+
 }
