@@ -14,7 +14,7 @@ public class TomFrame extends JFrame {
     private static TomFrame wFrameInstance = null;
 
     /**
-     * Retorna o objeto stático JFrame configurado
+     * Retorna o objeto stï¿½tico JFrame configurado
      */
     public static TomFrame getInstance() {
 	if (wFrameInstance == null) {
@@ -75,7 +75,16 @@ public class TomFrame extends JFrame {
     @Override
     public void setSize(int width, int height) {
 	super.setSize(width, height);
+	Dimension d = new Dimension(width, height);
+	setPreferredSize(d);
+	setMinimumSize(d);
+	setMaximumSize(d);
 	setLocationRelativeTo(null);
+    }
+    
+    public void setPreferredSize(int width, int height) {
+	Dimension d = new Dimension(width, height);
+        super.setPreferredSize(d);
     }
     
     @Override
