@@ -14,7 +14,6 @@ public class TomCalendar {
 	time += "-" + getMinute();
 	time += "-" + getSecond();
 	time += "-" + getMillisecond();
-	System.out.println(time);
 	return time;
     }
 
@@ -44,10 +43,6 @@ public class TomCalendar {
 
     public static int getMillisecond() {
 	return Calendar.getInstance().get(Calendar.MILLISECOND);
-    }
-    
-    public static void main(String[] args) {
-	TomCalendar.getTime();
     }
 
 }
