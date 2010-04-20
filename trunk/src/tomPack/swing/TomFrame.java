@@ -60,9 +60,8 @@ public class TomFrame extends JFrame {
 	super(name);
 	if (contentPane != null)
 	    setContentPane(contentPane);
-	pack();
 	setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-	setSize(new Dimension(800, 600));
+	setPreferredSize(new Dimension(800, 600));
 	setLocationRelativeTo(null);
     }
 
@@ -85,6 +84,12 @@ public class TomFrame extends JFrame {
     public void setPreferredSize(int width, int height) {
 	Dimension d = new Dimension(width, height);
         super.setPreferredSize(d);
+        setLocationRelativeTo(null);
+    }
+    
+    @Override
+    public void setPreferredSize(Dimension preferredSize) {
+        setPreferredSize(preferredSize.width, preferredSize.height);
     }
     
     @Override
