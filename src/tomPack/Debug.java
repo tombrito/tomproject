@@ -18,7 +18,11 @@ public class Debug {
 
     public static void setDebugMode(boolean b) {
 	debugMode = b;
-	println("Debug mode = " + b); //$NON-NLS-1$
+	if (debugMode) {
+	    System.out.println("DEBUG MODE ON"); //$NON-NLS-1$
+	} else {
+	    System.out.println("DEBUG MODE OFF"); //$NON-NLS-1$
+	}
     }
 
     /**
