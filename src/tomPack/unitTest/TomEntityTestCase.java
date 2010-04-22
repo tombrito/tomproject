@@ -159,6 +159,7 @@ public abstract class TomEntityTestCase extends TestCase {
      * @param methodName
      * @return
      */
+    // TODO Issue 101: Incoherent name for TomEntityTestCase.getMethod(Class<?> c, String methodName) method
     public Object getMethod(Class<?> c, String methodName) {
 	return invokeMethod(getWEntity(), c, methodName);
     }
