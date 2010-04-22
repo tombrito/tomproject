@@ -8,11 +8,15 @@ import javax.swing.UIManager;
 import tomPack.externalization.Messages;
 
 /**
- * @version 2009/11/08
+ * Translator for Java Swing user interface.
+ * 
  * @author Tom Brito
  */
 public class Translator {
 
+    /**
+     * Translate Java Swing user interface.
+     */
     public static void translate() {
 
 	UIManager.put("OptionPane.yesButtonText", Messages.getString("Translator.1")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -62,10 +66,10 @@ public class Translator {
     }
 
     public static void main(String[] args) {
-	Locale.setDefault(new Locale("pt", "BR"));  //$NON-NLS-1$//$NON-NLS-2$
+	Locale.setDefault(new Locale("pt", "BR")); //$NON-NLS-1$//$NON-NLS-2$
 	System.out.println(Locale.getDefault());
 	translate();
 	new JFileChooser().showOpenDialog(null);
     }
-    
+
 }
