@@ -6,6 +6,10 @@ import java.net.URI;
 
 public class TomFile extends File {
     
+    public TomFile(File file) {
+	super(file.getAbsolutePath());
+    }
+
     public TomFile(String pathname) {
 	super(pathname);
     }
