@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 import tomPack.Debug;
 import tomPack.externalization.Messages;
+import tomPack.io.TomFile;
 
 /**
  * A powered {@link JFileChooser}. The facilities include remember the last
@@ -22,7 +23,7 @@ public class TomFileChooser extends JFileChooser {
     // current directory and its getter and setter are provided by super class
 
     @Getter
-    protected File currentFile;
+    protected TomFile currentFile;
 
     @Getter
     @Setter
@@ -48,7 +49,7 @@ public class TomFileChooser extends JFileChooser {
      * Set current file, and set the current directory to the new current file's
      * parent directory.
      */
-    public void setCurrentFile(File currentFile) {
+    public void setCurrentFile(TomFile currentFile) {
 	this.currentFile = currentFile;
 	if (currentFile != null) {
 	    setCurrentDirectory(currentFile.getParentFile());
@@ -67,6 +68,10 @@ public class TomFileChooser extends JFileChooser {
 	}
 	return result;
     }
+    
+    @Override public TomFile getSelectedFile() {
+        return new TomFile(super.getSelectedFile().getAbsolutePath());
+    }
 
     /**
      * Set the current directory and delegate to {@link #showOpenDialog()}.
@@ -79,7 +84,7 @@ public class TomFileChooser extends JFileChooser {
     }
 
     /** @return the selected File to open or null. */
-    public File showOpenDialog() {
+    public TomFile showOpenDialog() {
 	int result = showOpenDialog((Component) null);
 	return (result == JFileChooser.APPROVE_OPTION) ? currentFile : null;
     }
