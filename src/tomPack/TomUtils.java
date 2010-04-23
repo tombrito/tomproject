@@ -62,6 +62,8 @@ public class TomUtils {
 
 	// TODO see:
 	// http://stackoverflow.com/questions/2699209/java-io-ugly-try-finally-block
+	// also very good, by the way:
+	// http://stackoverflow.com/questions/341971/what-is-the-execute-around-idiom
 	try {
 	    InputStream in = new FileInputStream(inputFileName);
 	    OutputStream out = new FileOutputStream(outputFileName);
