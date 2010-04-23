@@ -12,8 +12,6 @@ import java.util.regex.Pattern;
 
 import tomPack.unitTest.TomEntity;
 
-import lombok.Cleanup;
-
 /**
  * Development utilities.
  * 
@@ -49,27 +47,38 @@ public class TomUtils {
     }
 
     /**
-     * Copia o conteúdo do buffer de entrada e grava no buffer de saída.
+     * Copia o conteï¿½do do buffer de entrada e grava no buffer de saï¿½da.
      * 
      * @param inputFileName
      * @param outputFileName
-     * @return <code>true</code> se o conteúdo foi copiado com sucesso. Se
+     * @return <code>true</code> se o conteï¿½do foi copiado com sucesso. Se
      *         ocorrer qualquer Exception, retorna <code>false</code>.
      * 
      * @deprecated use apache commons-io.
      */
-    @Deprecated
-    public static boolean copyFile(String inputFileName, String outputFileName) {
+    @Deprecated public static boolean copyFile(String inputFileName, String outputFileName) {
 
 	boolean success = true;
 
+	// TODO see:
+	// http://stackoverflow.com/questions/2699209/java-io-ugly-try-finally-block
 	try {
-	    @Cleanup
 	    InputStream in = new FileInputStream(inputFileName);
-	    @Cleanup
 	    OutputStream out = new FileOutputStream(outputFileName);
 
-	    copy(in, out);
+	    try {
+		copy(in, out);
+	    } finally {
+		try {
+		    in.close();
+		} catch (Exception e) {
+		    try {
+			out.close();
+		    } catch (Exception e2) {}
+		    throw e;
+		}
+		out.close();
+	    }
 
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -102,7 +111,7 @@ public class TomUtils {
     /**
      * Prefira usar {@link #sameValues(WEntity, WEntity)}.<br>
      * Retorna true se dois objetos forem iguais (.equals()) ou ambos nulos.
-     * Também funciona com primitivos como parametro.
+     * Tambï¿½m funciona com primitivos como parametro.
      * 
      * @see #sameValues(WEntity, WEntity)
      * @param o1
@@ -123,8 +132,7 @@ public class TomUtils {
      * @return
      * @deprecated use {@link #equals(Object, Object)}.
      */
-    @Deprecated
-    public static boolean sameValues(TomEntity e1, TomEntity e2) {
+    @Deprecated public static boolean sameValues(TomEntity e1, TomEntity e2) {
 
 	// if one is null, the other needs to be too.
 	if ((e1 == null) || (e2 == null)) {
@@ -156,15 +164,20 @@ public class TomUtils {
     }
 
     public static String readFile(String filename) throws IOException {
-	@Cleanup
-	BufferedReader reader = new BufferedReader(new FileReader(filename));
 	String line = null;
 	StringBuilder stringBuilder = new StringBuilder();
 	String lineSeparator = System.getProperty("line.separator"); //$NON-NLS-1$
-	while ((line = reader.readLine()) != null) {
-	    stringBuilder.append(line);
-	    stringBuilder.append(lineSeparator);
+
+	BufferedReader reader = new BufferedReader(new FileReader(filename));
+	try {
+	    while ((line = reader.readLine()) != null) {
+		stringBuilder.append(line);
+		stringBuilder.append(lineSeparator);
+	    }
+	} finally {
+	    reader.close();
 	}
+
 	return stringBuilder.toString();
     }
 

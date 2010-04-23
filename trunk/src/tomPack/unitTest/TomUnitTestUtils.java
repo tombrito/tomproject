@@ -6,8 +6,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import lombok.Cleanup;
-
 /**
  * @version 2009/11/05
  * @author Tom Brito
@@ -18,12 +16,14 @@ public class TomUnitTestUtils {
 
     public static void writeManyOnTestFile(Object... obj) {
 	try {
-	    @Cleanup
 	    final FileOutputStream fout = new FileOutputStream(testFileName);
-	    @Cleanup
 	    final ObjectOutputStream out = new ObjectOutputStream(fout);
-	    for (Object o : obj) {
-		out.writeObject(o);
+	    try {
+		for (Object o : obj) {
+		    out.writeObject(o);
+		}
+	    } finally {
+		out.close();
 	    }
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -39,12 +39,14 @@ public class TomUnitTestUtils {
     public static ArrayList<Object> readManyFromTestFile(int num) {
 	ArrayList<Object> obj = new ArrayList<Object>();
 	try {
-	    @Cleanup
 	    final FileInputStream fin = new FileInputStream(testFileName);
-	    @Cleanup
 	    final ObjectInputStream in = new ObjectInputStream(fin);
-	    for (int i = 0; i < num; i++) {
-		obj.add(in.readObject());
+	    try {
+		for (int i = 0; i < num; i++) {
+		    obj.add(in.readObject());
+		}
+	    } finally {
+		in.close();
 	    }
 	} catch (Exception e) {
 	    e.printStackTrace();
@@ -54,11 +56,13 @@ public class TomUnitTestUtils {
 
     public static void writeOnTestFile(Object obj) {
 	try {
-	    @Cleanup
 	    final FileOutputStream fout = new FileOutputStream(testFileName);
-	    @Cleanup
 	    final ObjectOutputStream out = new ObjectOutputStream(fout);
-	    out.writeObject(obj);
+	    try {
+		out.writeObject(obj);
+	    } finally {
+		out.close();
+	    }
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
@@ -67,11 +71,13 @@ public class TomUnitTestUtils {
     public static Object readFromTestFile() {
 	Object obj = null;
 	try {
-	    @Cleanup
 	    final FileInputStream fin = new FileInputStream(testFileName);
-	    @Cleanup
 	    final ObjectInputStream in = new ObjectInputStream(fin);
-	    obj = in.readObject();
+	    try {
+		obj = in.readObject();
+	    } finally {
+		in.close();
+	    }
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
