@@ -44,4 +44,8 @@ public class TomFile extends File {
 	}
     }
     
+    @Override public TomFile getParentFile() {
+	return new TomFile(super.getParentFile().getAbsolutePath());
+    }
+    
 }
