@@ -16,14 +16,35 @@ import tomPack.externalization.Messages;
 public class Msg {
 
     /** Used for JUnit Test Cases. */
-    @Getter
-    private static boolean testMode = false;
-    
+    @Getter private static boolean testMode = false;
+
     public static void setTestMode(boolean testMode) {
 	Msg.testMode = testMode;
     }
 
+    @Getter private static boolean guiMode = true;
+
+    /**
+     * If running in guiMode, the messages with JOptionPanel will be shown.
+     * Else, will not.
+     * 
+     * @param guiMode
+     */
+    public static void setGuiMode(boolean guiMode) {
+	Msg.guiMode = guiMode;
+    }
+
     private static String lastDebugMsg = ""; //$NON-NLS-1$
+
+    //
+    // Static methods
+    //
+
+    public static void showMessageDialog(String msg, String title, int type) {
+	if (guiMode) {
+	    JOptionPane.showMessageDialog(null, msg, title, type);
+	}
+    }
 
     /**
      * Mostra a mensagem em formato <i>Debug</i> na GUI e no console. Mas
@@ -51,16 +72,15 @@ public class Msg {
      * @param msg
      *            : Mensagem a ser exibida.
      */
-    public static void error(Exception e) {
+    public static void error(Exception exception) {
 	Debug.println(Messages.getString("Msg.3")); //$NON-NLS-1$
-	Debug.println(e.getMessage());
-	e.printStackTrace();
+	Debug.println(exception.getMessage());
+	exception.printStackTrace();
 	if (!Msg.testMode) {
 	    try {
-		String msg = e.getMessage();
-		JOptionPane.showMessageDialog(null, msg, Messages.getString("Msg.5"), //$NON-NLS-1$
-			JOptionPane.ERROR_MESSAGE);
-	    } catch (Exception e2) {
+		String msg = exception.getMessage();
+		showMessageDialog(msg, Messages.getString("Msg.5"),  JOptionPane.ERROR_MESSAGE); //$NON-NLS-1$
+	    } catch (Exception e) {
 		e.printStackTrace();
 	    }
 	}
@@ -82,7 +102,7 @@ public class Msg {
 	if (!Msg.testMode) {
 	    Debug.println(Messages.getString("Msg.7") + msg); //$NON-NLS-1$
 	    try {
-		JOptionPane.showMessageDialog(null, msg, title, JOptionPane.ERROR_MESSAGE);
+		showMessageDialog(msg, title, JOptionPane.ERROR_MESSAGE);
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }
@@ -90,20 +110,20 @@ public class Msg {
     }
 
     /**
-     * Mostra a mensagem em formato <i>Atenção</i> na GUI e no console.
+     * Mostra a mensagem em formato <i>Atenï¿½ï¿½o</i> na GUI e no console.
      */
     public static void warning(String msg) {
 	warning(Messages.getString("Msg.9"), msg); //$NON-NLS-1$
     }
 
     /**
-     * Mostra a mensagem em formato <i>Atenção</i> na GUI e no console.
+     * Mostra a mensagem em formato <i>Atenï¿½ï¿½o</i> na GUI e no console.
      */
     public static void warning(String title, String msg) {
 	if (!Msg.testMode) {
 	    Debug.println(Messages.getString("Msg.10") + msg); //$NON-NLS-1$
 	    try {
-		JOptionPane.showMessageDialog(null, msg, title, JOptionPane.WARNING_MESSAGE);
+		showMessageDialog(msg, title, JOptionPane.WARNING_MESSAGE);
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }
@@ -111,7 +131,7 @@ public class Msg {
     }
 
     /**
-     * Mostra a mensagem em formato <i>Informação</i> na GUI e no console.
+     * Mostra a mensagem em formato <i>Informaï¿½ï¿½o</i> na GUI e no console.
      * 
      * @param msg
      *            : Mensagem a ser exibida.
@@ -126,7 +146,7 @@ public class Msg {
 		title = Messages.getString("Msg.11"); //$NON-NLS-1$
 	    Debug.println(Messages.getString("Msg.12") + msg); //$NON-NLS-1$
 	    try {
-		JOptionPane.showMessageDialog(null, msg, title, JOptionPane.INFORMATION_MESSAGE);
+		showMessageDialog(msg, title, JOptionPane.INFORMATION_MESSAGE);
 	    } catch (Exception e) {
 		e.printStackTrace();
 	    }
