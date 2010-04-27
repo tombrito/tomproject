@@ -1,9 +1,12 @@
 package tomPack.swing;
 
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import static javax.swing.JOptionPane.WARNING_MESSAGE;
+
 import javax.swing.JOptionPane;
 
 import lombok.Getter;
-
 import tomPack.Debug;
 import tomPack.externalization.Messages;
 
@@ -77,12 +80,9 @@ public class Msg {
 	Debug.println(exception.getMessage());
 	exception.printStackTrace();
 	if (!Msg.testMode) {
-	    try {
-		String msg = exception.getMessage();
-		showMessageDialog(msg, Messages.getString("Msg.5"),  JOptionPane.ERROR_MESSAGE); //$NON-NLS-1$
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
+	    String msg = exception.getMessage();
+	    String title = Messages.getString("Msg.5"); //$NON-NLS-1$
+	    showMessageDialog(msg, title, ERROR_MESSAGE);
 	}
     }
 
@@ -101,11 +101,7 @@ public class Msg {
 	    title = Messages.getString("Msg.6"); //$NON-NLS-1$
 	if (!Msg.testMode) {
 	    Debug.println(Messages.getString("Msg.7") + msg); //$NON-NLS-1$
-	    try {
-		showMessageDialog(msg, title, JOptionPane.ERROR_MESSAGE);
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
+	    showMessageDialog(msg, title, ERROR_MESSAGE);
 	}
     }
 
@@ -122,11 +118,7 @@ public class Msg {
     public static void warning(String title, String msg) {
 	if (!Msg.testMode) {
 	    Debug.println(Messages.getString("Msg.10") + msg); //$NON-NLS-1$
-	    try {
-		showMessageDialog(msg, title, JOptionPane.WARNING_MESSAGE);
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
+	    showMessageDialog(msg, title, WARNING_MESSAGE);
 	}
     }
 
@@ -145,11 +137,7 @@ public class Msg {
 	    if (title == null)
 		title = Messages.getString("Msg.11"); //$NON-NLS-1$
 	    Debug.println(Messages.getString("Msg.12") + msg); //$NON-NLS-1$
-	    try {
-		showMessageDialog(msg, title, JOptionPane.INFORMATION_MESSAGE);
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
+	    showMessageDialog(msg, title, INFORMATION_MESSAGE);
 	}
     }
 
