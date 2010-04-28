@@ -54,7 +54,7 @@ public class TomFile extends File {
     
     public String getExtension() {
 	    String name = getName();
-	    return name.substring(name.lastIndexOf(".")); //$NON-NLS-1$
+	    return name.substring(name.lastIndexOf(".") + 1); //$NON-NLS-1$
     }
     
 }
