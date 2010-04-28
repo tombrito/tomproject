@@ -27,7 +27,7 @@ public class TomFile extends File {
     }
     
     //
-    //
+    // Instance methods
     //
 
     /**
@@ -50,6 +50,11 @@ public class TomFile extends File {
     
     @Override public TomFile getParentFile() {
 	return new TomFile(super.getParentFile().getAbsolutePath());
+    }
+    
+    public String getExtension() {
+	    String name = getName();
+	    return name.substring(name.lastIndexOf(".")); //$NON-NLS-1$
     }
     
 }
