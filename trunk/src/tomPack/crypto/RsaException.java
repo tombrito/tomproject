@@ -1,4 +1,4 @@
-package tomPack;
+package tomPack.crypto;
 
 public class RsaException extends Exception {
 
