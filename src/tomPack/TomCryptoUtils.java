@@ -13,11 +13,15 @@ public class TomCryptoUtils {
 	return encryptRsa(SerializationUtils.serialize(data), key);
     }
 
-    public static byte[] encryptRsa(byte[] bytes, Key key) throws Exception {
+    public static byte[] encryptRsa(byte[] bytes, Key key) throws RsaException {
+	try {
 	Cipher cipher = Cipher.getInstance("RSA/None/NoPadding", "BC"); //$NON-NLS-1$ //$NON-NLS-2$
 	cipher.init(Cipher.ENCRYPT_MODE, key);
 	byte[] encryptedBytes = cipher.doFinal(bytes);
 	return encryptedBytes;
+	} catch (Exception e) {
+	    throw new RsaException(e);
+	}
     }
 
 }
