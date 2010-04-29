@@ -22,19 +22,16 @@ public class TomFileChooser extends JFileChooser {
 
     // current directory and its getter and setter are provided by super class
 
-    @Getter
-    protected TomFile currentFile;
+    @Getter protected TomFile currentFile;
 
-    @Getter
-    @Setter
-    protected boolean askBeforeOverrideFile = true;
+    @Getter @Setter protected boolean askBeforeOverrideFile = true;
 
     //
     // Initialization
     //
 
     public TomFileChooser() {
-	// all file extensions will be accepted
+    // all file extensions will be accepted
     }
 
     public TomFileChooser(String ext, String description) {
@@ -59,18 +56,18 @@ public class TomFileChooser extends JFileChooser {
     //
     // Open dialog
     //
-    
-    @Override
-    public int showOpenDialog(Component parent) throws HeadlessException {
+
+    @Override public int showOpenDialog(Component parent) throws HeadlessException {
 	int result = super.showOpenDialog(parent);
 	if (result == JFileChooser.APPROVE_OPTION) {
 	    setCurrentFile(getSelectedFile());
 	}
 	return result;
     }
-    
+
     @Override public TomFile getSelectedFile() {
-        return new TomFile(super.getSelectedFile().getAbsolutePath());
+        File file =super.getSelectedFile();
+        return (file == null) ? null : new TomFile(file);
     }
 
     /**
@@ -93,8 +90,7 @@ public class TomFileChooser extends JFileChooser {
     // Save dialog
     //
 
-    @Override
-    public int showSaveDialog(Component parent) throws HeadlessException {
+    @Override public int showSaveDialog(Component parent) throws HeadlessException {
 	int result = super.showSaveDialog(parent);
 	if (result == JFileChooser.APPROVE_OPTION) {
 	    setCurrentFile(getSelectedFile());
