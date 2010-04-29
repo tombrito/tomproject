@@ -29,7 +29,6 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 
 import tomPack.Debug;
 
-import com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 
 /**
@@ -106,7 +105,8 @@ public class TomSwingUtils {
     }
 
     public static void initNimbusLaf() {
-	initLaf(new NimbusLookAndFeel());
+	// use class name, as it's not available in openJDK and give compile errors if directly accessed
+	initLaf("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"); //$NON-NLS-1$
     }
 
     public static void initWindowsLaf() {
