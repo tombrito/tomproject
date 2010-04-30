@@ -30,6 +30,13 @@ public class TomFileUtils {
     /**
      * Create the path, if it does not exist.
      */
+    public static void createPath(String pathName) throws IOException {
+	createPath(new File(pathName));
+    }
+
+    /**
+     * Create the path, if it does not exist.
+     */
     public static void createPath(File path) throws IOException {
 	if (!path.exists() && !path.mkdirs()) {
 	    throw new IOException("Fail to create path: " + path); //$NON-NLS-1$
@@ -39,9 +46,20 @@ public class TomFileUtils {
     /**
      * Create the file, if it does not exist.
      */
+    public static void createFile(String filename) throws IOException {
+	createFile(new File(filename));
+    }
+
+    /**
+     * Create the file, if it does not exist.
+     */
     public static void createFile(File file) throws IOException {
-	if (!file.exists() && !file.createNewFile()) {
-	    throw new IOException("Fail to create file: " + file); //$NON-NLS-1$
+	if (!file.exists()) {
+	    File path = file.getParentFile();
+	    createPath(path);
+	    if (!file.createNewFile()) {
+		throw new IOException("Fail to create file: " + file); //$NON-NLS-1$
+	    }
 	}
     }
 
