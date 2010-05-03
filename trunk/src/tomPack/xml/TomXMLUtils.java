@@ -28,19 +28,32 @@ import org.xml.sax.SAXException;
 
 import com.sun.org.apache.xerces.internal.dom.DOMImplementationImpl;
 
+/**
+ * Utilities for XML files.
+ * <p>
+ * Use {@link #parseXML(File)} to read a xml file.
+ */
 public class TomXMLUtils {
 
+    /**
+     * Return the list of child node's names.
+     */
     public static List<String> getValueList(Element rootElement) {
 	List<String> valueList = new ArrayList<String>();
-	NodeList manifestNodes = rootElement.getChildNodes();
-	for (int i = 0; i < manifestNodes.getLength(); i++) {
-	    Node node = manifestNodes.item(i);
+	NodeList nodes = rootElement.getChildNodes();
+
+	for (int i = 0; i < nodes.getLength(); i++) {
+	    Node node = nodes.item(i);
 	    String nodeName = node.getNodeName().trim();
+
+	    // remove xml comments
 	    if (nodeName.startsWith("#")) { //$NON-NLS-1$
 		continue;
 	    }
+
 	    valueList.add(nodeName);
 	}
+
 	return valueList;
     }
 
