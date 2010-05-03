@@ -1,6 +1,7 @@
 package tomPack.io;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
@@ -10,7 +11,7 @@ import lombok.Getter;
  */
 public class FileReadException extends Exception {
 
-    @Getter private List<File> files;
+    @Getter private List<File> files = new ArrayList<File>();
 
     public FileReadException() {}
 
