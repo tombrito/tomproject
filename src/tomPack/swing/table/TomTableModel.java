@@ -1,7 +1,6 @@
 package tomPack.swing.table;
 
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 
 import tomPack.unitTest.TomEntity;
 
@@ -9,21 +8,15 @@ import tomPack.unitTest.TomEntity;
  * A extension of {@link AbstractTableModel} with some new utilities
  * implemented.
  * 
- * @see TomTable
- * 
- * @version 2009/11/05
  * @author Tom Brito
+ * 
+ * @see TomTable
  */
 public abstract class TomTableModel extends AbstractTableModel implements TomEntity {
 
     private static final long serialVersionUID = -8707412394448256273L;
 
     /**
-     * <b>HINT!<br>
-     * In most cases, like cells iteration, prefer to use
-     * {@link TableModel#getColumnCount()} for less {@link TomTableModel}
-     * tighten.</b>
-     * <p>
      * Returns the index of the last column.
      */
     public int getLastColumn() {
@@ -31,11 +24,6 @@ public abstract class TomTableModel extends AbstractTableModel implements TomEnt
     }
 
     /**
-     * <b>HINT!<br>
-     * In most cases, like cells iteration, prefer to use
-     * {@link TableModel#getRowCount()} for less {@link TomTableModel}
-     * tighten.</b>
-     * <p>
      * Returns the index of the last row.
      */
     public int getLastRow() {
