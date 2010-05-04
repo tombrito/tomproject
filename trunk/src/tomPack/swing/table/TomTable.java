@@ -82,7 +82,6 @@ public class TomTable extends DelegatorTable implements Cloneable {
     
     private void init() {
 	setRowSelectionAllowed(false);
-	setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
 
     @Override
