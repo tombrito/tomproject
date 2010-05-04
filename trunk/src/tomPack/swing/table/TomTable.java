@@ -1,9 +1,13 @@
 package tomPack.swing.table;
 
+import java.util.Vector;
+
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import tomPack.externalization.Messages;
@@ -19,6 +23,10 @@ import tomPack.externalization.Messages;
 public class TomTable extends DelegatorTable implements Cloneable {
 
     private static final long serialVersionUID = 76564082602133170L;
+
+    // ****************************************************
+    // * Constructors
+    // ****************************************************
 
     /** Default constructor. */
     public TomTable() {
@@ -45,6 +53,34 @@ public class TomTable extends DelegatorTable implements Cloneable {
      */
     public TomTable(TableModel model) {
 	super(model);
+	init();
+    }
+    
+    public TomTable(Object[][] rowData, Object[] columnNames) {
+	super(rowData, columnNames);
+	init();
+    }
+
+    public TomTable(TableModel model, TableColumnModel columnModel) {
+	super(model, columnModel);
+	init();
+    }
+
+    public TomTable(Vector<?> rowData, Vector<?> columnNames) {
+	super(rowData, columnNames);
+	init();
+    }
+
+    public TomTable(TableModel model, TableColumnModel columnModel, ListSelectionModel selectionModel) {
+	super(model, columnModel, selectionModel);
+	init();
+    }
+    
+    // ****************************************************
+    // * Instance methods
+    // ****************************************************
+    
+    private void init() {
 	setRowSelectionAllowed(false);
 	setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
@@ -156,10 +192,10 @@ public class TomTable extends DelegatorTable implements Cloneable {
     }
 
     /**
-     * Verifica se a coluna atual é a de número <code>num</code>.
+     * Verifica se a coluna atual ï¿½ a de nï¿½mero <code>num</code>.
      * 
      * @param num
-     *            : Número da coluna para verificar.
+     *            : Nï¿½mero da coluna para verificar.
      * @return <code>true</code> se for a coluna numero <code>num</code>.
      */
     public boolean isSelectedColumn(int num) {
@@ -167,10 +203,10 @@ public class TomTable extends DelegatorTable implements Cloneable {
     }
 
     /**
-     * Verifica se a linha atual é a de número <code>num</code>.
+     * Verifica se a linha atual ï¿½ a de nï¿½mero <code>num</code>.
      * 
      * @param num
-     *            : Número da linha para verificar.
+     *            : Nï¿½mero da linha para verificar.
      * @return <code>true</code> se for a linha numero <code>num</code>.
      */
     public boolean isSelectedRow(int num) {
@@ -178,30 +214,30 @@ public class TomTable extends DelegatorTable implements Cloneable {
     }
 
     /**
-     * Verifica se a linha atual é a última linha da tabela.
+     * Verifica se a linha atual ï¿½ a ï¿½ltima linha da tabela.
      * 
-     * @return <code>true</code> se a linha atual for a última linha da tabela.
+     * @return <code>true</code> se a linha atual for a ï¿½ltima linha da tabela.
      */
     public boolean isLastRowSelected() {
 	return isLastRow(getSelectedRow());
     }
 
     /**
-     * Verifica se a linha de número <code>num</code> é a última linha da
+     * Verifica se a linha de nï¿½mero <code>num</code> ï¿½ a ï¿½ltima linha da
      * tabela.
      * 
      * @param num
-     *            : Número da linha para verificar.
-     * @return <code>true</code> se for a última linha da tabela.
+     *            : Nï¿½mero da linha para verificar.
+     * @return <code>true</code> se for a ï¿½ltima linha da tabela.
      */
     public boolean isLastRow(int num) {
 	return (getLastRow() == num);
     }
 
     /**
-     * Verifica se a coluna atual é a última coluna da tabela.
+     * Verifica se a coluna atual ï¿½ a ï¿½ltima coluna da tabela.
      * 
-     * @return <code>true</code> se a coluna atual for a última coluna da
+     * @return <code>true</code> se a coluna atual for a ï¿½ltima coluna da
      *         tabela.
      */
     public boolean isLastColumnSelected() {
@@ -209,12 +245,12 @@ public class TomTable extends DelegatorTable implements Cloneable {
     }
 
     /**
-     * Verifica se a coluna de número <code>num</code> é a última coluna da
+     * Verifica se a coluna de nï¿½mero <code>num</code> ï¿½ a ï¿½ltima coluna da
      * tabela.
      * 
      * @param num
-     *            : Número da coluna para verificar.
-     * @return <code>true</code> se for a última coluna da tabela.
+     *            : Nï¿½mero da coluna para verificar.
+     * @return <code>true</code> se for a ï¿½ltima coluna da tabela.
      */
     public boolean isLastCol(int columnIndex) {
 	return (getLastColumn() == columnIndex);
