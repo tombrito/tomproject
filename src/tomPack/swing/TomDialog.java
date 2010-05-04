@@ -69,7 +69,6 @@ public class TomDialog extends JDialog {
     /**
      * Defines a KeyAdapater for {@link TomDialog}.
      * 
-     * @version 2009/08/04
      * @author Tom Brito
      */
     class DialogKeyAdapter extends KeyAdapter {
@@ -255,6 +254,10 @@ public class TomDialog extends JDialog {
 
     public void setDefaultCursor() {
 	setCursor(Cursor.getDefaultCursor());
+    }
+
+    public void setPreferredSize(int i, int j) {
+	super.setPreferredSize(new Dimension(i, j));
     }
 
 }
