@@ -8,7 +8,7 @@ public class TomCalendar {
 	StringBuilder time = new StringBuilder();
 	time.append(getDate());
 	time.append("_"); //$NON-NLS-1$
-	time.append(getTimeMilliseconds());
+	time.append(getTime());
 	return time.toString();
     }
 
