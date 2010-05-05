@@ -18,6 +18,17 @@ public class TomAction extends AbstractAction {
     // Constructors
     //
 
+    /**
+     * If use this constructor, must override {@link #tryExecute()} to execute the action.
+     */
+    public TomAction(String name, String failMsg, Icon icon) {
+	super(name);
+	method = null;
+	object = null;
+	setFailMsg(failMsg);
+	setIcon(icon);
+    }
+
     public TomAction(String methodName, Object object, String name) {
 	super(name);
 	try {
@@ -94,12 +105,21 @@ public class TomAction extends AbstractAction {
 
     public void actionPerformed(ActionEvent ev) {
 	try {
-	    method.invoke(object);
+	    if (method != null) {
+		method.invoke(object);
+	    } else {
+		tryExecute();
+	    }
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    Msg.fail(failMsg);
 	}
     }
+
+    /**
+     * This method must be overridden by subclasses.
+     */
+    protected void tryExecute() throws Exception {}
 
     public void setFailMsg(String failMsg) {
 	if (failMsg != null && !failMsg.isEmpty()) {
