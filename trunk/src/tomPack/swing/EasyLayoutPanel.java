@@ -16,6 +16,30 @@ import javax.swing.SpringLayout;
  * A {@link JPanel} with layout convenience methods.
  */
 public class EasyLayoutPanel extends JPanel {
+    
+    //
+    // Constructors
+    //
+    
+    public EasyLayoutPanel() {
+	super();
+    }
+
+    public EasyLayoutPanel(boolean isDoubleBuffered) {
+	super(isDoubleBuffered);
+    }
+
+    public EasyLayoutPanel(LayoutManager layout) {
+	super(layout);
+    }
+
+    public EasyLayoutPanel(LayoutManager layout, boolean isDoubleBuffered) {
+	super(layout, isDoubleBuffered);
+    }
+
+    //
+    // Instance methods
+    //
 
     public LayoutManager setBorderLayout() {
 	LayoutManager layout = new BorderLayout();

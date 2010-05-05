@@ -22,9 +22,16 @@ public class TomPanel extends EasyLayoutPanel {
 	super();
     }
 
-    public TomPanel(LayoutManager mgr) {
-	this();
-	setLayout(mgr);
+    public TomPanel(boolean isDoubleBuffered) {
+	super(isDoubleBuffered);
+    }
+    
+    public TomPanel(LayoutManager layout) {
+	super(layout);
+    }
+
+    public TomPanel(LayoutManager layout, boolean isDoubleBuffered) {
+	super(layout, isDoubleBuffered);
     }
 
     //
