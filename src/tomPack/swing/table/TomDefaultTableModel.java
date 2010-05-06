@@ -39,13 +39,12 @@ public class TomDefaultTableModel extends TomTableModel {
     //
 
     /**
-     * Construtor default para serialização. Construtor com acesso público,
-     * porém em classe com acesso default (pacote).
+     * Construtor default para serializaï¿½ï¿½o. Construtor com acesso pï¿½blico,
+     * porï¿½m em classe com acesso default (pacote).
      */
     public TomDefaultTableModel(int initialColumnCount) {
 	this.columnsSize = initialColumnCount;
 	rows = new ArrayList<Row>();
-	addRow();
     }
 
     //
@@ -165,8 +164,8 @@ public class TomDefaultTableModel extends TomTableModel {
     }
 
     /**
-     * Adiciona uma linha com dados completa. Para adicionar dados a uma célula
-     * utilize o método setValueAt;
+     * Adiciona uma linha com dados completa. Para adicionar dados a uma cï¿½lula
+     * utilize o mï¿½todo setValueAt;
      */
     public synchronized void addRow() {
 	addRow(rows.size());
