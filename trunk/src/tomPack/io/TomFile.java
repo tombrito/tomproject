@@ -9,22 +9,37 @@ import java.net.URI;
  */
 public class TomFile extends File {
 
+    /**
+     * Delegates to {@link File#File(String)} using file.getAbsolutePath().
+     */
     public TomFile(File file) {
 	super(file.getAbsolutePath());
     }
 
+    /**
+     * Delegates to {@link File#File(String)}.
+     */
     public TomFile(String pathname) {
 	super(pathname);
     }
 
+    /**
+     * Delegates to {@link File#File(String, String)}.
+     */
     public TomFile(String parent, String child) {
 	super(parent, child);
     }
 
+    /**
+     * Delegates to {@link File#File(File, String)}.
+     */
     public TomFile(File parent, String child) {
 	super(parent, child);
     }
 
+    /**
+     * Delegates to {@link File#File(URI)}.
+     */
     public TomFile(URI uri) {
 	super(uri);
     }
@@ -47,7 +62,8 @@ public class TomFile extends File {
 	TomFileUtils.createFile(this);
     }
 
-    @Override public TomFile getParentFile() {
+    @Override
+    public TomFile getParentFile() {
 	return new TomFile(super.getParentFile().getAbsolutePath());
     }
 
