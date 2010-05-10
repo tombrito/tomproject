@@ -2,7 +2,7 @@ package tomPack.xml;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,13 +60,16 @@ public class TomXMLUtils {
     public static Document parseXML(File xmlFile) throws ParserConfigurationException, SAXException, IOException {
 	DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
+	if (xmlFile.length() == 0) {
+	    return null; // empty file
+	}
 	// TODO Issue #74 - show progress bar or use SAX (research)
 	System.out.println("parsing..."); //$NON-NLS-1$
 	return docBuilder.parse(xmlFile);
     }
 
-    // This method writes a DOM document to a stream
-    public static void outputDOM(Document doc, PrintStream stream) throws TransformerFactoryConfigurationError,
+    /** Writes a DOM document to a stream. */
+    public static void outputDOM(Document doc, OutputStream stream) throws TransformerFactoryConfigurationError,
 	    TransformerException {
 
 	// Prepare the DOM document for writing
@@ -81,6 +84,11 @@ public class TomXMLUtils {
 
     }
 
+    /**
+     * Convenience method for
+     * {@link DOMImplementation#createDocument(String, String, org.w3c.dom.DocumentType)}
+     * using args (null, rootElementName, null).
+     */
     public static Document createDocument(String rootElementName) {
 	DOMImplementation domImpl = DOMImplementationImpl.getDOMImplementation();
 	Document doc = domImpl.createDocument(null, rootElementName, null);
