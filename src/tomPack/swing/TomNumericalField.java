@@ -16,7 +16,8 @@ public class TomNumericalField extends TomTextField {
     }
 
     public int getValue() {
-	return Integer.valueOf(getText()).intValue();
+	String text = getText();
+	return (text.isEmpty()) ? 0 : Integer.valueOf(text).intValue();
     }
 
     // TODO Issue #88: create TomNumericalField.setMaxValue method
