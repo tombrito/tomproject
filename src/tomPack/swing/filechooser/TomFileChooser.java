@@ -1,6 +1,6 @@
 package tomPack.swing.filechooser;
 
-import java.awt.Component;
+import java.awt.Component; 
 import java.awt.HeadlessException;
 import java.io.File;
 
@@ -75,7 +75,7 @@ public class TomFileChooser extends JFileChooser {
      * 
      * @return delegated result {@link #showOpenDialog()}.
      */
-    public File showOpenDialog(File currentDirectory) {
+    public TomFile showOpenDialog(File currentDirectory) {
 	setCurrentDirectory(currentDirectory);
 	return showOpenDialog();
     }
@@ -112,13 +112,13 @@ public class TomFileChooser extends JFileChooser {
     /**
      * Set current directory and delegate to {@link #showSaveDialog()}.
      */
-    public File showSaveDialog(File currentDirectory) {
+    public TomFile showSaveDialog(File currentDirectory) {
 	setCurrentDirectory(currentDirectory);
 	return showSaveDialog();
     }
 
     /** @return the selected File to write on. */
-    public File showSaveDialog() {
+    public TomFile showSaveDialog() {
 	int result = showSaveDialog((Component) null);
 	return (result == JFileChooser.APPROVE_OPTION) ? currentFile : null;
     }
