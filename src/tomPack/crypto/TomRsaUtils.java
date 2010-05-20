@@ -12,6 +12,7 @@ import javax.crypto.Cipher;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang.SerializationUtils;
 
+@SuppressWarnings("nls") // there is no GUI here
 public class TomRsaUtils {
 
     public static String encryptAsString(Serializable data, Key key) throws RsaException {
@@ -29,7 +30,7 @@ public class TomRsaUtils {
 
     public static byte[] encryptAsByteArray(byte[] bytes, Key key) throws RsaException {
 	try {
-	    Cipher cipher = Cipher.getInstance("RSA/None/NoPadding", "BC"); //$NON-NLS-1$ //$NON-NLS-2$
+	    Cipher cipher = Cipher.getInstance("RSA/None/NoPadding", "BC");
 	    cipher.init(Cipher.ENCRYPT_MODE, key);
 	    byte[] encryptedBytes = cipher.doFinal(bytes);
 	    return encryptedBytes;
@@ -45,7 +46,6 @@ public class TomRsaUtils {
      * java.security.KeyPairGenerator.getInstance(&quot;RSA&quot;, &quot;BC&quot;).generateKeyPair()
      * </pre>
      */
-    @SuppressWarnings("nls")
     public static KeyPair generateKeyPair() throws NoSuchAlgorithmException, NoSuchProviderException {
 	return KeyPairGenerator.getInstance("RSA", "BC").generateKeyPair();
     }
