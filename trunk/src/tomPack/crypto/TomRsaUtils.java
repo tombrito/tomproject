@@ -1,14 +1,13 @@
 package tomPack.crypto;
 
-import java.io.Serializable;
 import java.security.Key;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 
@@ -20,7 +19,6 @@ import org.apache.commons.lang.SerializationUtils;
 
 import tomPack.TomHexUtils;
 
-// there is no GUI here
 @SuppressWarnings("nls")
 public class TomRsaUtils {
 
@@ -33,8 +31,8 @@ public class TomRsaUtils {
 	return Hex.encodeHexString(encryptedBytes);
     }
 
-    public static byte[] encryptAsByteArray(Serializable data, Key key) throws Exception {
-	return encryptAsByteArray(SerializationUtils.serialize(data), key);
+    public static byte[] encryptAsByteArray(SecretKey secretKey, Key key) throws Exception {
+	return encryptAsByteArray(SerializationUtils.serialize(secretKey), key);
     }
 
     public static byte[] encryptAsByteArray(byte[] bytes, Key key) throws RsaException {
@@ -59,27 +57,28 @@ public class TomRsaUtils {
 	return KeyPairGenerator.getInstance("RSA", "BC").generateKeyPair();
     }
 
-    public static PublicKey generatePublicKey(String encoded) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static RSAPublicKey generatePublicKey(String encoded) throws NoSuchAlgorithmException,
+	    InvalidKeySpecException {
 	return generatePublicKey(TomHexUtils.toHexBytes(encoded));
     }
 
-    public static PublicKey generatePublicKey(byte[] encodedKey) throws NoSuchAlgorithmException,
+    public static RSAPublicKey generatePublicKey(byte[] encodedKey) throws NoSuchAlgorithmException,
 	    InvalidKeySpecException {
 	X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encodedKey);
 	KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-	return keyFactory.generatePublic(pubKeySpec);
+	return (RSAPublicKey) keyFactory.generatePublic(pubKeySpec);
     }
 
-    public static PrivateKey generatePrivateKey(String encoded) throws NoSuchAlgorithmException,
+    public static RSAPrivateKey generatePrivateKey(String encoded) throws NoSuchAlgorithmException,
 	    InvalidKeySpecException {
 	return generatePrivateKey(TomHexUtils.toHexBytes(encoded));
     }
 
-    public static PrivateKey generatePrivateKey(byte[] encodedKey) throws NoSuchAlgorithmException,
+    public static RSAPrivateKey generatePrivateKey(byte[] encodedKey) throws NoSuchAlgorithmException,
 	    InvalidKeySpecException {
 	X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encodedKey);
 	KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-	return keyFactory.generatePrivate(pubKeySpec);
+	return (RSAPrivateKey) keyFactory.generatePrivate(pubKeySpec);
     }
 
 }
