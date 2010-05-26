@@ -1,8 +1,9 @@
 package tomPack.crypto;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
@@ -35,7 +36,23 @@ public class TomAesUtils {
 	return keygen.generateKey();
     }
 
-    public static void encrypt(Key key, InputStream in, OutputStream out) throws AesEncryptionException {
+    //
+    // Encryption
+    //
+
+    public static String encrypt(String data, SecretKey key) throws AesEncryptionException {
+	return encrypt(TomHexUtils.toHexBytes(data), key);
+    }
+
+    public static String encrypt(byte[] data, SecretKey key) throws AesEncryptionException {
+	InputStream in = new ByteArrayInputStream(data);
+	OutputStream out = new ByteArrayOutputStream();
+	encrypt(key, in, out);
+	return out.toString();
+    }
+
+    // See http://www.exampledepot.com/egs/javax.crypto/DesFile.html
+    public static void encrypt(SecretKey key, InputStream in, OutputStream out) throws AesEncryptionException {
 
 	// Buffer used to transport the bytes from one stream to another
 	byte[] buf = new byte[1024];
@@ -59,7 +76,11 @@ public class TomAesUtils {
 	}
     }
 
-    public static void decrypt(Key key, InputStream in, OutputStream out) throws AesDecryptionException {
+    //
+    // Decryption
+    //
+
+    public static void decrypt(SecretKey key, InputStream in, OutputStream out) throws AesDecryptionException {
 
 	// Buffer used to transport the bytes from one stream to another
 	byte[] buf = new byte[1024];
