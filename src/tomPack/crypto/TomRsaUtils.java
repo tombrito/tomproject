@@ -6,6 +6,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
+import java.security.interfaces.RSAKey;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
@@ -22,23 +23,23 @@ import tomPack.TomHexUtils;
 @SuppressWarnings("nls")
 public class TomRsaUtils {
 
-    public static String encryptAsString(SecretKey secretKey, Key key) throws RsaException {
+    public static String encryptAsString(SecretKey secretKey, RSAKey key) throws RsaException {
 	return encryptAsString(secretKey.getEncoded(), key);
     }
 
-    public static String encryptAsString(byte[] bytes, Key key) throws RsaException {
+    public static String encryptAsString(byte[] bytes, RSAKey key) throws RsaException {
 	byte[] encryptedBytes = TomRsaUtils.encryptAsByteArray(bytes, key);
 	return Hex.encodeHexString(encryptedBytes);
     }
 
-    public static byte[] encryptAsByteArray(SecretKey secretKey, Key key) throws Exception {
+    public static byte[] encryptAsByteArray(SecretKey secretKey, RSAKey key) throws Exception {
 	return encryptAsByteArray(SerializationUtils.serialize(secretKey), key);
     }
 
-    public static byte[] encryptAsByteArray(byte[] bytes, Key key) throws RsaException {
+    public static byte[] encryptAsByteArray(byte[] bytes, RSAKey key) throws RsaException {
 	try {
 	    Cipher cipher = Cipher.getInstance("RSA/None/NoPadding", "BC");
-	    cipher.init(Cipher.ENCRYPT_MODE, key);
+	    cipher.init(Cipher.ENCRYPT_MODE, (Key) key);
 	    byte[] encryptedBytes = cipher.doFinal(bytes);
 	    return encryptedBytes;
 	} catch (Exception e) {
