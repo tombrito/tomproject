@@ -117,7 +117,7 @@ public class TomFileChooser extends JFileChooser {
 	return showSaveDialog();
     }
 
-    /** @return the selected File to write on. */
+    /** @return the selected File to write on, or null if the user cancel. */
     public TomFile showSaveDialog() {
 	int result = showSaveDialog((Component) null);
 	return (result == JFileChooser.APPROVE_OPTION) ? currentFile : null;
