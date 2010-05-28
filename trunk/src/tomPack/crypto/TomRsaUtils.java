@@ -28,7 +28,7 @@ public class TomRsaUtils {
     }
 
     public static String encryptAsString(byte[] bytes, RSAKey key) throws RsaException {
-	byte[] encryptedBytes = TomRsaUtils.encryptAsByteArray(bytes, key);
+	byte[] encryptedBytes = encryptAsByteArray(bytes, key);
 	return Hex.encodeHexString(encryptedBytes);
     }
 
