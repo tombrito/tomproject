@@ -23,11 +23,11 @@ import tomPack.TomHexUtils;
 @SuppressWarnings("nls")
 public class TomRsaUtils {
 
-    public static String encryptAsString(SecretKey secretKey, RSAKey key) throws RsaException {
-	return encryptAsString(secretKey.getEncoded(), key);
+    public static String encrypt(SecretKey secretKey, RSAKey key) throws RsaException {
+	return encrypt(secretKey.getEncoded(), key);
     }
 
-    public static String encryptAsString(byte[] bytes, RSAKey key) throws RsaException {
+    public static String encrypt(byte[] bytes, RSAKey key) throws RsaException {
 	byte[] encryptedBytes = encryptAsByteArray(bytes, key);
 	return Hex.encodeHexString(encryptedBytes);
     }
@@ -48,14 +48,19 @@ public class TomRsaUtils {
     }
 
     /**
-     * Convenience method for:
-     * 
-     * <pre>
-     * java.security.KeyPairGenerator.getInstance(&quot;RSA&quot;, &quot;BC&quot;).generateKeyPair()
-     * </pre>
+     * Generate a key pair with a key size of 1024.
      */
     public static KeyPair generateKeyPair() throws NoSuchAlgorithmException, NoSuchProviderException {
-	return KeyPairGenerator.getInstance("RSA", "BC").generateKeyPair();
+	return generateKeyPair(1024);
+    }
+
+    /**
+     * Generate a key pair with a given key.
+     */
+    public static KeyPair generateKeyPair(int keySize) throws NoSuchAlgorithmException, NoSuchProviderException {
+	KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA", "BC");
+	keyPairGen.initialize(keySize);
+	return keyPairGen.generateKeyPair();
     }
 
     public static RSAPublicKey generatePublicKey(String encoded) throws NoSuchAlgorithmException,
