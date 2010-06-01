@@ -2,23 +2,24 @@ package tomPack.crypto;
 
 import java.security.Key;
 import java.security.KeyFactory;
-import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.security.interfaces.RSAKey;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
 import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.SerializationUtils;
 
 import tomPack.TomHexUtils;
+import tomPack.swing.Msg;
 
 @SuppressWarnings("nls")
 public class TomRsaUtils {
@@ -38,7 +39,7 @@ public class TomRsaUtils {
 
     public static byte[] encryptAsByteArray(byte[] bytes, RSAKey key) throws RsaException {
 	try {
-	    Cipher cipher = Cipher.getInstance("RSA/None/NoPadding", "BC");
+	    Cipher cipher = Cipher.getInstance("RSA");
 	    cipher.init(Cipher.ENCRYPT_MODE, (Key) key);
 	    byte[] encryptedBytes = cipher.doFinal(bytes);
 	    return encryptedBytes;
@@ -50,17 +51,17 @@ public class TomRsaUtils {
     /**
      * Generate a key pair with a key size of 1024.
      */
-    public static KeyPair generateKeyPair() throws NoSuchAlgorithmException, NoSuchProviderException {
+    public static RsaKeyPair generateKeyPair() throws NoSuchAlgorithmException {
 	return generateKeyPair(1024);
     }
 
     /**
      * Generate a key pair with a given key.
      */
-    public static KeyPair generateKeyPair(int keySize) throws NoSuchAlgorithmException, NoSuchProviderException {
-	KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA", "BC");
+    public static RsaKeyPair generateKeyPair(int keySize) throws NoSuchAlgorithmException {
+	KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
 	keyPairGen.initialize(keySize);
-	return keyPairGen.generateKeyPair();
+	return new RsaKeyPair(keyPairGen.generateKeyPair());
     }
 
     public static RSAPublicKey generatePublicKey(String encoded) throws NoSuchAlgorithmException,
@@ -77,14 +78,40 @@ public class TomRsaUtils {
 
     public static RSAPrivateKey generatePrivateKey(String encoded) throws NoSuchAlgorithmException,
 	    InvalidKeySpecException {
-	return generatePrivateKey(TomHexUtils.toHexBytes(encoded));
+	return generatePrivateKey(encoded.getBytes());
     }
 
     public static RSAPrivateKey generatePrivateKey(byte[] encodedKey) throws NoSuchAlgorithmException,
 	    InvalidKeySpecException {
-	X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encodedKey);
+
+	Msg.debug(TomRsaUtils.class, ArrayUtils.toString(encodedKey));
+
+	/*
+	 * The following line throws InvalidKeySpecException: Only
+	 * RSAPrivate(Crt)KeySpec and PKCS8EncodedKeySpec supported for RSA
+	 * private keys
+	 */
+	// X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encodedKey);
+	PKCS8EncodedKeySpec pubKeySpec = new PKCS8EncodedKeySpec(encodedKey);
 	KeyFactory keyFactory = KeyFactory.getInstance("RSA");
 	return (RSAPrivateKey) keyFactory.generatePrivate(pubKeySpec);
+    }
+
+    public static void main(String[] args) throws Exception {
+	RsaKeyPair keyPair = generateKeyPair();
+	RSAPrivateKey key = keyPair.getPrivate();
+	String encoded = new String(Hex.encodeHex(key.getEncoded()));
+	// byte[] encoded = key.getEncoded();
+
+	byte[] decoded = Hex.decodeHex(encoded.toCharArray());
+	RSAPrivateKey k2 = generatePrivateKey(decoded);
+
+	System.out.println(decoded.equals(key.getEncoded()));
+	System.out.println(ArrayUtils.toString(decoded));
+	System.out.println(ArrayUtils.toString(k2.getEncoded()));
+
+	System.out.println("The end");
+
     }
 
 }
