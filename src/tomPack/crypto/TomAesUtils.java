@@ -10,6 +10,7 @@ import java.security.spec.InvalidKeySpecException;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
+import javax.crypto.CipherOutputStream;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -59,17 +60,26 @@ public class TomAesUtils {
     }
 
     // See http://www.exampledepot.com/egs/javax.crypto/DesFile.html
-    public static void encrypt(SecretKey key, InputStream in, OutputStream out) throws AesEncryptionException {
+    // Used internally by this class, after encode in Base64
+    private static void encrypt(SecretKey key, InputStream in, OutputStream out) throws AesEncryptionException {
 
 	// Buffer used to transport the bytes from one stream to another
 	byte[] buf = new byte[1024];
 
 	try {
+	    // FIXME "AES/CBC/NoPadding" should be PKCS1V2?
+	    Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+	    cipher.init(Cipher.ENCRYPT_MODE, key);
+
+	    // Bytes written to out will be encrypted
+	    // Note that the out is given as parameter, so the new out has the
+	    // old one
+	    out = new CipherOutputStream(out, cipher);
+
 	    // Read in the cleartext bytes and write to out to encrypt
 	    int numRead = 0;
 	    while ((numRead = in.read(buf)) >= 0) {
-		String encrypted = encrypt(buf, key);
-		out.write(encrypted.getBytes(), 0, numRead);
+		out.write(buf, 0, numRead);
 	    }
 	    // FIXME must be closed by caller
 	    TomIOUtils.close(out);
