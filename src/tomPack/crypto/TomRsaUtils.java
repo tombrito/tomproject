@@ -66,7 +66,7 @@ public class TomRsaUtils {
 
     public static RSAPublicKey generatePublicKey(String encoded) throws NoSuchAlgorithmException,
 	    InvalidKeySpecException {
-	return generatePublicKey(TomHexUtils.toHexBytes(encoded));
+	return generatePublicKey(TomHexUtils.hexStringToHexBytes(encoded));
     }
 
     public static RSAPublicKey generatePublicKey(byte[] encodedKey) throws NoSuchAlgorithmException,

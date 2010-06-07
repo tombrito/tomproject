@@ -33,6 +33,7 @@ import com.sun.org.apache.xerces.internal.dom.DOMImplementationImpl;
  * <p>
  * Use {@link #parseXML(File)} to read a xml file.
  */
+@SuppressWarnings("nls")
 public class TomXMLUtils {
 
     /**
@@ -47,7 +48,7 @@ public class TomXMLUtils {
 	    String nodeName = node.getNodeName().trim();
 
 	    // remove xml comments
-	    if (nodeName.startsWith("#")) { //$NON-NLS-1$
+	    if (nodeName.startsWith("#")) {
 		continue;
 	    }
 
@@ -64,22 +65,32 @@ public class TomXMLUtils {
 	    return null; // empty file
 	}
 	// TODO Issue #74 - show progress bar or use SAX (research)
-	System.out.println("parsing..."); //$NON-NLS-1$
+	System.out.println("parsing...");
 	return docBuilder.parse(xmlFile);
     }
 
     /** Writes a DOM document to a stream. */
     public static void outputDOM(Document doc, OutputStream stream) throws TransformerFactoryConfigurationError,
-	    TransformerException {
+    TransformerException {
+	outputNode(doc, stream, false);
+    }
 
+    /** Writes a Node to a stream. 
+     * @param omitXmlDeclaration */
+    public static void outputNode(Node node, OutputStream stream, boolean omitXmlDeclaration) throws TransformerFactoryConfigurationError,
+    TransformerException {
+	
+	String omit = omitXmlDeclaration ? "yes" : "no";
+	
 	// Prepare the DOM document for writing
-	Source source = new DOMSource(doc);
+	Source source = new DOMSource(node);
 	// Prepare the output stream
 	Result result = new StreamResult(stream);
 
 	// Write the DOM document to the file
 	Transformer xformer = TransformerFactory.newInstance().newTransformer();
-	xformer.setOutputProperty(OutputKeys.INDENT, "yes"); //$NON-NLS-1$
+	xformer.setOutputProperty(OutputKeys.INDENT, "yes");
+	xformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, omit);
 	xformer.transform(source, result);
 
     }
