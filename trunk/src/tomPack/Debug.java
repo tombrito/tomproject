@@ -32,10 +32,24 @@ public class Debug {
      * @param msg
      *            - the message to display.
      */
+    @SuppressWarnings("unchecked")
     public static void println(Object obj) {
 	if (Debug.debugMode) {
-	    System.out.println(obj.toString());
+	    if (obj instanceof Iterable) {
+		printIterable((Iterable) obj);
+	    } else {
+		System.out.println(obj.toString());
+	    }
 	}
+    }
+
+    @SuppressWarnings("nls")
+    private static void printIterable(Iterable<?> iterable) {
+	System.out.println("{");
+	for (Object obj : iterable) {
+	    System.out.println("  " + obj);
+	}
+	System.out.println("}");
     }
 
     public static void print(Object obj) {
