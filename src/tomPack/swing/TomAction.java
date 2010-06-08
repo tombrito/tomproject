@@ -19,14 +19,24 @@ public class TomAction extends AbstractAction {
     //
 
     /**
-     * If use this constructor, must override {@link #tryExecute()} to execute the action.
+     * If use this constructor, must override {@link #tryExecute()} to execute
+     * the action.
+     */
+    public TomAction(String name) {
+	this(name, (String) null);
+    }
+
+    /**
+     * If use this constructor, must override {@link #tryExecute()} to execute
+     * the action.
      */
     public TomAction(String name, String failMsg) {
 	this(name, failMsg, (Icon) null);
     }
 
     /**
-     * If use this constructor, must override {@link #tryExecute()} to execute the action.
+     * If use this constructor, must override {@link #tryExecute()} to execute
+     * the action.
      */
     public TomAction(String name, String failMsg, Icon icon) {
 	super(name);

@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -81,23 +80,15 @@ public class TomFileUtils {
 	IOUtils.copy(in, out);
     }
 
-    public static void copyFiles(List<File> files, File destDir) throws IOException {
-	for (File file : files) {
-	    copyFile(file, destDir);
+    /**
+     * Copy the files to the target directory.
+     * <p>
+     * WARNING: Try to use the full name of the files, to avoid problems.
+     */
+    public static void copyFiles(List<String> files, File destDir) throws IOException {
+	for (String filename : files) {
+	    copyFile(new File(filename), destDir);
 	}
     }
 
-    /**
-     * Its common for {@link TomFile} to use {@link TomFileUtils}, not the
-     * opposite. But this is an exception, as the List of files can not be just
-     * casted to List of TomFiles.
-     */
-    public static void copyFiles(List<TomFile> files, TomFile destDir) throws IOException {
-	List<File> newFiles = new ArrayList<File>();
-	for (File file : files) {
-	    newFiles.add(file);
-	}
-	copyFiles(newFiles, destDir);
-    }
-    
 }
