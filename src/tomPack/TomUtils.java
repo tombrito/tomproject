@@ -10,6 +10,8 @@ import java.io.OutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.io.IOUtils;
+
 import tomPack.unitTest.TomEntity;
 
 /**
@@ -54,7 +56,7 @@ public class TomUtils {
      * @return <code>true</code> se o conte�do foi copiado com sucesso. Se
      *         ocorrer qualquer Exception, retorna <code>false</code>.
      * 
-     * @deprecated use apache commons-io.
+     * @deprecated use apache commons-io's {@link IOUtils}.
      */
     @Deprecated public static boolean copyFile(String inputFileName, String outputFileName) {
 
