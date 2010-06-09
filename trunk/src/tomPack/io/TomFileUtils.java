@@ -85,9 +85,9 @@ public class TomFileUtils {
      * <p>
      * WARNING: Try to use the full name of the files, to avoid problems.
      */
-    public static void copyFiles(List<String> files, File destDir) throws IOException {
-	for (String filename : files) {
-	    copyFile(new File(filename), destDir);
+    public static void copyFiles(List<File> files, File destDir) throws IOException {
+	for (File file : files) {
+	    copyFile(file, destDir);
 	}
     }
 
