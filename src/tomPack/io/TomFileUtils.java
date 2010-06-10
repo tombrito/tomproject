@@ -16,6 +16,10 @@ import org.apache.commons.io.IOUtils;
  * @see TomFile
  */
 public class TomFileUtils {
+    
+    public static String getNameWithoutExtension(File file) {
+	return removeExtension(file.getName());
+    }
 
     /**
      * Return the given filename without the extension.
