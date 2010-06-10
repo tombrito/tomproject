@@ -72,7 +72,7 @@ public class TomFile extends File {
     }
 
     public String getNameWithoutExtension() {
-	return TomFileUtils.removeExtension(getName());
+	return TomFileUtils.getNameWithoutExtension(this);
     }
 
 }
