@@ -18,11 +18,14 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.SerializationUtils;
 
+import tomPack.DecoderException;
 import tomPack.TomHexUtils;
 import tomPack.swing.Msg;
 
 @SuppressWarnings("nls")
 public class TomRsaUtils {
+
+    private static final String algorithm = "RSA";
 
     public static String encrypt(SecretKey secretKey, RSAKey key) throws RsaException {
 	return encrypt(secretKey.getEncoded(), key);
@@ -39,7 +42,7 @@ public class TomRsaUtils {
 
     public static byte[] encryptAsByteArray(byte[] bytes, RSAKey key) throws RsaException {
 	try {
-	    Cipher cipher = Cipher.getInstance("RSA");
+	    Cipher cipher = Cipher.getInstance(algorithm);
 	    cipher.init(Cipher.ENCRYPT_MODE, (Key) key);
 	    byte[] encryptedBytes = cipher.doFinal(bytes);
 	    return encryptedBytes;
@@ -59,20 +62,19 @@ public class TomRsaUtils {
      * Generate a key pair with a given key.
      */
     public static RsaKeyPair generateKeyPair(int keySize) throws NoSuchAlgorithmException {
-	KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
+	KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(algorithm);
 	keyPairGen.initialize(keySize);
 	return new RsaKeyPair(keyPairGen.generateKeyPair());
     }
 
-    public static RSAPublicKey generatePublicKey(String encoded) throws NoSuchAlgorithmException,
-	    InvalidKeySpecException {
-	return generatePublicKey(TomHexUtils.hexStringToHexBytes(encoded));
+    public static RSAPublicKey generatePublicKey(String encoded) throws DecoderException {
+	return generatePublicKey(TomHexUtils.decodeHex(encoded));
     }
 
     public static RSAPublicKey generatePublicKey(byte[] encodedKey) throws NoSuchAlgorithmException,
 	    InvalidKeySpecException {
 	X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encodedKey);
-	KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+	KeyFactory keyFactory = KeyFactory.getInstance(algorithm);
 	return (RSAPublicKey) keyFactory.generatePublic(pubKeySpec);
     }
 
@@ -93,7 +95,7 @@ public class TomRsaUtils {
 	 */
 	// X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encodedKey);
 	PKCS8EncodedKeySpec pubKeySpec = new PKCS8EncodedKeySpec(encodedKey);
-	KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+	KeyFactory keyFactory = KeyFactory.getInstance(algorithm);
 	return (RSAPrivateKey) keyFactory.generatePrivate(pubKeySpec);
     }
 
