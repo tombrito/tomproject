@@ -16,6 +16,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.SecretKeySpec;
 
+import tomPack.DecoderException;
 import tomPack.TomHexUtils;
 import tomPack.io.TomIOUtils;
 
@@ -27,18 +28,21 @@ public class TomAesUtils {
 
     public static final String defaultCharsetName = "UTF-8";
 
-    public static SecretKey createAesKey(String encoded) throws NoSuchAlgorithmException, InvalidKeySpecException {
-	return createAesKey(TomHexUtils.hexStringToHexBytes(encoded));
+    // FIXME "AES/CBC/NoPadding" should be PKCS1V2?
+    private static final String algorithm = "AES";
+
+    public static SecretKey createAesKey(String encoded) throws DecoderException {
+	return createAesKey(TomHexUtils.decodeHex(encoded));
     }
 
     public static SecretKey createAesKey(byte[] encoded) throws NoSuchAlgorithmException, InvalidKeySpecException {
-	SecretKeySpec keySpec = new SecretKeySpec(encoded, "AES");
-	SecretKeyFactory factory = SecretKeyFactory.getInstance("AES");
+	SecretKeySpec keySpec = new SecretKeySpec(encoded, algorithm);
+	SecretKeyFactory factory = SecretKeyFactory.getInstance(algorithm);
 	return factory.generateSecret(keySpec);
     }
 
     public static SecretKey generateAesKey() throws NoSuchAlgorithmException {
-	KeyGenerator keygen = KeyGenerator.getInstance("AES");
+	KeyGenerator keygen = KeyGenerator.getInstance(algorithm);
 	return keygen.generateKey();
     }
 
@@ -67,8 +71,7 @@ public class TomAesUtils {
 	byte[] buf = new byte[1024];
 
 	try {
-	    // FIXME "AES/CBC/NoPadding" should be PKCS1V2?
-	    Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+	    Cipher cipher = Cipher.getInstance(algorithm);
 	    cipher.init(Cipher.ENCRYPT_MODE, key);
 
 	    // Bytes written to out will be encrypted
@@ -110,8 +113,7 @@ public class TomAesUtils {
 	byte[] buf = new byte[1024];
 
 	try {
-	    // FIXME "AES/CBC/NoPadding" should be PKCS1V2?
-	    Cipher dcipher = Cipher.getInstance("AES/CBC/NoPadding");
+	    Cipher dcipher = Cipher.getInstance(algorithm);
 	    dcipher.init(Cipher.DECRYPT_MODE, key);
 
 	    // Bytes read from in will be decrypted
