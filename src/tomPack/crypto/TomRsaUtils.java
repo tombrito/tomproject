@@ -1,5 +1,6 @@
 package tomPack.crypto;
 
+import java.math.BigInteger;
 import java.security.Key;
 import java.security.KeyFactory;
 import java.security.KeyPairGenerator;
@@ -9,7 +10,7 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
+import java.security.spec.RSAPublicKeySpec;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -18,8 +19,6 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.SerializationUtils;
 
-import tomPack.DecoderException;
-import tomPack.TomHexUtils;
 import tomPack.swing.Msg;
 
 @SuppressWarnings("nls")
@@ -67,13 +66,15 @@ public class TomRsaUtils {
 	return new RsaKeyPair(keyPairGen.generateKeyPair());
     }
 
-    public static RSAPublicKey generatePublicKey(String encoded) throws DecoderException {
-	return generatePublicKey(TomHexUtils.decodeHex(encoded));
+    public static RSAPublicKey generatePublicKey(String modulus, String publicExponent) throws NoSuchAlgorithmException, InvalidKeySpecException {
+	return generatePublicKey(new BigInteger(modulus), new BigInteger(publicExponent));
     }
 
-    public static RSAPublicKey generatePublicKey(byte[] encodedKey) throws NoSuchAlgorithmException,
+    public static RSAPublicKey generatePublicKey(BigInteger modulus, BigInteger publicExponent) throws NoSuchAlgorithmException,
 	    InvalidKeySpecException {
-	X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encodedKey);
+//	X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encodedKey);
+//	PKCS8EncodedKeySpec pubKeySpec = new PKCS8EncodedKeySpec(encodedKey);
+	RSAPublicKeySpec pubKeySpec = new RSAPublicKeySpec(modulus, publicExponent);
 	KeyFactory keyFactory = KeyFactory.getInstance(algorithm);
 	return (RSAPublicKey) keyFactory.generatePublic(pubKeySpec);
     }
