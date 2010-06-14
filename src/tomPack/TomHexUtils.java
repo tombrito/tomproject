@@ -44,5 +44,12 @@ public class TomHexUtils {
 	    throw new DecoderException(e);
 	}
     }
+    
+    public static void main(String[] args) throws Exception {
+	String data = "my data";
+	String encrypted = encodeHexString(data);
+	String decrypted = decodeHex(encrypted);
+	System.out.println(decrypted);
+    }
 
 }
