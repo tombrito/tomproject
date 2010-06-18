@@ -3,13 +3,13 @@ package tomPack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TomColletions {
-    
+public class TomCollections {
+
     /**
-     * Remove all the specified element list from the other specified element
-     * list.
+     * Get the specified elementsToGet from the elements list, if they are
+     * contained on it.
      * 
-     * @return the list of removed elements
+     * @return the list of elementsToGet that was contained in elements list.
      */
     public static <E> List<E> getAll(List<? extends E> elementsToGet, List<? extends E> elements) {
 	List<E> gets = new ArrayList<E>();
@@ -22,10 +22,9 @@ public class TomColletions {
     }
 
     /**
-     * Remove all the specified element list from the other specified element
-     * list.
+     * Remove the specified elementsToRemove from the specified elements list.
      * 
-     * @return the list of removed elements
+     * @return the list of removed elements.
      */
     public static <E> List<E> removeAll(List<E> elementsToRemove, List<E> elements) {
 	List<E> removed = new ArrayList<E>();
