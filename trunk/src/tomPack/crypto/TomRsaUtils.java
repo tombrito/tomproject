@@ -25,6 +25,7 @@ import tomPack.swing.Msg;
 public class TomRsaUtils {
 
     private static final String algorithm = "RSA";
+    private static final String transformation = "RSA/ECB/OAEPWithSHA1AndMGF1Padding";
 
     public static String encrypt(SecretKey secretKey, RSAKey key) throws RsaException {
 	return encrypt(secretKey.getEncoded(), key);
@@ -41,7 +42,7 @@ public class TomRsaUtils {
 
     public static byte[] encryptAsByteArray(byte[] bytes, RSAKey key) throws RsaException {
 	try {
-	    Cipher cipher = Cipher.getInstance(algorithm);
+	    Cipher cipher = Cipher.getInstance(transformation);
 	    cipher.init(Cipher.ENCRYPT_MODE, (Key) key);
 	    byte[] encryptedBytes = cipher.doFinal(bytes);
 	    return encryptedBytes;
@@ -66,14 +67,15 @@ public class TomRsaUtils {
 	return new RsaKeyPair(keyPairGen.generateKeyPair());
     }
 
-    public static RSAPublicKey generatePublicKey(String modulus, String publicExponent) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static RSAPublicKey generatePublicKey(String modulus, String publicExponent)
+	    throws NoSuchAlgorithmException, InvalidKeySpecException {
 	return generatePublicKey(new BigInteger(modulus), new BigInteger(publicExponent));
     }
 
-    public static RSAPublicKey generatePublicKey(BigInteger modulus, BigInteger publicExponent) throws NoSuchAlgorithmException,
-	    InvalidKeySpecException {
-//	X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encodedKey);
-//	PKCS8EncodedKeySpec pubKeySpec = new PKCS8EncodedKeySpec(encodedKey);
+    public static RSAPublicKey generatePublicKey(BigInteger modulus, BigInteger publicExponent)
+	    throws NoSuchAlgorithmException, InvalidKeySpecException {
+	// X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encodedKey);
+	// PKCS8EncodedKeySpec pubKeySpec = new PKCS8EncodedKeySpec(encodedKey);
 	RSAPublicKeySpec pubKeySpec = new RSAPublicKeySpec(modulus, publicExponent);
 	KeyFactory keyFactory = KeyFactory.getInstance(algorithm);
 	return (RSAPublicKey) keyFactory.generatePublic(pubKeySpec);
