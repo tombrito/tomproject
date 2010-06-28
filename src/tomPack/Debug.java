@@ -1,7 +1,5 @@
 package tomPack;
 
-import lombok.Getter;
-
 /**
  * Class used for debug messages.
  * 
@@ -13,8 +11,11 @@ public class Debug {
      * Debug mode, if true, show the debug msgs. <br>
      * Must be initialized on constructor.
      */
-    @Getter
     private static boolean debugMode = false;
+
+    public static boolean isDebugMode() {
+	return debugMode;
+    }
 
     public static void setDebugMode(boolean b) {
 	debugMode = b;
