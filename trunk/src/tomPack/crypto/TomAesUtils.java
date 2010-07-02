@@ -28,7 +28,6 @@ public class TomAesUtils {
 
     public static final String defaultCharsetName = "UTF-8";
 
-    // FIXME "AES/CBC/NoPadding" should be PKCS1V2?
     private static final String algorithm = "AES";
 
     public static SecretKey createAesKey(String encoded) throws DecoderException {
