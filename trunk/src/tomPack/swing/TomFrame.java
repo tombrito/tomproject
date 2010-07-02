@@ -105,5 +105,23 @@ public class TomFrame extends JFrame {
     public void setDefaultCursor() {
 	setCursor(Cursor.getDefaultCursor());
     }
+    
+    /**
+     * Set window to maximized state.
+     * 
+     * @see #restore()
+     */
+    public void maximize() {
+	setExtendedState(MAXIMIZED_BOTH);
+    }
+
+    /**
+     * Set window to restored state.
+     * 
+     * @see #maximize()
+     */
+    public void restore() {
+	setExtendedState(NORMAL);
+    }
 
 }
