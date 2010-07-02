@@ -55,11 +55,18 @@ public class TomAesUtils {
     }
 
     public static String encrypt(byte[] data, SecretKey key) throws AesEncryptionException {
+	String result = null;
 	byte[] base64Encoded = Base64.encode(data).getBytes();
 	InputStream in = new ByteArrayInputStream(base64Encoded);
 	OutputStream out = new ByteArrayOutputStream();
-	encrypt(key, in, out);
-	return out.toString();
+	try {
+	    encrypt(key, in, out);
+	    result = out.toString();
+	} finally {
+	    TomIOUtils.close(in);
+	    TomIOUtils.close(out);
+	}
+	return result;
     }
 
     // See http://www.exampledepot.com/egs/javax.crypto/DesFile.html
@@ -83,8 +90,6 @@ public class TomAesUtils {
 	    while ((numRead = in.read(buf)) >= 0) {
 		out.write(buf, 0, numRead);
 	    }
-	    // FIXME must be closed by caller
-	    TomIOUtils.close(out);
 	} catch (Exception e) {
 	    throw new AesEncryptionException(e);
 	}
@@ -100,13 +105,21 @@ public class TomAesUtils {
     }
 
     public static byte[] decrypt(SecretKey key, InputStream in) throws AesDecryptionException, Base64DecodingException {
+	String base64Encoded = null;
 	ByteArrayOutputStream out = new ByteArrayOutputStream();
-	decrypt(key, in, out);
-	String base64Encoded = out.toString();
+	try {
+	    decrypt(key, in, out);
+	    base64Encoded = out.toString();
+	} finally {
+	    TomIOUtils.close(out);
+	    // the InputStream must be close by caller
+	}
 	return Base64.decode(base64Encoded.getBytes());
     }
 
     private static void decrypt(SecretKey key, InputStream in, OutputStream out) throws AesDecryptionException {
+
+	CipherInputStream cipherInputStream = null;
 
 	// Buffer used to transport the bytes from one stream to another
 	byte[] buf = new byte[1024];
@@ -116,17 +129,16 @@ public class TomAesUtils {
 	    dcipher.init(Cipher.DECRYPT_MODE, key);
 
 	    // Bytes read from in will be decrypted
-	    in = new CipherInputStream(in, dcipher);
-
+	    cipherInputStream = new CipherInputStream(in, dcipher);
 	    // Read in the decrypted bytes and write the cleartext to out
 	    int numRead = 0;
-	    while ((numRead = in.read(buf)) >= 0) {
+	    while ((numRead = cipherInputStream.read(buf)) >= 0) {
 		out.write(buf, 0, numRead);
 	    }
-	    // FIXME must be closed by caller
-	    out.close();
 	} catch (Exception e) {
 	    throw new AesDecryptionException(e);
+	} finally {
+	    TomIOUtils.close(cipherInputStream);
 	}
     }
 
