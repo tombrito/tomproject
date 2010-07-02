@@ -25,6 +25,8 @@ public class TomNumericalField extends TomTextField {
     public static void main(String[] args) {
 	// FIXME Issue 104: TomNumericalField - "numbers only" is not working
 	TomMainFrame f = new TomMainFrame();
+	f.setSize(200, 200);
+	f.restore();
 	f.getContentPane().add(new TomNumericalField());
 	f.setVisible(true);
     }
