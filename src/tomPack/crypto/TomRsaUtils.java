@@ -25,7 +25,9 @@ import tomPack.swing.Msg;
 public class TomRsaUtils {
 
     private static final String algorithm = "RSA";
-    private static final String transformation = "RSA/ECB/OAEPWithSHA1AndMGF1Padding";
+    
+    // private static final String transformation = "RSA/ECB/OAEPWithSHA1AndMGF1Padding";
+    private static final String transformation = "RSA";
 
     public static String encrypt(SecretKey secretKey, RSAKey key) throws RsaException {
 	return encrypt(secretKey.getEncoded(), key);
