@@ -1,6 +1,6 @@
 package tomPack.swing.filechooser;
 
-import java.awt.Component; 
+import java.awt.Component;
 import java.awt.HeadlessException;
 import java.io.File;
 
@@ -22,9 +22,17 @@ public class TomFileChooser extends JFileChooser {
 
     // current directory and its getter and setter are provided by super class
 
-    @Getter protected TomFile currentFile;
+    @Getter
+    protected TomFile currentFile;
 
-    @Getter @Setter protected boolean askBeforeOverrideFile = true;
+    @Getter
+    @Setter
+    protected boolean askBeforeOverrideFile = true;
+
+    /**
+     * {@link String#endsWith(String)} for empty string returns <b>true</b>.
+     */
+    private String ext = ""; //$NON-NLS-1$
 
     //
     // Initialization
@@ -34,7 +42,12 @@ public class TomFileChooser extends JFileChooser {
     // all file extensions will be accepted
     }
 
+    @SuppressWarnings("nls")
     public TomFileChooser(String ext, String description) {
+	if (!ext.startsWith(".")) {
+	    ext = "." + ext;
+	}
+	this.ext = ext;
 	setFileFilter(new TomFileFilter(ext, description));
     }
 
@@ -57,7 +70,8 @@ public class TomFileChooser extends JFileChooser {
     // Open dialog
     //
 
-    @Override public int showOpenDialog(Component parent) throws HeadlessException {
+    @Override
+    public int showOpenDialog(Component parent) throws HeadlessException {
 	int result = super.showOpenDialog(parent);
 	if (result == JFileChooser.APPROVE_OPTION) {
 	    setCurrentFile(getSelectedFile());
@@ -65,9 +79,10 @@ public class TomFileChooser extends JFileChooser {
 	return result;
     }
 
-    @Override public TomFile getSelectedFile() {
-        File file =super.getSelectedFile();
-        return (file == null) ? null : new TomFile(file);
+    @Override
+    public TomFile getSelectedFile() {
+	File file = super.getSelectedFile();
+	return (file == null) ? null : new TomFile(file);
     }
 
     /**
@@ -90,10 +105,15 @@ public class TomFileChooser extends JFileChooser {
     // Save dialog
     //
 
-    @Override public int showSaveDialog(Component parent) throws HeadlessException {
+    @Override
+    public int showSaveDialog(Component parent) throws HeadlessException {
 	int result = super.showSaveDialog(parent);
 	if (result == JFileChooser.APPROVE_OPTION) {
-	    setCurrentFile(getSelectedFile());
+	    TomFile file = getSelectedFile();
+	    if (!file.getName().endsWith(ext)) {
+		file = new TomFile(file.getAbsolutePath() + ext);
+	    }
+	    setCurrentFile(file);
 	    if (askBeforeOverrideFile && (currentFile != null) && currentFile.exists()) {
 		String msg = Messages.getString("TomFileChooser.0"); //$NON-NLS-1$
 		String title = Messages.getString("TomFileChooser.1"); //$NON-NLS-1$
