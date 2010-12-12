@@ -6,31 +6,31 @@ import tomPack.swing.TomPanel;
 
 public class HorizontalPanel extends TomPanel {
 
-    //
-    // Constructors
-    //
+	//
+	// Constructors
+	//
 
-    public HorizontalPanel() {
-	super();
-	init();
-    }
+	public HorizontalPanel() {
+		super();
+		init();
+	}
 
-    public HorizontalPanel(boolean isDoubleBuffered) {
-	super(isDoubleBuffered);
-	init();
-    }
+	public HorizontalPanel(boolean isDoubleBuffered) {
+		super(isDoubleBuffered);
+		init();
+	}
 
-    public HorizontalPanel(LayoutManager layout, boolean isDoubleBuffered) {
-	super(layout, isDoubleBuffered);
-	init();
-    }
+	public HorizontalPanel(LayoutManager layout, boolean isDoubleBuffered) {
+		super(layout, isDoubleBuffered);
+		init();
+	}
 
-    //
-    // 
-    //
+	//
+	//
+	//
 
-    private void init() {
-	setBoxLayoutY();
-    }
+	private void init() {
+		setBoxLayoutY();
+	}
 
 }
