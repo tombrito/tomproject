@@ -11,51 +11,51 @@ import tomPack.swing.TomPanel;
  */
 public class TomBorderPanel extends TomPanel {
 
-    //
-    // Constructors
-    //
+	//
+	// Constructors
+	//
 
-    public TomBorderPanel() {
-	super();
-	init();
-    }
+	public TomBorderPanel() {
+		super();
+		init();
+	}
 
-    public TomBorderPanel(boolean isDoubleBuffered) {
-	super(isDoubleBuffered);
-	init();
-    }
+	public TomBorderPanel(boolean isDoubleBuffered) {
+		super(isDoubleBuffered);
+		init();
+	}
 
-    public TomBorderPanel(LayoutManager layout, boolean isDoubleBuffered) {
-	super(layout, isDoubleBuffered);
-	init();
-    }
+	public TomBorderPanel(LayoutManager layout, boolean isDoubleBuffered) {
+		super(layout, isDoubleBuffered);
+		init();
+	}
 
-    //
-    // 
-    //
-    
-    private void init() {
-	setBorderLayout();
-    }
+	//
+	//
+	//
 
-    public void addCenter(Component comp) {
-	add(comp, BorderLayout.CENTER);
-    }
+	private void init() {
+		setBorderLayout();
+	}
 
-    public void addSouth(Component comp) {
-	add(comp, BorderLayout.SOUTH);
-    }
+	public void addCenter(Component comp) {
+		add(comp, BorderLayout.CENTER);
+	}
 
-    public void addNorth(Component comp) {
-	add(comp, BorderLayout.NORTH);
-    }
+	public void addSouth(Component comp) {
+		add(comp, BorderLayout.SOUTH);
+	}
 
-    public void addEast(Component comp) {
-	add(comp, BorderLayout.EAST);
-    }
+	public void addNorth(Component comp) {
+		add(comp, BorderLayout.NORTH);
+	}
 
-    public void addWeast(Component comp) {
-	add(comp, BorderLayout.WEST);
-    }
+	public void addEast(Component comp) {
+		add(comp, BorderLayout.EAST);
+	}
+
+	public void addWeast(Component comp) {
+		add(comp, BorderLayout.WEST);
+	}
 
 }

@@ -13,308 +13,313 @@ import javax.swing.table.TableModel;
  */
 public class TypedTable<T> extends TomTable {
 
-    private static final long serialVersionUID = 1793819982167790132L;
+	private static final long serialVersionUID = 1793819982167790132L;
 
-    // cannot be protected (see the setter)
-    private DefaultTableModel model;
+	// cannot be protected (see the setter)
+	private DefaultTableModel model;
 
-    // ****************************************************
-    // * Overrides methods
-    // ****************************************************
+	// ****************************************************
+	// * Overrides methods
+	// ****************************************************
 
-    @Override
-    public DefaultTableModel getModel() {
-	return model;
-    }
-
-    @Override
-    public void setModel(TableModel dataModel) {
-	if (!(dataModel instanceof DefaultTableModel)) {
-	    String err = "Just DefaultTableModel supported."; //$NON-NLS-1$
-	    throw new RuntimeException(err);
+	@Override
+	public DefaultTableModel getModel() {
+		return model;
 	}
-	this.model = (DefaultTableModel) dataModel;
-	super.setModel(dataModel);
-    }
 
-    @Override
-    public boolean equals(Object obj) {
-	if (obj instanceof TypedTable<?>) {
-	    TypedTable<?> table = (TypedTable<?>) obj;
-	    return model.equals(table.model);
+	@Override
+	public void setModel(TableModel dataModel) {
+		if (!(dataModel instanceof DefaultTableModel)) {
+			String err = "Just DefaultTableModel supported."; //$NON-NLS-1$
+			throw new RuntimeException(err);
+		}
+		this.model = (DefaultTableModel) dataModel;
+		super.setModel(dataModel);
 	}
-	return false;
-    }
 
-    @Override
-    public int hashCode() {
-	return model.hashCode();
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof TypedTable<?>) {
+			TypedTable<?> table = (TypedTable<?>) obj;
+			return model.equals(table.model);
+		}
+		return false;
+	}
 
-    // ****************************************************
-    // * DefaultTableModel delegation
-    // ****************************************************
+	@Override
+	public int hashCode() {
+		return model.hashCode();
+	}
 
-    /**
-     * @param columnName
-     * @param columnData
-     * @see javax.swing.table.DefaultTableModel#addColumn(java.lang.Object, java.lang.Object[])
-     */
-    public void addColumn(Object columnName, T[] columnData) {
-	model.addColumn(columnName, columnData);
-    }
+	// ****************************************************
+	// * DefaultTableModel delegation
+	// ****************************************************
 
-    /**
-     * @param columnName
-     * @param columnData
-     * @see javax.swing.table.DefaultTableModel#addColumn(java.lang.Object, java.util.Vector)
-     */
-    public void addColumn(Object columnName, Vector<T> columnData) {
-	model.addColumn(columnName, columnData);
-    }
+	/**
+	 * @param columnName
+	 * @param columnData
+	 * @see javax.swing.table.DefaultTableModel#addColumn(java.lang.Object,
+	 *      java.lang.Object[])
+	 */
+	public void addColumn(Object columnName, T[] columnData) {
+		model.addColumn(columnName, columnData);
+	}
 
-    /**
-     * @param columnName
-     * @see javax.swing.table.DefaultTableModel#addColumn(java.lang.Object)
-     */
-    public void addColumn(Object columnName) {
-	model.addColumn(columnName);
-    }
+	/**
+	 * @param columnName
+	 * @param columnData
+	 * @see javax.swing.table.DefaultTableModel#addColumn(java.lang.Object,
+	 *      java.util.Vector)
+	 */
+	public void addColumn(Object columnName, Vector<T> columnData) {
+		model.addColumn(columnName, columnData);
+	}
 
-    /**
-     * @param rowData
-     * @see javax.swing.table.DefaultTableModel#addRow(java.lang.Object[])
-     */
-    public void addRow(T[] rowData) {
-	model.addRow(rowData);
-    }
+	/**
+	 * @param columnName
+	 * @see javax.swing.table.DefaultTableModel#addColumn(java.lang.Object)
+	 */
+	public void addColumn(Object columnName) {
+		model.addColumn(columnName);
+	}
 
-    /**
-     * @param rowData
-     * @see javax.swing.table.DefaultTableModel#addRow(java.util.Vector)
-     */
-    public void addRow(Vector<T> rowData) {
-	model.addRow(rowData);
-    }
+	/**
+	 * @param rowData
+	 * @see javax.swing.table.DefaultTableModel#addRow(java.lang.Object[])
+	 */
+	public void addRow(T[] rowData) {
+		model.addRow(rowData);
+	}
 
-    /**
-     * @param columnName
-     * @return
-     * @see javax.swing.table.AbstractTableModel#findColumn(java.lang.String)
-     */
-    public int findColumn(String columnName) {
-	return model.findColumn(columnName);
-    }
+	/**
+	 * @param rowData
+	 * @see javax.swing.table.DefaultTableModel#addRow(java.util.Vector)
+	 */
+	public void addRow(Vector<T> rowData) {
+		model.addRow(rowData);
+	}
 
-    /**
-     * @param row
-     * @param column
-     * @see javax.swing.table.AbstractTableModel#fireTableCellUpdated(int, int)
-     */
-    public void fireTableCellUpdated(int row, int column) {
-	model.fireTableCellUpdated(row, column);
-    }
+	/**
+	 * @param columnName
+	 * @return
+	 * @see javax.swing.table.AbstractTableModel#findColumn(java.lang.String)
+	 */
+	public int findColumn(String columnName) {
+		return model.findColumn(columnName);
+	}
 
-    /**
-     * @param e
-     * @see javax.swing.table.AbstractTableModel#fireTableChanged(javax.swing.event.TableModelEvent)
-     */
-    public void fireTableChanged(TableModelEvent e) {
-	model.fireTableChanged(e);
-    }
+	/**
+	 * @param row
+	 * @param column
+	 * @see javax.swing.table.AbstractTableModel#fireTableCellUpdated(int, int)
+	 */
+	public void fireTableCellUpdated(int row, int column) {
+		model.fireTableCellUpdated(row, column);
+	}
 
-    /**
-     * 
-     * @see javax.swing.table.AbstractTableModel#fireTableDataChanged()
-     */
-    public void fireTableDataChanged() {
-	model.fireTableDataChanged();
-    }
+	/**
+	 * @param e
+	 * @see javax.swing.table.AbstractTableModel#fireTableChanged(javax.swing.event.TableModelEvent)
+	 */
+	public void fireTableChanged(TableModelEvent e) {
+		model.fireTableChanged(e);
+	}
 
-    /**
-     * @param firstRow
-     * @param lastRow
-     * @see javax.swing.table.AbstractTableModel#fireTableRowsDeleted(int, int)
-     */
-    public void fireTableRowsDeleted(int firstRow, int lastRow) {
-	model.fireTableRowsDeleted(firstRow, lastRow);
-    }
+	/**
+	 * 
+	 * @see javax.swing.table.AbstractTableModel#fireTableDataChanged()
+	 */
+	public void fireTableDataChanged() {
+		model.fireTableDataChanged();
+	}
 
-    /**
-     * @param firstRow
-     * @param lastRow
-     * @see javax.swing.table.AbstractTableModel#fireTableRowsInserted(int, int)
-     */
-    public void fireTableRowsInserted(int firstRow, int lastRow) {
-	model.fireTableRowsInserted(firstRow, lastRow);
-    }
+	/**
+	 * @param firstRow
+	 * @param lastRow
+	 * @see javax.swing.table.AbstractTableModel#fireTableRowsDeleted(int, int)
+	 */
+	public void fireTableRowsDeleted(int firstRow, int lastRow) {
+		model.fireTableRowsDeleted(firstRow, lastRow);
+	}
 
-    /**
-     * @param firstRow
-     * @param lastRow
-     * @see javax.swing.table.AbstractTableModel#fireTableRowsUpdated(int, int)
-     */
-    public void fireTableRowsUpdated(int firstRow, int lastRow) {
-	model.fireTableRowsUpdated(firstRow, lastRow);
-    }
+	/**
+	 * @param firstRow
+	 * @param lastRow
+	 * @see javax.swing.table.AbstractTableModel#fireTableRowsInserted(int, int)
+	 */
+	public void fireTableRowsInserted(int firstRow, int lastRow) {
+		model.fireTableRowsInserted(firstRow, lastRow);
+	}
 
-    /**
-     * 
-     * @see javax.swing.table.AbstractTableModel#fireTableStructureChanged()
-     */
-    public void fireTableStructureChanged() {
-	model.fireTableStructureChanged();
-    }
+	/**
+	 * @param firstRow
+	 * @param lastRow
+	 * @see javax.swing.table.AbstractTableModel#fireTableRowsUpdated(int, int)
+	 */
+	public void fireTableRowsUpdated(int firstRow, int lastRow) {
+		model.fireTableRowsUpdated(firstRow, lastRow);
+	}
 
-    /**
-     * @return
-     * @see javax.swing.table.DefaultTableModel#getDataVector()
-     */
-    @SuppressWarnings("unchecked")
-    public Vector<T> getDataVector() {
-	return model.getDataVector();
-    }
+	/**
+	 * 
+	 * @see javax.swing.table.AbstractTableModel#fireTableStructureChanged()
+	 */
+	public void fireTableStructureChanged() {
+		model.fireTableStructureChanged();
+	}
 
-    /**
-     * @return
-     * @see javax.swing.table.AbstractTableModel#getTableModelListeners()
-     */
-    public TableModelListener[] getTableModelListeners() {
-	return model.getTableModelListeners();
-    }
+	/**
+	 * @return
+	 * @see javax.swing.table.DefaultTableModel#getDataVector()
+	 */
+	@SuppressWarnings("unchecked")
+	public Vector<T> getDataVector() {
+		return model.getDataVector();
+	}
 
-    /**
-     * @param row
-     * @param column
-     * @return
-     * @see javax.swing.table.DefaultTableModel#getValueAt(int, int)
-     */
-    @Override
-    @SuppressWarnings("unchecked")
-    public T getValueAt(int row, int column) {
-	return (T) model.getValueAt(row, column);
-    }
+	/**
+	 * @return
+	 * @see javax.swing.table.AbstractTableModel#getTableModelListeners()
+	 */
+	public TableModelListener[] getTableModelListeners() {
+		return model.getTableModelListeners();
+	}
 
-    /**
-     * @param row
-     * @param rowData
-     * @see javax.swing.table.DefaultTableModel#insertRow(int, java.lang.Object[])
-     */
-    public void insertRow(int row, T[] rowData) {
-	model.insertRow(row, rowData);
-    }
+	/**
+	 * @param row
+	 * @param column
+	 * @return
+	 * @see javax.swing.table.DefaultTableModel#getValueAt(int, int)
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public T getValueAt(int row, int column) {
+		return (T) model.getValueAt(row, column);
+	}
 
-    /**
-     * @param row
-     * @param rowData
-     * @see javax.swing.table.DefaultTableModel#insertRow(int, java.util.Vector)
-     */
-    public void insertRow(int row, Vector<T> rowData) {
-	model.insertRow(row, rowData);
-    }
+	/**
+	 * @param row
+	 * @param rowData
+	 * @see javax.swing.table.DefaultTableModel#insertRow(int,
+	 *      java.lang.Object[])
+	 */
+	public void insertRow(int row, T[] rowData) {
+		model.insertRow(row, rowData);
+	}
 
-    /**
-     * @param start
-     * @param end
-     * @param to
-     * @see javax.swing.table.DefaultTableModel#moveRow(int, int, int)
-     */
-    public void moveRow(int start, int end, int to) {
-	model.moveRow(start, end, to);
-    }
+	/**
+	 * @param row
+	 * @param rowData
+	 * @see javax.swing.table.DefaultTableModel#insertRow(int, java.util.Vector)
+	 */
+	public void insertRow(int row, Vector<T> rowData) {
+		model.insertRow(row, rowData);
+	}
 
-    /**
-     * @param event
-     * @see javax.swing.table.DefaultTableModel#newDataAvailable(javax.swing.event.TableModelEvent)
-     */
-    public void newDataAvailable(TableModelEvent event) {
-	model.newDataAvailable(event);
-    }
+	/**
+	 * @param start
+	 * @param end
+	 * @param to
+	 * @see javax.swing.table.DefaultTableModel#moveRow(int, int, int)
+	 */
+	public void moveRow(int start, int end, int to) {
+		model.moveRow(start, end, to);
+	}
 
-    /**
-     * @param e
-     * @see javax.swing.table.DefaultTableModel#newRowsAdded(javax.swing.event.TableModelEvent)
-     */
-    public void newRowsAdded(TableModelEvent e) {
-	model.newRowsAdded(e);
-    }
+	/**
+	 * @param event
+	 * @see javax.swing.table.DefaultTableModel#newDataAvailable(javax.swing.event.TableModelEvent)
+	 */
+	public void newDataAvailable(TableModelEvent event) {
+		model.newDataAvailable(event);
+	}
 
-    /**
-     * @param row
-     * @see javax.swing.table.DefaultTableModel#removeRow(int)
-     */
-    public void removeRow(int row) {
-	model.removeRow(row);
-    }
+	/**
+	 * @param e
+	 * @see javax.swing.table.DefaultTableModel#newRowsAdded(javax.swing.event.TableModelEvent)
+	 */
+	public void newRowsAdded(TableModelEvent e) {
+		model.newRowsAdded(e);
+	}
 
-    /**
-     * @param event
-     * @see javax.swing.table.DefaultTableModel#rowsRemoved(javax.swing.event.TableModelEvent)
-     */
-    public void rowsRemoved(TableModelEvent event) {
-	model.rowsRemoved(event);
-    }
+	/**
+	 * @param row
+	 * @see javax.swing.table.DefaultTableModel#removeRow(int)
+	 */
+	public void removeRow(int row) {
+		model.removeRow(row);
+	}
 
-    /**
-     * @param columnCount
-     * @see javax.swing.table.DefaultTableModel#setColumnCount(int)
-     */
-    public void setColumnCount(int columnCount) {
-	model.setColumnCount(columnCount);
-    }
+	/**
+	 * @param event
+	 * @see javax.swing.table.DefaultTableModel#rowsRemoved(javax.swing.event.TableModelEvent)
+	 */
+	public void rowsRemoved(TableModelEvent event) {
+		model.rowsRemoved(event);
+	}
 
-    /**
-     * @param newIdentifiers
-     * @see javax.swing.table.DefaultTableModel#setColumnIdentifiers(java.lang.Object[])
-     */
-    public void setColumnIdentifiers(Object[] newIdentifiers) {
-	model.setColumnIdentifiers(newIdentifiers);
-    }
+	/**
+	 * @param columnCount
+	 * @see javax.swing.table.DefaultTableModel#setColumnCount(int)
+	 */
+	public void setColumnCount(int columnCount) {
+		model.setColumnCount(columnCount);
+	}
 
-    /**
-     * @param columnIdentifiers
-     * @see javax.swing.table.DefaultTableModel#setColumnIdentifiers(java.util.Vector)
-     */
-    public void setColumnIdentifiers(Vector<?> columnIdentifiers) {
-	model.setColumnIdentifiers(columnIdentifiers);
-    }
+	/**
+	 * @param newIdentifiers
+	 * @see javax.swing.table.DefaultTableModel#setColumnIdentifiers(java.lang.Object[])
+	 */
+	public void setColumnIdentifiers(Object[] newIdentifiers) {
+		model.setColumnIdentifiers(newIdentifiers);
+	}
 
-    /**
-     * @param dataVector
-     * @param columnIdentifiers
-     * @see javax.swing.table.DefaultTableModel#setDataVector(java.lang.Object[][], java.lang.Object[])
-     */
-    public void setDataVector(T[][] dataVector, Object[] columnIdentifiers) {
-	model.setDataVector(dataVector, columnIdentifiers);
-    }
+	/**
+	 * @param columnIdentifiers
+	 * @see javax.swing.table.DefaultTableModel#setColumnIdentifiers(java.util.Vector)
+	 */
+	public void setColumnIdentifiers(Vector<?> columnIdentifiers) {
+		model.setColumnIdentifiers(columnIdentifiers);
+	}
 
-    /**
-     * @param dataVector
-     * @param columnIdentifiers
-     * @see javax.swing.table.DefaultTableModel#setDataVector(java.util.Vector, java.util.Vector)
-     */
-    public void setDataVector(Vector<T> dataVector, Vector<?> columnIdentifiers) {
-	model.setDataVector(dataVector, columnIdentifiers);
-    }
+	/**
+	 * @param dataVector
+	 * @param columnIdentifiers
+	 * @see javax.swing.table.DefaultTableModel#setDataVector(java.lang.Object[][],
+	 *      java.lang.Object[])
+	 */
+	public void setDataVector(T[][] dataVector, Object[] columnIdentifiers) {
+		model.setDataVector(dataVector, columnIdentifiers);
+	}
 
-    /**
-     * @param rowCount
-     * @see javax.swing.table.DefaultTableModel#setNumRows(int)
-     */
-    public void setNumRows(int rowCount) {
-	model.setNumRows(rowCount);
-    }
+	/**
+	 * @param dataVector
+	 * @param columnIdentifiers
+	 * @see javax.swing.table.DefaultTableModel#setDataVector(java.util.Vector,
+	 *      java.util.Vector)
+	 */
+	public void setDataVector(Vector<T> dataVector, Vector<?> columnIdentifiers) {
+		model.setDataVector(dataVector, columnIdentifiers);
+	}
 
-    /**
-     * @param rowCount
-     * @see javax.swing.table.DefaultTableModel#setRowCount(int)
-     */
-    public void setRowCount(int rowCount) {
-	model.setRowCount(rowCount);
-    }
+	/**
+	 * @param rowCount
+	 * @see javax.swing.table.DefaultTableModel#setNumRows(int)
+	 */
+	public void setNumRows(int rowCount) {
+		model.setNumRows(rowCount);
+	}
 
-    // ****************************************************
-    // * Other methods goes down here
-    // ****************************************************
+	/**
+	 * @param rowCount
+	 * @see javax.swing.table.DefaultTableModel#setRowCount(int)
+	 */
+	public void setRowCount(int rowCount) {
+		model.setRowCount(rowCount);
+	}
+
+	// ****************************************************
+	// * Other methods goes down here
+	// ****************************************************
 
 }

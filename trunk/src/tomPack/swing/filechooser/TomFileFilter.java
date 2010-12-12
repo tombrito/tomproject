@@ -8,37 +8,37 @@ import javax.swing.filechooser.FileFilter;
 
 public class TomFileFilter extends FileFilter {
 
-    protected final List<String> extensionList = new ArrayList<String>();
-    protected final String description;
+	protected final List<String> extensionList = new ArrayList<String>();
+	protected final String description;
 
-    public TomFileFilter(String extension, String description) {
-	this(description, new String[] { extension });
-    }
-
-    public TomFileFilter(String description, String... extensions) {
-	this.description = description;
-	for (String ext : extensions) {
-	    extensionList.add(ext);
+	public TomFileFilter(String extension, String description) {
+		this(description, new String[] { extension });
 	}
-    }
 
-    @Override
-    public boolean accept(File f) {
-	if (f.isDirectory()) {
-	    return true;
+	public TomFileFilter(String description, String... extensions) {
+		this.description = description;
+		for (String ext : extensions) {
+			extensionList.add(ext);
+		}
 	}
-	String name = f.getName();
-	for (String ext : extensionList) {
-	    if (name.endsWith(ext)) {
-		return true;
-	    }
-	}
-	return false;
-    }
 
-    @Override
-    public String getDescription() {
-	return description;
-    }
+	@Override
+	public boolean accept(File f) {
+		if (f.isDirectory()) {
+			return true;
+		}
+		String name = f.getName();
+		for (String ext : extensionList) {
+			if (name.endsWith(ext)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public String getDescription() {
+		return description;
+	}
 
 }

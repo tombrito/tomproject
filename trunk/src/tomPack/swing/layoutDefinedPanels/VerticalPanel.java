@@ -6,31 +6,31 @@ import tomPack.swing.TomPanel;
 
 public class VerticalPanel extends TomPanel {
 
-    //
-    // Constructors
-    //
+	//
+	// Constructors
+	//
 
-    public VerticalPanel() {
-	super();
-	init();
-    }
+	public VerticalPanel() {
+		super();
+		init();
+	}
 
-    public VerticalPanel(boolean isDoubleBuffered) {
-	super(isDoubleBuffered);
-	init();
-    }
+	public VerticalPanel(boolean isDoubleBuffered) {
+		super(isDoubleBuffered);
+		init();
+	}
 
-    public VerticalPanel(LayoutManager layout, boolean isDoubleBuffered) {
-	super(layout, isDoubleBuffered);
-	init();
-    }
+	public VerticalPanel(LayoutManager layout, boolean isDoubleBuffered) {
+		super(layout, isDoubleBuffered);
+		init();
+	}
 
-    //
-    // 
-    //
+	//
+	//
+	//
 
-    private void init() {
-	setBoxLayoutY();
-    }
+	private void init() {
+		setBoxLayoutY();
+	}
 
 }
