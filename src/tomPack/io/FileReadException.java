@@ -11,25 +11,27 @@ import lombok.Getter;
  */
 public class FileReadException extends Exception {
 
-    @Getter private List<File> files = new ArrayList<File>();
+	@Getter
+	private List<File> files = new ArrayList<File>();
 
-    public FileReadException() {}
-
-    public FileReadException(File... files) {
-	for (File file : files) {
-	    this.files.add(file);
+	public FileReadException() {
 	}
-    }
 
-    public FileReadException(Exception e) {
-	super(e);
-    }
-
-    public FileReadException(Exception e, File... files) {
-	super(e);
-	for (File file : files) {
-	    this.files.add(file);
+	public FileReadException(File... files) {
+		for (File file : files) {
+			this.files.add(file);
+		}
 	}
-    }
+
+	public FileReadException(Exception e) {
+		super(e);
+	}
+
+	public FileReadException(Exception e, File... files) {
+		super(e);
+		for (File file : files) {
+			this.files.add(file);
+		}
+	}
 
 }
