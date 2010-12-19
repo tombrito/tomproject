@@ -10,41 +10,41 @@ import java.security.interfaces.RSAPublicKey;
  */
 public class RsaKeyPair {
 
-    private KeyPair keyPair;
+	private KeyPair keyPair;
 
-    public RsaKeyPair(KeyPair keyPair) {
-	this.keyPair = keyPair;
-    }
+	public RsaKeyPair(KeyPair keyPair) {
+		this.keyPair = keyPair;
+	}
 
-    //
-    // KeyPair delegations
-    //
+	//
+	// KeyPair delegations
+	//
 
-    @Override
-    public int hashCode() {
-	return keyPair.hashCode();
-    }
+	@Override
+	public int hashCode() {
+		return keyPair.hashCode();
+	}
 
-    @Override
-    public String toString() {
-	return keyPair.toString();
-    }
+	@Override
+	public String toString() {
+		return keyPair.toString();
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-	return keyPair.equals(obj);
-    }
+	@Override
+	public boolean equals(Object obj) {
+		return keyPair.equals(obj);
+	}
 
-    public RSAPrivateKey getPrivate() {
-	return (RSAPrivateKey) keyPair.getPrivate();
-    }
+	public RSAPrivateKey getPrivate() {
+		return (RSAPrivateKey) keyPair.getPrivate();
+	}
 
-    public RSAPublicKey getPublic() {
-	return (RSAPublicKey) keyPair.getPublic();
-    }
+	public RSAPublicKey getPublic() {
+		return (RSAPublicKey) keyPair.getPublic();
+	}
 
-    //
-    // KeyPair delegations
-    //
+	//
+	// KeyPair delegations
+	//
 
 }
