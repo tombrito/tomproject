@@ -136,7 +136,7 @@ public class TomAction extends AbstractAction {
 	}
 
 	/**
-	 * This method must be overridden by subclasses.
+	 * This method must be overridden by subclasses. XXX why I didn't make this abstract? check later....
 	 */
 	protected void tryExecute() throws Exception {
 	}
