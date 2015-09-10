@@ -1,7 +1,4 @@
-# tomproject
-A collection of useful Java components and algorithms both from own and third party authorship.
-
-Welcome!
+# Welcome!
 
 What is TomProject?
 
